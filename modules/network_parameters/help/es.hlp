@@ -1,0 +1,81 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+<h1>{$node_name}</h1>
+
+<p>La opción "Parámetros de Red" en Issabel permite ver y configurar los parámetros necesarios para configurar el acceso a la red en el servidor.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_network_1.png" border="0" />
+<p>Figura 1</p></div>
+<br />
+
+<p>La siguiente tabla corresponde a los parámetros de red que se deben configurar en el servidor:</p>
+
+<table class="inline">
+  <tr>
+    <th>Nombre</th><th>Descripción</td>
+  </tr>
+  <tr>
+    <td>Host</td><td>Nombre del servidor, por ejemplo: pbx.subdomain.com</td>
+  </tr>
+  <tr>
+    <td>Puerta de enlace</td><td>Dirección IP del enrutador para salir a otras redes.(Default Gateway)</td>
+  </tr>
+  <tr>
+    <td>DNS Primario</td><td>Dirección IP del servidor de nombre de dominio primario.</td>
+  </tr>
+  <tr>
+    <td>DNS Secundario</td><td>Dirección IP del servidor de nombre de dominio alternativo.</td>
+  </tr>
+</table>
+<br />
+
+<p>Para editar cualquiera de estos parámetros haga click en el botón "Editar Parámetros de Red".</p>
+
+<p>Aquí también se muestra una lista de todas las interfaces de red disponibles en el servidor, como lo muestra la Figura 2. A continuación los detalles de la misma:</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_network_2.png" border="0" />
+<p>Figura 2</p></div>
+<br />
+<br />
+
+<table class="inline">
+	<tr>
+   		<th>Nombre</th><th>Descripción</th>
+  	</tr>  	
+	<tr>
+   		<td>Dispositivo</td><td>Nombre de la interfaz Ethernet.</td>
+  	</tr>
+  	<tr>
+    		<td>Tipo</td><td>Tipo de direccionamiento IP que tiene la interfaz, que puede ser STATIC cuando la IP es fijada manualmente o DHCP cuando la IP es obtenida automáticamente mediante un servidor DHCP.</td>
+	</tr>
+	<tr>
+		<td>IP</td><td>Dirección IP asignada a la interfaz.</td>
+	</tr>
+	<tr>
+
+		<td>Máscara</td><td>Esta es la máscara de red asignada a la interfaz.</td>
+	</tr>
+	<tr>
+		<td>Dirección MAC</td><td>Dirección física de la interfaz de red.</td>
+	</tr>
+	<tr>
+		<td>HW Info</td><td>Información adicional sobre la interfaz de red.</td>
+
+	</tr>
+	<tr>
+		<td>Estado</td><td>Muestra si la interfaz de red está conectada o no.</td>
+	</tr>
+</table>
+<br />
+<p>Para modificar los parámetros Tipo, IP y Máscara, haga click en el nombre de la interfaz.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_network_3.png" border="0" />
+<p>Figura 3</p></div>
+<br />
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Elastix version 1.0                                             |
+  | http://www.elastix.com                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
+  | Telfs. 2283-268, 2294-440, 2284-356                                  |
+  | Guayaquil - Ecuador                                                  |
+  | http://www.palosanto.com                                             |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Original Code is: Elastix Open Source.                           |
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Andrés Flores                                          |
+  | Email: aflores@palosanto.com                                         |
+  +----------------------------------------------------------------------+
+  $Id: en.lang,v 1.7 2008/02/18 09:49:00 jvega Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+"Hardware Detector" => "Détection matériel",
+"Ports not Founds" => "Ports non trouvés",
+"Card" => "Span",
+"Type port" => "Type",
+"No. Port" => "Port N°",
+"(In Use)" => "Actif",
+"Hardware Detecting" => "Détection matériel",
+"Hardware Detect" => "Détecter",
+"Cards undetected on your system, press for detecting hardware detection." => "Aucune carte n'a été détectée dans votre système. Veuillez appuyer sur le bouton \"Détecter nouveau matériel\" pour détecter un nouveau matériel.",
+"Information" => "Information",
+"Satisfactory Hardware Detection" => "Détection éffectuée",
+"Unknown" => "Inconnu",
+"Replace file chan_dahdi.conf" => "Remplacer le fichier chan_dahdi.conf",
+"Unable to backup file chan_dahdi.conf by chan_dahdi.conf.replace_for_elastix" => "Impossible de sauvegarder le fichier chan_dahdi.conf vers chan_dahdi.conf.replace_for_elastix",
+"Unable to replace file chan_dahdi.conf" => "Impossible de remplacer le fichier chan_dahdi.conf",
+"Detect Sangoma hardware" => "Détecter le matériel Sangoma",
+"Detect ISDN hardware" => "Détecter le matériel RNIS",
+"Misdn Card" => "Carte Misdn",
+"(Not in Use)" => "Pas en utilisation",
+"Port" => "Port",
+"Configure Echo Cancellers" => "Configurer l'annulation d'écho",
+"mISDN Driver Installed" => "Le driver mISDNuser est installé",
+"mISDN Driver not Installed" => "Le driver mISDNuser n'est pas installé",
+"Channel detected and not used" => "Canal détecté et non utilisé",
+"Channel detected and in use" => "Canal détecté et utilisé",
+"Undetected Channel" => "Canal non détecté",
+"You can set the parameters for these ports here" => "Vous pouvez configurer les paramètres pour ces ports ici",
+"Port Status" => "Statut du port",
+"Configuration of Span" => "Configuration de SPAN",
+"Span Settings" => "Réglages SPAN",
+"Advanced" => "Avancé",
+"Preferences" => "Préférences",
+"Timing source" => "Source de temps",
+"Line build out" => "Formation de ligne",
+"Framing" => "Encadrement",
+"Coding" => "Codage",
+"No Ports availables" => "Aucun port disponible",
+"Card Configured" => "Carte configurée",
+"Loading SPAN" => "Chargement SPAN",
+"Saving configuration" => "Sauvegarde de la configuration en cours",
+"Detected by Asterisk" => "Détecté par Asterisk",
+"Not detected by Asterisk" => "Non détecté par Asterisk",
+"Hardware Control" => "Gestion du matériel",
+"Channel Empty" => "Canal vide",
+);
+?>
+

@@ -1,0 +1,29 @@
+[dashboard]
+ignore_backup = no
+engine = sqlite3
+path = /var/www/db
+deletable = yes
+
+[FTP]
+ignore_backup = no
+engine = sqlite3
+path = /var/www/db
+deletable = yes
+
+[hardware_detector]
+ignore_backup = no
+engine = sqlite3
+path = /var/www/db
+deletable = yes
+
+[network]
+ignore_backup = no
+engine = sqlite3
+path = /var/www/db
+deletable = yes
+
+[acl]
+ignore_backup = yes
+engine = sqlite3
+path = /var/www/db
+deletable = no

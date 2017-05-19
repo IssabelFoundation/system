@@ -1,0 +1,12 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>La opción "Administrador de Applets" del menú "Sistema" en Issabel permite habilitar o deshabilitar la visibilidad de los applets en el Dashboard.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_applet_admin.png" border="0">
+	<p>Figura 1</p></div>
+    </body>
+</html>

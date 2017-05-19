@@ -1,0 +1,51 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+<h1>{$node_name}</h1>
+
+<p>The option "DHCP Server" allows configuring Issabel so it can assign IP addresses in the network.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_dhcp_server.png" border="0" />
+<p>Figure 1</p></div>
+<br />
+
+<p>Here the description of each field:</p>
+
+<table class="inline">
+  <tr>
+    <th>Name</th><th>Description</th>
+  </tr>
+  <tr>
+    <td>Status</td><td>It indicates if the DHCP service is enabled or disabled.</td>
+  </tr>
+  <tr>
+    <td>Starting IP Address</td><td>This will be the beginning of the IP range that the server will provide. </td>
+  </tr>
+  <tr>
+    <td>Ending IP Address</td><td>This will be the ending of the IP range that the server will provide.</td>
+  </tr>
+  <tr>
+    <td>Lease time</td><td>Amount of time the IP address will be assigned to devices in the network.</td>
+  </tr>
+  <tr>
+    <td>DNS 1</td><td>This address is the Primary DNS that the server will provide.</td>
+  </tr>
+  <tr>
+    <td>DNS 2</td><td>This address is the Secondary DNS that the server will provide.</td>
+  </tr>
+  <tr>
+    <td>WINS</td><td>It is the IP of the WINS Server that will be given to Windows machines.</td>
+  </tr>
+  <tr>
+    <td>Gateway</td><td>This is the address the server will provide as Gateway.</td>
+  </tr>
+</table>
+<br />
+
+<p>To save changes just click on the button "Save/Update". The service can be started by clicking on "Enable DHCP".</p>
+<br />
+</body>
+</html>

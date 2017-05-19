@@ -1,0 +1,20 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p>La opción "Repositorios" del menú "Actualizaciones" en Issabel permite escoger los repositorios de donde instalar o actualizar paquetes.</p>
+<p>Aquí usted puede seleccionar o deseleccionar los repositorios listados y luego hacer click en el botón "Guardar/Actualizar" para aplicar los cambios.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_repositories.png" border="0" />
+<p>Figura 1</p></div>
+<br />
+
+
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Elastix version 2.3                                                  |
+  | http://www.elastix.com                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
+  | Telfs. 2283-268, 2294-440, 2284-356                                  |
+  | Guayaquil - Ecuador                                                  |
+  | http://www.palosanto.com                                             |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Original Code is: Elastix Open Source.                           |
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: YOUR_NAME_HERE                                        |
+  | Email: youremail@example.org                                         |
+  +----------------------------------------------------------------------+
+  $Id: en.lang,v 1.7 2013-07-31 17:32:20 username Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"Activated" => "Activado",
+	"System Resources" => "Recursos del Sistema",
+	"Processes Status" => "Estado de Procesos",
+	"Hard Drives" => "Discos Duros",
+	"Performance Graphic" => "Gráfico de Rendimiento",
+	"News" => "Noticias",
+	"Communication Activity" => "Actividad de Comunicación",
+	"Calendar" => "Calendario",
+	"Calls" => "Llamadas",
+	"Emails" => "Correos",
+	"Faxes" => "Faxes",
+	"Voicemails" => "Mensajes de voz",
+	"Telephony Hardware" => "Hardware Telefónico",
+	"Check All" => "Seleccionar/Deseleccionar Todo",
+	"Applet" => "Applet",
+	"Dashboard Applet Admin" => "Gestión de Applets",
+        "You must have at least one applet activated" => "Debe tener al menos un applet activado",
+);
+?>

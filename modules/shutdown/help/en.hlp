@@ -1,0 +1,17 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p>This option allows for the shutdown and rebooting of the Issabel server. Upon choosing whichever of the two options, you will be prompted to confirm the action.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_shutdown.png" border="0" />
+<p>Figure 1</p></div>
+<br />
+
+</body>
+</html>

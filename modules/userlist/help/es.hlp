@@ -1,0 +1,20 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+<h1>{$node_name}</h1>
+
+<p>La opción "Usuarios" en Elastix permite crear y modificar cuentas de usuario que tienen acceso a la interfaz web de Elastix.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_userlist.png" border="0" />
+<p>Figura 1</p></div>
+<br />
+<p>Los usuarios pertenecen a un grupo el cual les otorga privilegios de operación sobre la interfaz web de Elastix. Tambien son asociados a un número de extensión y un correo electrónico. Para ver, modificar o eliminar la información sobre un usuario uste debe hacer click en el nombre de usuario.</p>
+<p>Para crear un usuario nuevo se debe hacer click en el botón "Crear Nuevo Usuario" y llenar el formulario correspondiente.</p>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_userlist_new.png" border="0" />
+<p>Figura 2</p></div>
+<br />
+</body>
+</html>

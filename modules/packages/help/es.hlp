@@ -1,0 +1,21 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p>La opción "Paquetes" del menú "Actualizaciones" muestra todos los paquetes instalados en el servidor. También permite instalar, desinstalar y actualizar paquetes.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_packages.png" border="0" />
+<p>Figura 1</p></div>
+<br />
+
+<p>Es posible buscar un paquete en particular utilizando el filtro de búsqueda especificando su nombre y su estado. (Instalado, Todos).</p>
+
+<p>Para actualizar la base de datos de repositorios usted debe hacer click en el botón "Actualizar Repositorios". Por defecto en la lista se muestran los paquetes actualmente instalados.</p>
+
+</body>
+</html>

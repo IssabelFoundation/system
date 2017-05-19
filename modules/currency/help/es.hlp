@@ -1,0 +1,18 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+        <p align="Justify"></p>
+	<p>La opción "Moneda" del menú "Preferencias" permite cambiar la moneda utilizada principalmente en el módulo de reporteria de la interfaz web de Issabel.</p>
+	<p>Para cambiarla seleccione la moneda deseada y dé click en el botón "Guardar".</p>
+	<br />
+        <!-- Form to add images -->
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_currency.png" border="0" />
+	<p>Figura 1</p></div>
+	<br />
+
+    </body>
+</html>

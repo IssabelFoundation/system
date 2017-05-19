@@ -1,0 +1,18 @@
+<html>
+<header>
+  <link rel="stylesheet" href="../themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="../themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p>La opción "Fecha/Hora" del menú "Preferencias"en Issabel permite configurar la hora, la fecha y la zona horaria del servidor.</p>
+<p>Para modificar esta información haga click en el botón "Aplicar Cambios".</p>
+<br />
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_preferences_date_time.png" border="0" />
+<p>Figura 1</p></div>
+<br />
+
+</body>
+</html>

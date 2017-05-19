@@ -1,0 +1,83 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+<h1>{$node_name}</h1>
+
+<p>The option “Network” of the Menu “System” in Issabel lets us view and configure the network parameters of the server.</p>
+
+<h3>Network Parameters</h3>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_network_1.png" border="0" />
+<p>Figure 1</p></div>
+<br />
+
+<p>This corresponds to the general network parameters of the server:</p>
+
+<table class="inline">
+  <tr>
+    <th>Name</th><th>Description</td>
+  </tr>
+  <tr>
+    <td>Host</td><td>Server Name, for example: pbx.subdomain.com</td>
+  </tr>
+  <tr>
+    <td>Default Gateway</td><td>IP Address of the Port of Connection (Default Gateway)</td>
+  </tr>
+  <tr>
+    <td>Primary DNS</td><td>IP Address of the Primary Domain Name Server (DNS)</td>
+  </tr>
+  <tr>
+    <td>Secondary DNS</td><td>IP Address of the Secondary or Alternative Domain Name Server (DNS)</td>
+  </tr>
+</table>
+<br />
+
+<p>To edit any of these parameters, click on the button “Edit Network Parameters”.</p>
+
+<p>Here also shows a list of available Interfaces on the server. Below the details: </p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_network_2.png" border="0" />
+<p>Figure 2</p></div>
+<br />
+<br />
+
+<table class="inline">
+	<tr>
+   		<th>Name</th><th>Description</th>
+  	</tr>  	
+	<tr>
+   		<td>Device</td><td>Name of the Ethernet interface</td>
+  	</tr>
+  	<tr>
+    		<td>Type</td><td>The type of IP address that the Interface has, which could be STATIC when the IP address is fixed or DHCP when the IP address is obtained automatically from a DHCP server.</td>
+	</tr>
+	<tr>
+		<td>IP</td><td>IP Address assigned to the Interface</td>
+	</tr>
+	<tr>
+
+		<td>Mask</td><td>The Network Mask assigned to the Interface</td>
+	</tr>
+	<tr>
+		<td>MAC Address</td><td>Physical Address of the network Interface</td>
+	</tr>
+	<tr>
+		<td>HW Info</td><td>Additional information about the network Interface</td>
+
+	</tr>
+	<tr>
+		<td>Status </td><td>Shows the physical status of the Interface, if it’s connected or not</td>
+	</tr>
+</table>
+<br />
+<p>To edit the parameters Type, IP or Mask, click on the name of the device. The rest of parameters cannot be changed.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_network_3.png" border="0" />
+<p>Figure 3</p></div>
+<br />
+
+</body>
+</html>

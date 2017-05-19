@@ -1,0 +1,45 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Elastix version 2.3                                                  |
+  | http://www.elastix.com                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
+  | Telfs. 2283-268, 2294-440, 2284-356                                  |
+  | Guayaquil - Ecuador                                                  |
+  | http://www.palosanto.com                                             |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Original Code is: Elastix Open Source.                           |
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: Jose Briones                                        |
+  | Email: jbriones@elastix.com                                         |
+  +----------------------------------------------------------------------+
+  $Id: es.lang,v 1.7 2013-08-01 19:13:45 username Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+"DHCP Client List" => "Lista de Clientes DHCP",
+"New Dhcp client" => "Nuevo Cliente DHCP",
+"Are you sure you wish to delete the Ip." => "¿Está seguro que desea eliminar la dirección IP?",
+"Action" => "Acción",
+"See All DHCP Info" => "Ver todo DHCP Info",
+"IP Address" => "Dirección IP",
+"Start Date" => "Fecha Inicio",
+"End Date" => "Fecha Fin",
+"MAC Address" => "Dirección MAC",
+"View Details" => "Ver Detalles",
+);
+?>

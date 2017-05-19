@@ -1,0 +1,18 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>This module shows a list of DHCP clients and leased IP addresses.</p>
+        <!-- Form to add images -->
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_DHCP_Client_List.png" border="0" />
+	<p>Figure 1</p></div>
+	<br />
+	<p>To see the leased time of each address, click on "View Details".</p>
+	<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_DHCP_Client_List_Details.png" border="0" />
+	<p>Figure 2</p></div>
+	<br />
+    </body>
+</html>

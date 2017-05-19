@@ -1,0 +1,67 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Elastix version 1.0                                                  |
+  | http://www.elastix.com                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
+  | Telfs. 2283-268, 2294-440, 2284-356                                  |
+  | Guayaquil - Ecuador                                                  |
+  | http://www.palosanto.com                                             |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Original Code is: Elastix Open Source.                           |
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Bruno Macias                                           |
+  | Email: bmacias@palosanto.com                                         |
+  +----------------------------------------------------------------------+
+  $Id: ru.lang,v 1.0 2015/10/20 01:05:00 Andrey Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+"DHCP Server" => "DHCP-Сервер",
+"Update" => "Сохранить/Обновить",
+"Service Start" => "Включить DHCP",
+"Service Stop" => "Выключить DHCP",
+"Start range of IPs" => "Начальный IP-адрес",
+"End range of IPs" => "Конечный IP-адрес",
+"DNS 1" => "DNS 1",
+"DNS 2" => "DNS 2",
+"WINS" => "WINS",
+"Gateway" => "Шлюз",
+"Optional" => "Необязательный",
+"Of 1 to 50000 Seconds" => "От 1 до 50000 Секунд",
+"Time of client refreshment" => "Время Аренды",
+"DHCP Configuration" => "Настройка DHCP-Сервера",
+"Could not find IP range" => "Не удалось найти диапазон IP-адресов",
+"DHCP configuration reading error: Verify that the DHCP service is installed and try again." => "DHCP configuration reading error: Verify that the DHCP service is installed and try again.",
+"Information DHCP" => "Информация DHCP",
+"The Service dhcpd can't stop" => "Служба dhcpd не может быть остановлена",
+"The Service dhcpd can't start" => "Служба dhcpd не может быть запущена",
+"The start IP is outside the LAN network" => "Начальный IP-адрес находится вне LAN сети",
+"The final IP is outside the LAN network" => "Конечный IP-адрес находится вне Lan сети.",
+"IP Range is invalid for available devices" => "Диапазон IP-адресов является недействительным для доступных устройст",
+"Gateway is outside the LAN network" => "Шлюз находится вне LAN сети",
+"You can only choose between Enabled and Disabled" => "Вы можете выбирать между 'Активный' и 'Неактивный'",
+"Value outside the range (1-50000)" => "Значение вне диапазона (1-50000)",
+"Failed to update the file configuration" => " Не удалось обновить файл конфигурации",
+"The update was successful, but was unable to reestablish the permissions of the file dhcp.conf" => "Обновление прошло успешно,но не получилось восстановить права доступа файла dhcp.conf",
+"Update Error" => "Ошибка Обновления",
+"Status"=>"Статус",
+"Inactive"=>"Неактивный",
+"Information" => "Информация",
+"Active"=>"Активный",
+);
+?>

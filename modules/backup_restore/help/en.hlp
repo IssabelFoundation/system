@@ -1,0 +1,66 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p>The option "Backup/Restore" of the menu "System" allows you to back up and restore the configuration of Issabel. If you have made a backup any time before this will appear in the list <i>(Figure 1)</i>. To download a backup from the list, just click on the name of the tar file. </p>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_backup_restore.png" border="0" />
+<p>Figure 1</p></div>
+<br />
+
+<h2>Perform a Backup</h2>
+
+<p>To create a backup just click on "Perform a Backup" button. Select all the configurations you want to back up from Issabel and click on "Process" button.</p>
+<br />
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_backup.png" border="0" />
+<p>Figure 2</p></div>
+<br />
+
+<h2>Restore a Backup</h2>
+
+<p>In the list of backups <i>(Figure 1)</i> click on "Restore" button locate on the right of the backup you want to restore. Then select the configuration to restore and click on "Process" button <i>(Figure 3)</i>.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_restore.png" border="0" />
+<p>Figure 3</p></div>
+<br />
+
+<h2>FTP Backup</h2>
+
+<p>To use a FTP Server to upload and download backups just click on "FTP Backup" button <i>(Figure 1)</i>. First, fill out the required information to connect with your FTP Server and then click on "Save" button to save changes.</p>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_FTP1.png" border="0" />
+<p>Figure 4</p></div>
+<br />
+<h3>Uploading files to FTP server</h3>
+<p>To upload backups to the FTP server you must drag the backup file from Local section to Server FTP section.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_FTP2.png" border="0" />
+<p>Figure 5</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_FTP3.png" border="0" />
+<p>Figure 6</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_FTP4.png" border="0" />
+<p>Figure 7</p></div>
+<br />
+<h3>Downloading files from FTP server</h3>
+<p>To download backup files to Issabel Server just drag the file from Server FTP section to Local section.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_FTP5.png" border="0" />
+<p>Figure 8</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_FTP6.png" border="0" />
+<p>Figure 9</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_FTP7.png" border="0" />
+<p>Figure 10</p></div>
+<br />
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+<h1>{$node_name}</h1>
+
+<p>La opción "Servidor DHCP" permite configurar Issabel como servidor DHCP de tal manera que pueda proveer de direcciones IP a otros dispositivos de red.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_dhcp_server.png" border="0" />
+<p>Figura 1</p></div>
+<br />
+
+<p>A continuación la descripción de cada campo:</p>
+
+<table class="inline">
+  <tr>
+    <th>Nombre</th><th>Descripción</th>
+  </tr>
+  <tr>
+    <td>Estado</td><td>Indica si el servicio DHCP está activo o inactivo.</td>
+  </tr>
+  <tr>
+    <td>Inicio del rango de IPs</td><td>Esta es la dirección desde donde inicia el rango de IPs que el servidor proveerá.</td>
+  </tr>
+  <tr>
+    <td>Fin del rango de IPs</td><td>Esta es la dirección hasta donde termina el rango de IPs que el servidor proveerá.</td>
+  </tr>
+  <tr>
+    <td>Tiempo de concesión</td><td>Cantidad de tiempo que una dirección IP estará asignada a un dispositivo de red.</td>
+  </tr>
+  <tr>
+    <td>DNS 1</td><td>Dirección IP del DNS primario que el servidor DHCP proveerá.</td>
+  </tr>
+  <tr>
+    <td>DNS 2</td><td>Dirección IP del DNS alternativo que el servidor DHCP proveerá.</td>
+  </tr>
+  <tr>
+    <td>WINS</td><td>Dirección IP del servidor WINS que será dado a las máquinas con sistema operativo Windows.</td>
+  </tr>
+  <tr>
+<td>Puerta de enlace</td><td>Dirección IP que el servidor DHCP proveerá como Puerta de enlace predeterminada.</td>
+  </tr>
+</table>
+<br />
+
+<p>Para guardar los cambios se debe hacer click en el botón "Guardar/Actualizar". El servicio puede ser iniciado mediante el botón "Activar DHCP".</p>
+<br />
+</body>
+</html>

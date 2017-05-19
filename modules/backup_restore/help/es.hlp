@@ -1,0 +1,66 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p>La opción "Backup/Restore" del menú "Sistema" permite hacer respaldos así como también restaurar a pariir de un respaldo la configuración en Elasix. Para descargar un respaldo de la lista sólo haga click en el nombre del archivo con extensión tar.</p>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_backup_restore.png" border="0" />
+<p>Figura 1</p></div>
+<br />
+
+<h2>Crear un respaldo</h2>
+
+<p>Para crear un respaldo usted debe hacer click en el botón "Crear un respaldo", seleccionar todas las configuraciones que se desean respaldar y luego hacer click en el botón "Procesar".</p>
+<br />
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_backup.png" border="0" />
+<p>Figura 2</p></div>
+<br />
+
+<h2>Restaurar un respaldo</h2>
+
+<p>En la lista de respaldos <i>(Figura 1)</i> haga click en el botón "Restaurar" ubicado a la derecha del nombre del respaldo. Seleccione la configuración que desea restataurar y dé click en el botón "Procesar"<i>(Figura 3)</i>.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_restore.png" border="0" />
+<p>Figura 3</p></div>
+<br />
+
+<h2>Respaldo FTP</h2>
+
+<p>Para usar un servidor FTP donde subir y descargar los respaldos haga click en el botón "Respaldo FTP" <i>(Figura 1)</i>. Aquí usted debe llenar los datos requeridos para estableces conexión con el servidor FTP y luego hacer click en el botón "Guardar" para aplicar los cambios.</p>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_FTP1.png" border="0" />
+<p>Figura 4</p></div>
+<br />
+<h3>Subiendo archivos al servidor FTP</h3>
+<p>Para subir respaldos al servidor FTP usted debe arrastrar el archivo desde la sección Local hasta la sección Servidor FTP.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_FTP2.png" border="0" />
+<p>Figura 5</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_FTP3.png" border="0" />
+<p>Figura 6</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_FTP4.png" border="0" />
+<p>Figura 7</p></div>
+<br />
+<h3>Descargando archivos del servidor FTP</h3>
+<p>Para descargar los archivos de respaldo a nuestro servidor Issabel usted debe arrastrar el archivo desde la sección Servidor FTP hasta la sección Local.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_FTP5.png" border="0" />
+<p>Figura 8</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_FTP6.png" border="0" />
+<p>Figura 9</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_FTP7.png" border="0" />
+<p>Figura 10</p></div>
+<br />
+</body>
+</html>

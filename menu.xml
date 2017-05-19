@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <menulist>
+    <menuitem menuid="system"               desc="System"             parent=""            module="no"  link="" order="0"></menuitem>
+	<menuitem menuid="sysdash"              desc="Dashboard"          parent="system"      module="yes" link="" order="1">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+            <group id="2" name="Operator" desc="Operator"></group>
+            <group id="3" name="extension" desc="extension user"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="dashboard"            desc="Dashboard"          parent="sysdash"      module="yes" link="" order="11">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+            <group id="2" name="Operator" desc="Operator"></group>
+            <group id="3" name="extension" desc="extension user"></group>
+        </permissions>
+    </menuitem>
+	<menuitem menuid="applet_admin"         desc="Dashboard Applet Admin" parent="sysdash" module="yes" link="" order="12">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+            <group id="2" name="Operator" desc="Operator"></group>
+            <group id="3" name="extension" desc="extension user"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="network"              desc="Network"            parent="system"      module="no"  link="" order="3">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="network_parameters"   desc="Network Parameters" parent="network"     module="yes" link="" order="31">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="dhcp_server"          desc="DHCP Server"        parent="network"     module="yes" link="" order="32">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="dhcp_clientlist"      desc="DHCP Client List"   parent="network"     module="yes" link="" order="33">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="dhcp_by_mac"          desc="Assign IP Address to Host"        parent="network"     module="yes" link="" order="34">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="usermgr"              desc="Users"    parent="system"      module="no"  link="" order="4">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+            <group id="2" name="Operator" desc="Operator"></group>
+            <group id="3" name="extension" desc="extension user"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="userlist"             desc="Users"              parent="usermgr"     module="yes" link="" order="41">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+            <group id="2" name="Operator" desc="Operator"></group>
+            <group id="3" name="extension" desc="extension user"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="shutdown"             desc="Shutdown"           parent="system"      module="yes" link="" order="6">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="hardware_detector"    desc="Hardware Detector"  parent="system"      module="yes" link="" order="7">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="updates"              desc="Updates"            parent="system"      module="no"  link="" order="8">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="packages"             desc="Packages"           parent="updates"     module="yes" link="" order="82">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="repositories"         desc="Repositories"       parent="updates"     module="yes" link="" order="81">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="backup_restore"       desc="Backup/Restore"     parent="system"      module="yes" link="" order="9">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="preferences"          desc="Preferences"        parent="system"      module="no"  link="" order="10">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+    <menuitem menuid="time_config"          desc="Date/Time"          parent="preferences" module="yes" link="" order="102">
+       <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+       </permissions>
+    </menuitem>
+    <menuitem menuid="currency"             desc="Currency"           parent="preferences" module="yes" link="" order="104">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
+  </menulist>
+</module>

@@ -1,0 +1,34 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>Esta opción permite asignar una dirección IP deseada a un dispositivo específico identificado por su dirección MAC. Cuando el dispositivo hace una petición de dirección IP, el servidor DHCP le asigna una IP de acuerdo a lo configurado por el usuario. Todas las asociaciones creadas por el usuario son mostradas en una lista.</p>
+	<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_dhcp_by_mac_1.png" border="0" />
+	<p>Figura 1</p></div>
+	<br />
+	<h2>Asignar una dirección IP</h2>
+	<p>Para crear una nueva asociación se debe hacer click en el botón "Asignar dirección IP", llenar el formulario con la información requerida y luego hacer click en "Guardar".</p>
+	<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_dhcp_by_mac_2.png" border="0" />
+	<p>Figura 2</p></div>
+	<br />
+	<p>La siguiente tabla muestra la descripción de cada campo:</p>
+        <table class="inline">
+            <tr>
+                <th>Nombre</th><th>Descripción</th>
+            </tr>
+            <tr>
+                <td>Nombre de Host</td><td>Nombre de Host para el dispositivo.</td>
+            </tr>
+	    <tr>
+                <td>Dirección IP</td><td>Dirección IP que se desea asignar al dispositivo.</td>
+            </tr>
+	    <tr>
+                <td>Dirección MAC</td><td>Dirección física (MAC) del dispositivo.</td>
+            </tr>
+        </table>
+	<br />
+    </body>
+</html>

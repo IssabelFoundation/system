@@ -1,0 +1,17 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p>Esta opción permite apagar o reiniciar el servidor Issabel. Como medida de seguridad le aparecerá un mensaje de confirmación al intentar realizar estas acciones.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_shutdown.png" border="0" />
+<p>Figura 1</p></div>
+<br />
+
+</body>
+</html>

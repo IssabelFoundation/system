@@ -1,0 +1,79 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Elastix version 1.0                                             |
+  | http://www.elastix.com                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
+  | Telfs. 2283-268, 2294-440, 2284-356                                  |
+  | Guayaquil - Ecuador                                                  |
+  | http://www.palosanto.com                                             |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Original Code is: Elastix Open Source.                           |
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Andrés Flores                                          |
+  | Email: aflores@palosanto.com                                         |
+  +----------------------------------------------------------------------+
+  $Id: ru.lang,v 1.7 2015/10/23 00:15:00 Andrey Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+"Hardware Detector" => "Обнаружение Оборудования",
+"Ports not Founds" => "Порты не найдены",
+"Card" => "Карта",
+"Type port" => "Тип",
+"No. Port" => "Порт #",
+"(In Use)" => "Активный",
+"Hardware Detecting" => "Сканирование Оборудования",
+"Hardware Detect" => "Сканировать Оборудование",
+"Cards undetected on your system, press for detecting hardware detection." => "Карты не обнаружены в системе, нажмите 'Сканировать Оборудование' для обнаружения.",
+"Information" => "Информация",
+"Satisfactory Hardware Detection" => "Оборудование успешно обнаружено",
+"Unknown" => "Неизвестное",
+"Replace file chan_dahdi.conf" => "Заменить файл chan_dahdi.conf",
+"Unable to backup file chan_dahdi.conf by chan_dahdi.conf.replace_for_elastix" => "Unable to backup file chan_dahdi.conf by chan_dahdi.conf.replace_for_elastix",
+"Unable to replace file chan_dahdi.conf" => "Не могу заменить файл chan_dahdi.conf",
+"Detect Sangoma hardware" => "Искать оборудование Sangoma",
+"Detect ISDN hardware" => "Искать оборудование ISDN.",
+"Misdn Card" => "Misdn Карта",
+"(Not in Use)" =>"Неактивный",
+"Port" => "Портt",
+"Configure Echo Cancellers" => "Настройка Эхоподавления",
+"mISDN Driver Installed" => "mISDNuser Драйвер Установлен",
+"mISDN Driver not Installed" => "mISDNuser Драйвер не установлен",
+"Channel detected and not used" => "Канал обнаружен и не используется",
+"Channel detected and in use" => "Канал обнаружен и используется",
+"Undetected Channel" => "Неопределённый Канал",
+"You can set the parameters for these ports here" => "Вы можете установить параметры для этих портов здесь",
+"Port Status" => "Статус Порта",
+"Configuration of Span" => "Configuration of Span",
+"Span Settings" => "Span Settings",
+"Advanced" => "Расширенные параметры",
+"Preferences" => "Предпочтения",
+"Timing source" => "Источник синхронизации",
+"Line build out" => "Line build out",
+"Framing" => "Framing",
+"Coding" => "Coding",
+"No Ports availables" => "Нет доступных Портов",
+"Card Configured" => "Карта Настроена",
+"Loading SPAN" => "Loading SPAN",
+"Saving configuration" => "Сохранение конфигурации",
+"Detected by Asterisk" => "Определился в Asterisk",
+"Not detected by Asterisk" => "Не определился в Asterisk",
+"Hardware Control" => "Hardware Control",
+"Channel Empty" => "Пустой Канал",
+);
+?>

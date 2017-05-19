@@ -1,0 +1,24 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p>The Packages option in the Updates menu of Issabel allows you to show all packages installed in the Issabel server as well as install any new packages, update existing ones, or uninstall unwanted packages.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_packages.png" border="0" />
+<p>Figure 1</p></div>
+<br />
+
+<p>It is also possible to search for a particular package with the help of
+filters. Just type the name of the package or its state (Installed, All).</p>
+
+<p>If you wish to search for a package name, enter the name in the Name field and click on Search.</p>
+
+<p>To update the database of repositories, click on the "Repositories Update" button. By default it will show all installed packages.</p>
+
+</body>
+</html>
