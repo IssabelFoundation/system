@@ -406,7 +406,9 @@ function action_interfaceConfiguration($opt)
             }
         }
         foreach ($settings as $key => $value) {
-        	$contenidoNuevo[] = "$key=$value\n";
+            if($value<>'') {
+                $contenidoNuevo[] = "$key=$value\n";
+            }
         }
         file_put_contents($sPath, $contenidoNuevo);
 
