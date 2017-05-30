@@ -394,7 +394,7 @@ $BACKUP_PLAN = array(
                 ),
                 /* The previous implementation attempted to backup and restore
                  * /var/lib/asterisk/bin/retrieve_op_conf_from_mysql.pl when
-                 * the freePBX package version is not greater than 2.6.x . This
+                 * the issabelPBX package version is not greater than 2.6.x . This
                  * backup is now assumed to be obsolete. */
             ),
         ),
@@ -756,7 +756,7 @@ function writeSelectedComponentManifest(&$selectedComponents, $sOutputPath)
 // Write manifest of installed packages
 function writeInstalledPackagesManifest($sOutputPath)
 {
-	$packageList = array('asterisk', 'dahdi', 'wanpipe-util', 'freePBX',
+	$packageList = array('asterisk', 'dahdi', 'wanpipe-util', 'issabelPBX',
         'elastix', 'elastix-pbx', 'elastix-email_admin', 'elastix-agenda',
         'elastix-fax', 'elastix-vtigercrm', 'elastix-a2billing',
         'elastix-sugarcrm-addon');
@@ -772,7 +772,7 @@ function writeInstalledPackagesManifest($sOutputPath)
 
             // This is needed for compatibility with previous backup implementation
             $sPackageName = $fields[0];
-            if ($sPackageName == 'freePBX') $sPackageName = 'freepbx';
+            if ($sPackageName == 'issabelPBX') $sPackageName = 'issabelpbx';
 
             $xml_program = $xml_manifest->addChild('program');
             $xml_program->addAttribute('id', $sPackageName);
@@ -1366,7 +1366,7 @@ function postrestore_as_db($sLevelTag, &$backupComponent, $sWorkingDir)
     }
     exec('su -s /bin/sh - asterisk -c '.escapeshellarg($fpbxConf['AMPBIN'].'/retrieve_conf'));
     if (isset($fpbxConf['FOPRUN'])) {
-        exec('su -s /bin/sh - asterisk -c '.escapeshellarg($fpbxConf['AMPBIN'].'/bounce_op.sh &> '.$astConf['astlogdir'].'/freepbx-bounce_op.log'));
+        exec('su -s /bin/sh - asterisk -c '.escapeshellarg($fpbxConf['AMPBIN'].'/bounce_op.sh &> '.$astConf['astlogdir'].'/issabelpbx-bounce_op.log'));
     }
     try {
         // Reset the pending-changes flag
@@ -1385,7 +1385,7 @@ function postrestore_as_db($sLevelTag, &$backupComponent, $sWorkingDir)
 
         $conn = NULL;
     } catch (PDOException $e) {
-        fwrite(STDERR, "WARN: $sLevelTag: failed to reset FreePBX update flag!\n");
+        fwrite(STDERR, "WARN: $sLevelTag: failed to reset IssabelPBX update flag!\n");
     }
     if (isset($fpbxConf['POST_RELOAD'])) {
         exec('su -s /bin/sh - asterisk -c '.escapeshellarg($fpbxConf['POST_RELOAD']));

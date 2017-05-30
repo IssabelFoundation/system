@@ -51,7 +51,7 @@ class paloUserPlugin_extension extends paloSantoUserPluginBase
                 '' => _tr("no extension")
             );
 
-            // Cargar lista de extensiones conocidas desde FreePBX
+            // Cargar lista de extensiones conocidas desde IssabelPBX
             $dsn = generarDSNSistema('asteriskuser', 'asterisk');
             $pDBa = new paloDB($dsn);
             $rs = $pDBa->fetchTable('SELECT extension FROM users ORDER BY extension', TRUE);

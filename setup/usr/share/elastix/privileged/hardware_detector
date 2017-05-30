@@ -288,7 +288,7 @@ fi
 
 # When detecting Sangoma cards, the wancfg_dahdi utility writes a chan_dahdi.conf
 # file that does not #include dahdi-channels.conf, nor chan_dahdi_additional.conf. 
-# This breaks non-Sangoma channels and FreePBX support unless fixed here.
+# This breaks non-Sangoma channels and IssabelPBX support unless fixed here.
 # This implementation is NOT removing the channel configurations found in 
 # chan_dahdi.conf and placed there by wancfg_dahdi, but it seems that the 
 # channel configuration is harmless as repeated by dahdi-channels.conf.

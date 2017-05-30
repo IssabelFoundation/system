@@ -563,7 +563,7 @@ function getValueofBackupOption($valueOp)
         "endpoint" => array("elastix-pbx"),
         "fax" => array("elastix-fax"),
         "email" => array("elastix","elastix-email_admin"),
-        "asterisk" => array("asterisk","dahdi","wanpipe-util","freepbx","elastix"),
+        "asterisk" => array("asterisk","dahdi","wanpipe-util","issabelpbx","elastix"),
         "otros" => array("elastix-vtigercrm","elastix-a2billing","elastix","elastix-pbx","elastix-sugarcrm-addon"),
         "otros_new" => array("elastix-pbx","elastix-agenda")
     );
@@ -596,7 +596,7 @@ function viewDetail($smarty, $module_name, $local_templates_dir, $path_backup)
 
 function getVersionPrograms_SYSTEM()
 {
-    $packageList = array('asterisk', 'dahdi', 'wanpipe-util', 'freePBX',
+    $packageList = array('asterisk', 'dahdi', 'wanpipe-util', 'issabelPBX',
         'elastix', 'elastix-pbx', 'elastix-email_admin', 'elastix-agenda',
         'elastix-fax', 'elastix-vtigercrm', 'elastix-a2billing',
         'elastix-sugarcrm-addon');
@@ -612,7 +612,7 @@ function getVersionPrograms_SYSTEM()
 
             // This is needed for compatibility with previous backup implementation
             $sPackageName = $fields[0];
-            if ($sPackageName == 'freePBX') $sPackageName = 'freepbx';
+            if ($sPackageName == 'issabelPBX') $sPackageName = 'issabelpbx';
 
             $arrPro[$sPackageName] = array(
                 'version'   =>  $fields[1],
