@@ -757,9 +757,9 @@ function writeSelectedComponentManifest(&$selectedComponents, $sOutputPath)
 function writeInstalledPackagesManifest($sOutputPath)
 {
 	$packageList = array('asterisk', 'dahdi', 'wanpipe-util', 'issabelPBX',
-        'elastix', 'elastix-pbx', 'elastix-email_admin', 'elastix-agenda',
-        'elastix-fax', 'elastix-vtigercrm', 'elastix-a2billing',
-        'elastix-sugarcrm-addon');
+        'issabel', 'issabel-pbx', 'issabel-email_admin', 'issabel-agenda',
+        'issabel-fax', 'issabel-vtigercrm', 'issabel-a2billing',
+        'issabel-sugarcrm-addon');
     $output = $retval = NULL;
     exec("rpm -q --queryformat '%{name} %{version} %{release}\\n' ".implode(' ', $packageList),
         $output, $retval);

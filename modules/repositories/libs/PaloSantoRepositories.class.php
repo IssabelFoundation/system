@@ -62,11 +62,11 @@ class PaloSantoRepositories
 
     private function _listarRepositoriosActivosOmision()
     {
-        // TODO: parametrizar de algún lado, posiblemente de elastix-addons
+        // TODO: parametrizar de algún lado, posiblemente de issabel-addons
         // ATENCION: $arrConf["main_repos"] también restringe repos según el filtro
         return array(
-            'base', 'updates', 'addons', 'extras', 'elastix-base', 'elastix-updates',
-            'elastix-extras', 'epel', 'commercial-addons', 'LowayResearch', 'iperfex',
+            'base', 'updates', 'addons', 'extras', 'issabel-base', 'issabel-updates',
+            'issabel-extras', 'epel', 'commercial-addons', 'LowayResearch', 'iperfex',
             'pgdg91',
         );
     }

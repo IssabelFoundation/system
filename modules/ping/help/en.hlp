@@ -1,0 +1,12 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+<h1>{$node_name}</h1>
+
+<p>The option “Ping & Traceroute” in the “Network” menu lets you execute these network diagnosis commands from the Issabel GUI.</p>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+<h1>{$node_name}</h1>
+
+<p>La opción "Ping & Traceroute" del menú "Network" permite ejecutar estos comandos de red desde la interfaz web de Issabel.</p>
+
+</body>
+</html>

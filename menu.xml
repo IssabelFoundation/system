@@ -48,6 +48,11 @@
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
+    <menuitem menuid="ping"          desc="Ping & Tracepath"        parent="network"     module="yes" link="" order="34">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
     <menuitem menuid="usermgr"              desc="Users"    parent="system"      module="no"  link="" order="4">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
