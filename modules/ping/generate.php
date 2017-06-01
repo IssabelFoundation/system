@@ -7,7 +7,7 @@ if ($_REQUEST){
         $ping_host = escapeshellcmd($_REQUEST['hostname']);
         $cmd = "/usr/bin/ping -c 4 $ping_host";            
 
-    } else if($_REQUEST['send'] == 'Traceroute' && isset($_REQUEST['hostname'])) {
+    } else if($_REQUEST['send'] == 'Tracepath' && isset($_REQUEST['hostname'])) {
         $tracert_host = escapeshellcmd($_REQUEST['hostname']);
         $cmd = "tracepath $tracert_host";            
     }else{
