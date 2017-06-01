@@ -117,9 +117,13 @@ class paloNetwork
         $if_flags = NULL;
         foreach ($output as $s) {
             $regs = NULL;
-            if (preg_match('/^\d+:\s+([[:alnum:]_-]+)(@\S+)?:\s*<(.*)>/', $s, $regs)) {
+            if (preg_match('/^\d+:\s+([[:alnum:]_-]+)(@\S+)?:\s*<(.*)>(.*)/', $s, $regs)) {
                 $if_actual = $regs[1];
                 $if_flags = explode(',', $regs[3]);
+                if(preg_match("/state DOWN/",$regs[4])) {  // State down in output, not in flags for a present card that is not plugged
+                     $if_flags = array_diff($if_flags, array('UP'));
+                     $if_flags[]='DOWN';
+                }
             } elseif (!is_null($if_actual) && preg_match('!\s*link/(loopback|ether) ([[:xdigit:]]{2}(:[[:xdigit:]]{2}){5})!', $s, $regs)) {
                 $interfases[$if_actual] = array(
                     'Name'          =>  (($regs[1] == 'ether') ? 'Ethernet' : 'Loopback'),
