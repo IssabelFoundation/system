@@ -9,7 +9,7 @@ Group:   Applications/System
 Source0: %{modname}_%{version}-%{release}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
-Requires(pre): issabel-framework >= 4.0.0-14
+Requires(pre): issabel-framework >= 4.0.0-1
 Requires(pre): issabel-fax >= 2.2.0-4
 Requires(pre): php-soap
 Requires(pre): dahdi
@@ -20,7 +20,6 @@ Requires: php-simplepie
 Requires: hdparm
 
 Obsoletes: elastix-system
-Provides: elastix-system
 
 # commands: /bin/date /usr/bin/stat /usr/bin/du rm /bin/chown /bin/su /bin/df
 Requires: coreutils
