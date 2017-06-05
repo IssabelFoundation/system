@@ -6,11 +6,7 @@
   | http://www.issabel.com                                               |
   +----------------------------------------------------------------------+
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
-  +----------------------------------------------------------------------+
-  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
-  | Telfs. 2283-268, 2294-440, 2284-356                                  |
-  | Guayaquil - Ecuador                                                  |
-  | http://www.palosanto.com                                             |
+  | Copyright (c) 2017 Issabel Foundation & others                       |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
   | (GPL) Version 2 (the "License"); you may not use this file except in |
@@ -27,7 +23,7 @@
   +----------------------------------------------------------------------+
   $Id: default.conf.php,v 1.1 2007/08/09 00:47:13 avivar Exp $ */
 global $arrConfModule;
-$arrConfModule['module_name'] = 'asterisk-cli';
+$arrConfModule['module_name'] = 'ping';
 $arrConfModule['templates_dir'] = 'themes';
 
 ?>
