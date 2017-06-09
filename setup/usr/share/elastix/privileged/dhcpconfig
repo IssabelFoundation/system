@@ -269,8 +269,8 @@ function configureDHCP($sIpStart, $sIpEnd, $iLeaseTime, $sGateway = NULL,
         $sMacClass = '';
         $sMacAllow = '';
         if ($bExito && $bPhonesOnly) {
-            $sMysqlRootPass = 'eLaStIx.2oo7';
-            foreach (file('/etc/elastix.conf') as $s) {
+            $sMysqlRootPass = 'iSsAbEl.2o17';
+            foreach (file('/etc/issabel.conf') as $s) {
                 $regs = NULL;
                 if (preg_match('/^mysqlrootpwd\s*=\s*(.+)$/', trim($s), $regs)) {
                     $sMysqlRootPass = $regs[1];

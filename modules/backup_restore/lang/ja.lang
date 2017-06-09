@@ -147,6 +147,6 @@ $arrLangModule=array(
 "elastix-sugarcrm-addon" => "Issabel SugarCRM",
 "Package not installed" => "Not installed",
 "Version" => "Version",
-"Please verify if the mysql password is the correct in /etc/elastix.conf (mysqlrootpwd)" => "Please verify if the mysql password is the correct in /etc/elastix.conf (mysqlrootpwd)",
+"Please verify if the mysql password is the correct in /etc/issabel.conf (mysqlrootpwd)" => "Please verify if the mysql password is the correct in /etc/issabel.conf (mysqlrootpwd)",
 );
 ?>

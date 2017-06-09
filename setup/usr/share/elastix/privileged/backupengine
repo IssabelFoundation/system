@@ -74,7 +74,7 @@ require_once 'Console/Getopt.php';
  * operation to fix up configurations.
  */
 define('DEFAULT_BACKUP_DIR', '/var/www/backup');
-define('PASSWD_PATH', '/etc/elastix.conf');
+define('PASSWD_PATH', '/etc/issabel.conf');
 $BACKUP_PLAN = array(
     'asterisk'  =>  array(
         'as_db'             =>  array(
@@ -891,7 +891,7 @@ function prepareMysqlData($sLevelTag)
     global $mysqlSchemata;
     if (is_null($sMysqlRootPass)) {
         if (!file_exists(PASSWD_PATH)) {
-            $sMysqlRootPass = 'eLaStIx.2oo7';
+            $sMysqlRootPass = 'iSsAbEl.2o17';
         } else {
             foreach (file(PASSWD_PATH) as $s) {
                 $regs = NULL;
@@ -901,7 +901,7 @@ function prepareMysqlData($sLevelTag)
                 }
             }
             if (is_null($sMysqlRootPass)) {
-                error_exit("FATAL: $sLevelTag: failed to find MySQL root password in /etc/elastix.conf\n");
+                error_exit("FATAL: $sLevelTag: failed to find MySQL root password in /etc/issabel.conf\n");
             }
         }
 
@@ -1375,7 +1375,7 @@ function postrestore_as_db($sLevelTag, &$backupComponent, $sWorkingDir)
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $conn->query("UPDATE admin SET value = 'false' WHERE variable = 'need_reload'");
 
-        // Restore the admin password from /etc/elastix.conf
+        // Restore the admin password from /etc/issabel.conf
         $passwords = load_keys();
         if (isset($passwords['amiadminpwd'])) {
             $sth = $conn->prepare('UPDATE asterisk.ampusers SET password_sha1 = SHA1(?) WHERE username = ?');
@@ -1416,7 +1416,7 @@ function postrestore_as_config_files($sLevelTag, &$backupComponent, $sWorkingDir
         file_put_contents($sFilePath, $s);
     }
 
-    // Restore password from /etc/elastix.conf into each known location.
+    // Restore password from /etc/issabel.conf into each known location.
     // The following list is taken from elastix-admin-passwords.
     $passwords = load_keys();
     foreach (array(
@@ -1836,7 +1836,7 @@ function postrestore_a2billing_db($sLevelTag, &$backupComponent, $sWorkingDir)
 }
 
 /* Custom processing before restoring mysql database. The mysql schema contains
-   the root mysql password, which is also present in /etc/elastix.conf. If the
+   the root mysql password, which is also present in /etc/issabel.conf. If the
    root password has been changed, the act of restoring will impose the root
    password of the backed-up system on the restored system. To counter that,
    the root password will be restored. A mysql connection will be opened here
@@ -1885,7 +1885,7 @@ function postrestore_mysql_db($sLevelTag, &$backupComponent, $sWorkingDir)
             }
             $rootconn->exec("GRANT USAGE ON *.* TO asteriskuser@localhost IDENTIFIED BY $quotedPwd");
         } else {
-            fwrite(STDERR, "ERR: $sLevelTag: failed to find amiadminpwd in elastix.conf\n");
+            fwrite(STDERR, "ERR: $sLevelTag: failed to find amiadminpwd in issabel.conf\n");
             $bSuccess = FALSE;
         }
 

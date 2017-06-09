@@ -148,6 +148,6 @@ $arrLangModule=array(
 "Package not installed" => "Not installed",
 "Options Backup" => "Options Backup",
 "Version" => "Version",
-"Please verify if the mysql password is the correct in /etc/elastix.conf (mysqlrootpwd)" => "Please verify if the mysql password is the correct in /etc/elastix.conf (mysqlrootpwd)",
+"Please verify if the mysql password is the correct in /etc/issabel.conf (mysqlrootpwd)" => "Please verify if the mysql password is the correct in /etc/issabel.conf (mysqlrootpwd)",
 );
 ?>
