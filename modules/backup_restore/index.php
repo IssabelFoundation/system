@@ -32,7 +32,7 @@ include_once "libs/paloSantoGrid.class.php";
 
 function _moduleContent(&$smarty, $module_name)
 {
-//include elastix framework
+//include issabel framework
     include_once "libs/paloSantoValidar.class.php";
     include_once "libs/misc.lib.php";
     include_once "libs/paloSantoForm.class.php";
@@ -240,7 +240,7 @@ function downloadBackup($smarty, $module_name, $local_templates_dir, $dir_backup
 function delete_backup($smarty, $module_name, $local_templates_dir, $dir_backup, &$pDB)
 {
     function delete_backup_isInvalidFile($file_name) {
-        return !preg_match('/(^elastix)|(^issabel)backup-\d{14}-\w{2}\.tar$/', $file_name);
+        return !preg_match('/(^issabel)backup-\d{14}-\w{2}\.tar$/', $file_name);
     }
     function delete_backup_doDelete($filePath) {
     	return file_exists($filePath) ? !unlink($filePath) : FALSE;
@@ -314,7 +314,7 @@ function restore_form($smarty, $local_templates_dir, $path_backup, $module_name)
     }else $archivo_post = isset($_POST["backup_file"])?$_POST["backup_file"]:"";
     $archivo_post = basename($archivo_post);
 
-    if (!preg_match('/(^elastix)|(^issabel)backup-\d{14}-\w{2}\.tar$/', $archivo_post)) {
+    if (!preg_match('/(^issabel)backup-\d{14}-\w{2}\.tar$/', $archivo_post)) {
         Header("Location: ?menu=$module_name");
         return NULL;
     }
@@ -370,7 +370,7 @@ function process_backup($smarty, $local_templates_dir, $module_name)
     $sDirBackup = '/var/www/backup';
     $sOpcionesBackup = implode(',', $clavesSeleccion);
     $output = $retval = NULL;
-    $sComando = '/usr/bin/elastix-helper backupengine --backup'.
+    $sComando = '/usr/bin/issabel-helper backupengine --backup'.
         " --backupfile $sArchivoBackup".
         " --tmpdir $sDirBackup".
         " --components $sOpcionesBackup".
@@ -410,7 +410,7 @@ function process_restore($smarty, $local_templates_dir, $path_backup, $module_na
         // Ejecución del comando en sí
         $sOpcionesBackup = implode(',', $clavesSeleccion);
         $output = $retval = NULL;
-        $sComando = '/usr/bin/elastix-helper backupengine --restore'.
+        $sComando = '/usr/bin/issabel-helper backupengine --restore'.
             ' --backupfile '.escapeshellarg($_POST['backup_file']).
             ' --tmpdir '.escapeshellarg($path_backup).
             " --components $sOpcionesBackup".
@@ -493,7 +493,7 @@ function runPackageVersionCompare($path_backup, $smarty, $backup_file)
         $smarty->assign('ERROR_MSG', _tr("Backup file path can't be empty"));
         return NULL;
     }
-    if (!preg_match('/(^elastix)|(^issabel)backup-\d{14}-\w{2}\.tar$/', $backup_file)) {
+    if (!preg_match('/(^issabel)backup-\d{14}-\w{2}\.tar$/', $backup_file)) {
         $smarty->assign('ERROR_MSG', _tr('Invalid backup filename'));
         return NULL;
     }

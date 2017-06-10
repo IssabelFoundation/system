@@ -42,7 +42,7 @@ class paloSantoApplets
     {
         global $arrConf;
         
-        $this->_db = new paloDB("sqlite3:///{$arrConf['elastix_dbdir']}/dashboard.db");
+        $this->_db = new paloDB("sqlite3:///{$arrConf['issabel_dbdir']}/dashboard.db");
     }
 
     /**
@@ -61,7 +61,7 @@ class paloSantoApplets
         global $arrConf;
         
     	// Leer rol del usuario: admin o no_admin
-        $pDB2 = new paloDB($arrConf['elastix_dsn']['acl']);
+        $pDB2 = new paloDB($arrConf['issabel_dsn']['acl']);
         $pACL = new paloACL($pDB2);
         $rol = ($pACL->isUserAdministratorGroup($user)) ? 'admin' : 'no_admin';
         

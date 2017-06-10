@@ -40,7 +40,7 @@ function _moduleContent($smarty, $module_name)
 
     // Leer lista de applets implementados y validar con directorio
     $paloApplets = new paloSantoApplets();
-    $appletlist = $paloApplets->leerAppletsActivados($_SESSION["elastix_user"]);
+    $appletlist = $paloApplets->leerAppletsActivados($_SESSION["issabel_user"]);
     $t = array();
     foreach ($appletlist as $applet) {
     	if (is_dir("modules/$module_name/applets/{$applet['applet']}"))
@@ -130,7 +130,7 @@ function handleJSON_updateOrder($smarty, $module_name, $appletlist)
         $respuesta['message'] = _tr('Invalid request');
     } else {
         $paloApplets = new paloSantoApplets();
-        if (!$paloApplets->actualizarOrdenApplets($_SESSION["elastix_user"], $_REQUEST['appletorder'])) {
+        if (!$paloApplets->actualizarOrdenApplets($_SESSION["issabel_user"], $_REQUEST['appletorder'])) {
             $respuesta['status'] = 'error';
             $respuesta['message'] = $paloApplets->errMsg;
         }

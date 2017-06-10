@@ -30,8 +30,8 @@ require_once "$documentRoot/modules/packages/libs/rpm.class.php";
 /*
  *   REST que permite consultar si un determinado grupo de RPMs esta instalado en el sistema.
  *   Generando un resultado:
- *   Si esta instalado:          -->         {"Name":"elastix-framework","Version":"2.4.0","Release":"1"}
- *   Si no esta instalado:       -->         {"Name":"elastix-lcdelastix","Status":"Not Installed"}
+ *   Si esta instalado:          -->         {"Name":"issabel-framework","Version":"2.4.0","Release":"1"}
+ *   Si no esta instalado:       -->         {"Name":"issabel-lcdissabel","Status":"Not Installed"}
 */
 /*
  * Para esta implementación de REST, se tienen los siguientes URIs:

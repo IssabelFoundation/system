@@ -345,7 +345,7 @@ class PaloSantoPackages
     function checkUpdate()
     {
         $respuesta = $retorno = NULL;
-        exec('/usr/bin/elastix-helper ryum check-update ', $respuesta, $retorno);
+        exec('/usr/bin/issabel-helper ryum check-update ', $respuesta, $retorno);
         $tmp = array();
         if (is_array($respuesta)) {
             foreach($respuesta as $key => $linea){
@@ -364,7 +364,7 @@ class PaloSantoPackages
                     $tmp[] = $var[0];
                 }
             }
-            if ($retorno == 1) //Error debido a los repositorios de elastix
+            if ($retorno == 1) //Error debido a los repositorios de issabel
                 return _tr('ERROR').": url don't open.";
             if ($retorno == 100 || $retorno == 0) { //codigo 100 de q hay paquetes para actualizar y 0 que no hay. (ver man yum )
                 return _tr('Satisfactory Update');
@@ -377,9 +377,9 @@ class PaloSantoPackages
     {
         $respuesta = $retorno = NULL;
         if ($val == 0)
-            exec('/usr/bin/elastix-helper ryum install '.escapeshellarg($package), $respuesta, $retorno);
+            exec('/usr/bin/issabel-helper ryum install '.escapeshellarg($package), $respuesta, $retorno);
         else
-            exec('/usr/bin/elastix-helper ryum update '.escapeshellarg($package), $respuesta, $retorno);
+            exec('/usr/bin/issabel-helper ryum update '.escapeshellarg($package), $respuesta, $retorno);
 
         $indiceInicial = $indiceFinal = 0;
         $terminado = array();
@@ -477,7 +477,7 @@ class PaloSantoPackages
     function uninstallPackage($package)
     {
         $respuesta = $retorno = NULL;
-        exec('/usr/bin/elastix-helper ryum remove '.escapeshellarg($package), $respuesta, $retorno);
+        exec('/usr/bin/issabel-helper ryum remove '.escapeshellarg($package), $respuesta, $retorno);
         $indiceInicial = $indiceFinal = 0;
         $terminado = array();
         $paquetesUnintall = false;

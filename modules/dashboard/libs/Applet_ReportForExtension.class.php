@@ -38,7 +38,7 @@ abstract class Applet_ReportForExtension
     {
         /* Se cierra la sesión para quitar el candado sobre la sesión y permitir
          * que otras operaciones ajax puedan funcionar. */
-        $elastixuser = $_SESSION['elastix_user'];
+        $issabeluser = $_SESSION['issabel_user'];
         session_commit();
         
         $respuesta = array(
@@ -48,9 +48,9 @@ abstract class Applet_ReportForExtension
 
         // Obtener extensión del usuario logoneado
         global $arrConf;
-        $dbAcl = new paloDB($arrConf["elastix_dsn"]["acl"]);
+        $dbAcl = new paloDB($arrConf["issabel_dsn"]["acl"]);
         $pACL  = new paloACL($dbAcl);
-        $extension = $pACL->getUserExtension($elastixuser);
+        $extension = $pACL->getUserExtension($issabeluser);
         if (empty($extension) || !ctype_digit($extension)) {
             $respuesta['status'] = 'error';
             $respuesta['message'] = _tr("You haven't extension");

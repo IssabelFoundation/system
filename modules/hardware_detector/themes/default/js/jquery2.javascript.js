@@ -89,16 +89,16 @@ $('#idCard').val("");
                 var key2      = "";
                 var lastKey2  = "";
                 var html      = "";
-                var noPorts   = $('body .neo-modal-elastix-popup-box .neo-modal-elastix-popup-content #labelNoPorts').val();
+                var noPorts   = $('body .neo-modal-issabel-popup-box .neo-modal-issabel-popup-content #labelNoPorts').val();
 		
-                $('body .neo-modal-elastix-popup-box .neo-modal-elastix-popup-content #idCard').val(SpanNum);
+                $('body .neo-modal-issabel-popup-box .neo-modal-issabel-popup-content #idCard').val(SpanNum);
                 if(PortsEcho.length <= 0){
-                    $('body .neo-modal-elastix-popup-box .neo-modal-elastix-popup-content #port_desc').text(noPorts);
-                    $('body .neo-modal-elastix-popup-box .neo-modal-elastix-popup-content .viewButton').attr("style","display: none;");
+                    $('body .neo-modal-issabel-popup-box .neo-modal-issabel-popup-content #port_desc').text(noPorts);
+                    $('body .neo-modal-issabel-popup-box .neo-modal-issabel-popup-content .viewButton').attr("style","display: none;");
                 }else{
                     var port_desc = $('#'+arrData["card_id"]).text();
-                    $('body .neo-modal-elastix-popup-box .neo-modal-elastix-popup-content #port_desc').text(port_desc);
-                    $('body .neo-modal-elastix-popup-box .neo-modal-elastix-popup-content .viewButton').attr("style","display: block; margin-top:10px;");
+                    $('body .neo-modal-issabel-popup-box .neo-modal-issabel-popup-content #port_desc').text(port_desc);
+                    $('body .neo-modal-issabel-popup-box .neo-modal-issabel-popup-content .viewButton').attr("style","display: block; margin-top:10px;");
                 }
 		
                // $('#config_echo_div').html("");
@@ -148,9 +148,9 @@ $('#idCard').val("");
 				}
                 html += "</table>";
 		
-                $('body .neo-modal-elastix-popup-box .neo-modal-elastix-popup-content #config_echo_div').html(html);
-		$('.neo-modal-elastix-popup-box').css('display',"block");
-		var alt= $('body .neo-modal-elastix-popup-box .neo-modal-elastix-popup-content #config_echo_div').height();
+                $('body .neo-modal-issabel-popup-box .neo-modal-issabel-popup-content #config_echo_div').html(html);
+		$('.neo-modal-issabel-popup-box').css('display',"block");
+		var alt= $('body .neo-modal-issabel-popup-box .neo-modal-issabel-popup-content #config_echo_div').height();
 		if (alt < 545){
 			var maskHeight = $(document).height();
 			var maskWidth = $(window).width();
@@ -159,11 +159,11 @@ $('#idCard').val("");
 			var winW = $(window).width();
 			var top = winH/2-alt/2;
 			
-			$('.neo-modal-elastix-popup-box').css('top',  top-50);
-			$('.neo-modal-elastix-popup-box').css('height',  alt+80);
-			$('.neo-modal-elastix-popup-content').css('bottom',  10);
+			$('.neo-modal-issabel-popup-box').css('top',  top-50);
+			$('.neo-modal-issabel-popup-box').css('height',  alt+80);
+			$('.neo-modal-issabel-popup-content').css('bottom',  10);
 			if(i>=30)
-			  $('.neo-modal-elastix-popup-box .neo-modal-elastix-popup-content .viewButton').css('margin-top',  0);
+			  $('.neo-modal-issabel-popup-box .neo-modal-issabel-popup-content .viewButton').css('margin-top',  0);
 		}
             }
         );
@@ -251,7 +251,7 @@ function paramSpan(id){
         		} else {
         			$('#switch_pri_media').attr("style","display: none;");
         			$('#switch_crc').attr("style","display: none;");
-				$('.neo-modal-elastix-popup-box').css('height', 225);
+				$('.neo-modal-issabel-popup-box').css('height', 225);
         		}
 			
         		$('#framing').val(spaninfo["framing"]);
@@ -279,7 +279,7 @@ $(document).ready(function(){
     	request("index.php",arrAction,false,
           function(arrData,statusResponse,error)
           {
-  	      ShowModalPopUP(arrData['title'],300,800,arrData['html']);$('.neo-modal-elastix-popup-box').css('display',  "none");
+  	      ShowModalPopUP(arrData['title'],300,800,arrData['html']);$('.neo-modal-issabel-popup-box').css('display',  "none");
 	      param(id);
           }
     );

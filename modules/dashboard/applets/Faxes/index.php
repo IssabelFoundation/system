@@ -36,7 +36,7 @@ class Applet_Faxes extends Applet_ReportForExtension
     {
         global $arrConf;
         
-        $dbFax = new paloDB("sqlite3:///{$arrConf['elastix_dbdir']}/fax.db");
+        $dbFax = new paloDB("sqlite3:///{$arrConf['issabel_dbdir']}/fax.db");
         $sql = <<<SQL_FAXES_EXTENSION
 SELECT a.pdf_file, a.company_name, a.date, a.id
 FROM info_fax_recvq a, fax b

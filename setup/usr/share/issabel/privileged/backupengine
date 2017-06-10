@@ -1417,7 +1417,7 @@ function postrestore_as_config_files($sLevelTag, &$backupComponent, $sWorkingDir
     }
 
     // Restore password from /etc/issabel.conf into each known location.
-    // The following list is taken from elastix-admin-passwords.
+    // The following list is taken from issabel-admin-passwords.
     $passwords = load_keys();
     foreach (array(
                 array(
@@ -1499,7 +1499,7 @@ function change_ami_password(&$content, $sNewPassword)
 function postrestore_fx_db($sLevelTag, &$backupComponent, $sWorkingDir)
 {
 	$output = $retval = NULL;
-    exec('/usr/share/elastix/privileged/faxconfig --refresh', $output, $retval);
+    exec('/usr/share/issabel/privileged/faxconfig --refresh', $output, $retval);
     if ($retval != 0) {
         fwrite(STDERR, "ERR: $sLevelTag: failed to refresh fax configuration after restore\n");
     	return FALSE;

@@ -43,7 +43,7 @@ class Applet_HardDrives
         );
 
         // Intento de ejecutar los comandos en paralelo
-        $pipe_hdmodel = popen('/usr/bin/elastix-helper hdmodelreport', 'r');
+        $pipe_hdmodel = popen('/usr/bin/issabel-helper hdmodelreport', 'r');
         
         $fastgauge = $this->_getFastGraphics();
 
@@ -167,7 +167,7 @@ class Applet_HardDrives
             ),
         );
         
-        $pipe_dirspace = popen('/usr/bin/elastix-helper dirspacereport', 'r');
+        $pipe_dirspace = popen('/usr/bin/issabel-helper dirspacereport', 'r');
         while ($s = fgets($pipe_dirspace)) {
             $s = trim($s); $l = explode(' ', $s);
             if (count($l) > 1 && isset($listaReporteDir[$l[0]]))
@@ -222,14 +222,14 @@ class Applet_HardDrives
     {
         global $arrConf;
 
-        $uelastix = FALSE;
-        $pDB = new paloDB($arrConf['elastix_dsn']['settings']);
+        $uissabel = FALSE;
+        $pDB = new paloDB($arrConf['issabel_dsn']['settings']);
         if (empty($pDB->errMsg)) {
-            $uelastix = get_key_settings($pDB, 'uelastix');
-            $uelastix = ((int)$uelastix != 0);
+            $uissabel = get_key_settings($pDB, 'uissabel');
+            $uissabel = ((int)$uissabel != 0);
         }
         unset($pDB);
-        return $uelastix;
+        return $uissabel;
     }
 }
 ?>

@@ -26,7 +26,7 @@
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
   $Id: index.php,v 1.1 2009-12-28 06:12:49 Bruno bomv.27 Exp $ */
-//include elastix framework
+//include issabel framework
 include_once "libs/paloSantoGrid.class.php";
 include_once "libs/paloSantoForm.class.php";
 
@@ -71,7 +71,7 @@ function showApplets_Admin($module_name)
     $pAppletAdmin = new paloSantoAppletAdmin();
     $oForm = new paloForm($smarty,array());
 
-    $arrApplets = $pAppletAdmin->getApplets_User($_SESSION["elastix_user"]);
+    $arrApplets = $pAppletAdmin->getApplets_User($_SESSION["issabel_user"]);
 
     //Codigo para tomar en cuenta el nombre de applets para los archivos de idioma
     foreach($arrApplets as &$applet){
@@ -116,7 +116,7 @@ function saveApplets_Admin($module_name)
         $smarty->assign("mb_message", _tr("You must have at least one applet activated"));
     }
     else{
-        $ok = $pAppletAdmin->setApplets_User($arrIDs_DAU, $_SESSION["elastix_user"]);
+        $ok = $pAppletAdmin->setApplets_User($arrIDs_DAU, $_SESSION["issabel_user"]);
         if(!$ok){
             $smarty->assign("mb_title", _tr("Validation Error"));
             $smarty->assign("mb_message", $pAppletAdmin->errMsg);

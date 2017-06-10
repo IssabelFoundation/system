@@ -232,7 +232,7 @@ class Applet_TelephonyHardware
     private function _getdb()
     {
     	global $arrConf;
-        return new paloDB("sqlite3:///{$arrConf['elastix_dbdir']}/hardware_detector.db");
+        return new paloDB("sqlite3:///{$arrConf['issabel_dbdir']}/hardware_detector.db");
     }
 }
 ?>

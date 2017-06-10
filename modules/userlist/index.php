@@ -43,7 +43,7 @@ function _moduleContent(&$smarty, $module_name)
     $arrConf = array_merge($arrConf,$arrConfModule);
 
     //conexion acl.db
-    $pDB = new paloDB($arrConf['elastix_dsn']['acl']);
+    $pDB = new paloDB($arrConf['issabel_dsn']['acl']);
 
     //folder path for custom templates
     $base_dir=dirname($_SERVER['SCRIPT_FILENAME']);
@@ -73,7 +73,7 @@ function _moduleContent(&$smarty, $module_name)
     $typeUser = "";
     $userLevel1 = "";
     $extOther = "";
-    $userAccount = isset($_SESSION['elastix_user'])?$_SESSION['elastix_user']:"";
+    $userAccount = isset($_SESSION['issabel_user'])?$_SESSION['issabel_user']:"";
     $idUserAccount = $pACL->isUserAdministratorGroup($userAccount);
     $idUserInt = $pACL->getIdUser($userAccount);
     if($idUserAccount)
@@ -494,7 +494,7 @@ function applyChanges($userAccount,$pACL,$smarty,$idUserAccount,$userLevel1,$arr
 			if($resultOp){
 				$uidCurrent = $pACL->getIdUser($userAccount);
 				if($_POST['id_user'] === $uidCurrent)
-					$_SESSION['elastix_pass'] = md5($_POST['password1']);
+					$_SESSION['issabel_pass'] = md5($_POST['password1']);
 			}
 		}
 

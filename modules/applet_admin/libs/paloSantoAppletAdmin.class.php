@@ -37,9 +37,9 @@ class paloSantoAppletAdmin {
     function getApplets_User($user)
     {
         global $arrConf;
-        $dsn = "sqlite3:///$arrConf[elastix_dbdir]/dashboard.db";
+        $dsn = "sqlite3:///$arrConf[issabel_dbdir]/dashboard.db";
         $pDB  = new paloDB($dsn);
-        $pDB2 = new paloDB($arrConf['elastix_dsn']['acl']);
+        $pDB2 = new paloDB($arrConf['issabel_dsn']['acl']);
         $pACL = new paloACL($pDB2);
 
         if($pACL->isUserAdministratorGroup($user))
@@ -89,11 +89,11 @@ class paloSantoAppletAdmin {
     function setApplets_User($arrIDs_DAU, $user)
     {
         global $arrConf;
-        $dsn = "sqlite3:///$arrConf[elastix_dbdir]/dashboard.db";
+        $dsn = "sqlite3:///$arrConf[issabel_dbdir]/dashboard.db";
         $pDB  = new paloDB($dsn);
 
         if(is_array($arrIDs_DAU) & count($arrIDs_DAU)>0){
-            $pDB2 = new paloDB($arrConf['elastix_dsn']['acl']);
+            $pDB2 = new paloDB($arrConf['issabel_dsn']['acl']);
             $pACL = new paloACL($pDB2);
 
             if($pACL->isUserAdministratorGroup($user))

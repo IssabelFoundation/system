@@ -27,7 +27,7 @@
   +----------------------------------------------------------------------+
   $Id: paloSantoFTPBackup.class.php,v 1.1 2009-09-07 10:09:02 Eduardo Cueva ecueva@palosanto.com Exp $ */
 
-define ('ELASTIX_BACKUP_DIR', '/var/www/backup');
+define ('ISSABEL_BACKUP_DIR', '/var/www/backup');
 
 class paloSantoFTPBackup {
     private $_DB;
@@ -153,7 +153,7 @@ class paloSantoFTPBackup {
     	$ftpconn = $this->_abrirConexionFTP();
         if (is_null($ftpconn)) return FALSE;
         
-        $sRutaLocal = ELASTIX_BACKUP_DIR.'/'.$sNombreArchivo;
+        $sRutaLocal = ISSABEL_BACKUP_DIR.'/'.$sNombreArchivo;
         $bExito = ftp_put($ftpconn, $sNombreArchivo, $sRutaLocal, FTP_BINARY);
         ftp_close($ftpconn);
         if (!$bExito) $this->errMsg = _tr('Problem uploading').' '.$sNombreArchivo;
@@ -173,7 +173,7 @@ class paloSantoFTPBackup {
         $ftpconn = $this->_abrirConexionFTP();
         if (is_null($ftpconn)) return FALSE;
         
-        $sRutaLocal = ELASTIX_BACKUP_DIR.'/'.$sNombreArchivo;
+        $sRutaLocal = ISSABEL_BACKUP_DIR.'/'.$sNombreArchivo;
         $bExito = ftp_get($ftpconn, $sRutaLocal, $sNombreArchivo, FTP_BINARY);
         ftp_close($ftpconn);
         if (!$bExito) $this->errMsg = _tr('Problem downloading').' '.$sNombreArchivo;
@@ -269,7 +269,7 @@ class paloSantoFTPBackup {
     {
         $time = strtolower($time);
         if (!in_array($time, array('daily', 'monthly', 'weekly'))) $time = 'off';
-        $sComando = '/usr/bin/elastix-helper backupengine --autobackup '.$time;
+        $sComando = '/usr/bin/issabel-helper backupengine --autobackup '.$time;
         $output = $retval = NULL;
         exec($sComando, $output, $retval);
         if ($retval != 0) {

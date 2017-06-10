@@ -26,7 +26,7 @@
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
   $Id: index.php,v 1.1 2008-08-25 05:08:01 jvega jvega@palosanto.com Exp $ */
-//include elastix framework
+//include issabel framework
 include_once "libs/paloSantoGrid.class.php";
 include_once "libs/paloSantoForm.class.php";
 include_once "libs/paloSantoDB.class.php";
@@ -50,7 +50,7 @@ function _moduleContent(&$smarty, $module_name)
     $local_templates_dir="$base_dir/modules/$module_name/".$templates_dir.'/'.$arrConf['theme'];
 
     //conexion resource
-    $pDB = new paloDB($arrConf['elastix_dsn']['settings']);
+    $pDB = new paloDB($arrConf['issabel_dsn']['settings']);
 
     //actions
     $accion = getAction();

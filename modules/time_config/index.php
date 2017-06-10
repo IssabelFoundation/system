@@ -91,7 +91,7 @@ function _moduleContent(&$smarty, $module_name)
 	// Cargar de /etc/sysconfig/clock la supuesta zona horaria configurada.
 	// El resto de contenido del archivo se preserva, y la clave ZONE se
 	// escribirá como la última línea en caso de actualizar
-	$sZonaActual = get_default_timezone();  // <-- requiere elastix-framework >= 2.5.0-6
+	$sZonaActual = get_default_timezone();  // <-- requiere framework >= 2.5.0-6
 
 	if (isset($_POST['Actualizar'])) {
 //		print '<pre>';print_r($_POST);print '</pre>';
@@ -147,7 +147,7 @@ function _moduleContent(&$smarty, $module_name)
                 $fecha = sprintf('%04d-%02d-%02d %02d:%02d:%02d',
                     $year, $month, $day, $_POST['ServerDate_Hour'],
                     $_POST['ServerDate_Minute'], $_POST['ServerDate_Second']);
-                $cmd = "/usr/bin/elastix-helper dateconfig --datetime '$fecha' 2>&1";
+                $cmd = "/usr/bin/issabel-helper dateconfig --datetime '$fecha' 2>&1";
                 $output=$ret_val="";
                 exec($cmd,$output,$ret_val);
 
@@ -160,7 +160,7 @@ function _moduleContent(&$smarty, $module_name)
             }
 
             if ($bValido && $sZonaNueva != $sZonaActual) {
-                $sComando = '/usr/bin/elastix-helper dateconfig'.
+                $sComando = '/usr/bin/issabel-helper dateconfig'.
                     ' --timezone '.escapeshellarg($sZonaNueva).
                     ' 2>&1';
                 $output = $ret = NULL;

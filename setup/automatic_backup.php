@@ -32,10 +32,10 @@
 load_default_timezone();
 
 // All of the following assumes this script runs as root
-$sBackupFilename = 'elastixbackup-'.date('YmdHis').'-ab.tar';
+$sBackupFilename = 'issabelbackup-'.date('YmdHis').'-ab.tar';
 $sBackupDir = '/var/www/backup';
 $retval = NULL;
-system('/usr/share/elastix/privileged/backupengine --backup --backupfile '.
+system('/usr/share/issabel/privileged/backupengine --backup --backupfile '.
     $sBackupFilename.' --tmpdir '.$sBackupDir, $retval);
 exit($retval);
 

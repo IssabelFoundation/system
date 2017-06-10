@@ -31,6 +31,6 @@ global $arrConf;
 $arrConfModule['module_name'] = 'backuplist';
 $arrConfModule['templates_dir'] = 'themes';
 $arrConfModule['dir']     = '/var/www/backup';
-$arrConfModule['dsn_conn_database'] = "sqlite3:///$arrConf[elastix_dbdir]/FTP.db";
+$arrConfModule['dsn_conn_database'] = "sqlite3:///$arrConf[issabel_dbdir]/FTP.db";
 
 ?>

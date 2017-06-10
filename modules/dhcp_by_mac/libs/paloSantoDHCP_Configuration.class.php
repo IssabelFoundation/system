@@ -255,7 +255,7 @@ class paloSantoDHCP_Configuration
     private function _actualizarConfiguracionDHCP()
     {
         $this->errMsg = '';
-        $sComando = '/usr/bin/elastix-helper dhcpconfig --refresh 2>&1';
+        $sComando = '/usr/bin/issabel-helper dhcpconfig --refresh 2>&1';
         $output = $ret = NULL;
         exec($sComando, $output, $ret);
         if ($ret != 0) {

@@ -134,7 +134,7 @@ class paloSantoConfEcho {
     function refreshDahdiConfiguration()
     {
         $this->errMsg = '';
-        $sComando = '/usr/bin/elastix-helper dahdiconfig --refresh 2>&1';
+        $sComando = '/usr/bin/issabel-helper dahdiconfig --refresh 2>&1';
         $output = $ret = NULL;
         exec($sComando, $output, $ret);
         if ($ret != 0) {

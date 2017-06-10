@@ -39,7 +39,7 @@ $services = array(
             'Postfix'   =>  'postfix',
             'MySQL'     =>  'mysqld',
             'Apache'    =>  'httpd',
-            'Dialer'    =>  'elastixdialer',
+            'Dialer'    =>  'issabeldialer',
 );
 
 if ((count($argv) < 5)||(count($argv) > 5)) error_exit("ERR: must specify [level - service -status]\n");

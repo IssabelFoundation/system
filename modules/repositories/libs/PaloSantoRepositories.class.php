@@ -99,7 +99,7 @@ class PaloSantoRepositories
 	    }
 	}
 
-        $sComando = '/usr/bin/elastix-helper repoconfig '.
+        $sComando = '/usr/bin/issabel-helper repoconfig '.
             implode(' ', array_map('escapeshellarg', $arrReposActivos)).
             ' 2>&1';
         $output = $ret = NULL;

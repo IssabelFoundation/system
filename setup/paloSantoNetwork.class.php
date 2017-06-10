@@ -319,7 +319,7 @@ class paloNetwork
     function escribir_configuracion_red_sistema($config_red)
     {
         $this->errMsg = '';
-    	$sComando = '/usr/bin/elastix-helper netconfig --genconf'.
+    	$sComando = '/usr/bin/issabel-helper netconfig --genconf'.
             ' --host '.escapeshellarg($config_red['host']).
             ' --gateway '.escapeshellarg($config_red['gateway_ip']).
             ' --dns1 '.escapeshellarg($config_red['dns_ip_1']).
@@ -348,7 +348,7 @@ class paloNetwork
     function escribirConfiguracionInterfaseRed($dev, $tipo, $ip="", $mask="")
     {
         $this->errMsg = '';
-        $sComando = '/usr/bin/elastix-helper netconfig --ifconf'.
+        $sComando = '/usr/bin/issabel-helper netconfig --ifconf'.
             ' --device '.escapeshellarg($dev).
             ' --bootproto '.escapeshellarg($tipo).
             (($ip == '') ? '' : ' --ipaddr '.escapeshellarg($ip)).

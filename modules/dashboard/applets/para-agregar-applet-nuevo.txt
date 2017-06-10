@@ -1,7 +1,7 @@
 Integración de un applet nuevo en el Dashboard de Issabel
 ---------------------------------------------------------
 
-En la actualización a elastix-system-2.4.0-9 se ha reorganizado el módulo 
+En la actualización a issabel-system-2.4.0-9 se ha reorganizado el módulo 
 Dashboard de Issabel. En esta reorganización se ha limpiado el código del módulo
 y se lo ha dividido en subdirectorios que representan a los applets 
 implementados. Esta estructura permite que un addon de terceros pueda construir

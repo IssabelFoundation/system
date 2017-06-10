@@ -227,7 +227,7 @@ class PaloSantoHardwareDetection
             $overwrite_chan_dahdi = " -o";
 
         $respuesta = $retorno = NULL;
-        exec("/usr/bin/elastix-helper hardware_detector $there_is_other_card $overwrite_chan_dahdi", $respuesta, $retorno);
+        exec("/usr/bin/issabel-helper hardware_detector $there_is_other_card $overwrite_chan_dahdi", $respuesta, $retorno);
         if(is_array($respuesta)){
             foreach($respuesta as $key => $linea){
                 //falta validar algun error
@@ -387,7 +387,7 @@ class PaloSantoHardwareDetection
     function refreshDahdiConfiguration()
     {
         $this->errMsg = '';
-        $sComando = '/usr/bin/elastix-helper dahdiconfig --refresh 2>&1';
+        $sComando = '/usr/bin/issabel-helper dahdiconfig --refresh 2>&1';
         $output = $ret = NULL;
         exec($sComando, $output, $ret);
         if ($ret != 0) {

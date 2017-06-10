@@ -35,7 +35,7 @@ class Applet_System
     {
         /* Se cierra la sesión para quitar el candado sobre la sesión y permitir
          * que otras operaciones ajax puedan funcionar. */
-        $elastixuser = $_SESSION['elastix_user'];
+        $issabeluser = $_SESSION['issabel_user'];
         session_commit();
         
         $respuesta = array(
@@ -45,9 +45,9 @@ class Applet_System
         
         // Leer credenciales a partir del usuario y el perfil asociado
         global $arrConf;
-        $dbAcl = new paloDB($arrConf["elastix_dsn"]["acl"]);
+        $dbAcl = new paloDB($arrConf["issabel_dsn"]["acl"]);
         $pACL  = new paloACL($dbAcl);
-        $userId  = $pACL->getIdUser($elastixuser);
+        $userId  = $pACL->getIdUser($issabeluser);
         $mailCred = $this->leerPropiedadesWebmail($dbAcl, $userId);
         if (count($mailCred) <= 0) {
         	$respuesta['status'] = 'error';
@@ -112,7 +112,7 @@ class Applet_System
     {
         global $arrConf;
         
-        $pDB = new paloDB("sqlite3:///{$arrConf['elastix_dbdir']}/email.db");
+        $pDB = new paloDB("sqlite3:///{$arrConf['issabel_dbdir']}/email.db");
 
         $tupla = $pDB->getFirstRowQuery(
             'SELECT password FROM accountuser WHERE username = ?',

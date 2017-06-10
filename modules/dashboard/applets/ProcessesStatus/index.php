@@ -36,7 +36,7 @@ class Applet_ProcessesStatus
     {
         /* Se cierra la sesión para quitar el candado sobre la sesión y permitir
          * que otras operaciones ajax puedan funcionar. */
-        $elastixuser = $_SESSION['elastix_user'];
+        $issabeluser = $_SESSION['issabel_user'];
         session_commit();
         
         $respuesta = array(
@@ -137,7 +137,7 @@ class Applet_ProcessesStatus
             'Postfix'   =>  'postfix',
             'MySQL'     =>  'mysqld',
             'Apache'    =>  'httpd',
-            'Dialer'    =>  'elastixdialer',
+            'Dialer'    =>  'issabelidaler',
         );
     	if (!isset($_REQUEST['process'])) {
     		$respuesta['status'] = 'error';
@@ -149,7 +149,7 @@ class Applet_ProcessesStatus
             $respuesta['status'] = 'error';
             $respuesta['message'] = _tr('Invalid process action');
     	} else {
-            $pDBACL = new paloDB($arrConf['elastix_dsn']['acl']);
+            $pDBACL = new paloDB($arrConf['issabel_dsn']['acl']);
             if (!empty($pDBACL->errMsg)) {
                 $respuesta['status'] = 'error';
                 $respuesta['message'] = "ERROR DE DB: $pDBACL->errMsg";
@@ -158,7 +158,7 @@ class Applet_ProcessesStatus
                 if (!empty($pACL->errMsg)) {
                     $respuesta['status'] = 'error';
                     $respuesta['message'] = "ERROR DE ACL: $pACL->errMsg";
-                } elseif (!$pACL->isUserAdministratorGroup($_SESSION['elastix_user'])) {
+                } elseif (!$pACL->isUserAdministratorGroup($_SESSION['issabel_user'])) {
                     $respuesta['status'] = 'error';
                     $respuesta['message'] = _tr('Process control restricted to administrators');
                 } else {
@@ -166,7 +166,7 @@ class Applet_ProcessesStatus
                     $sServicio = $_REQUEST['process'];
                     $output = $retval = NULL;
                     if (($sAccion == 'off') || ($sAccion == 'on')) {
-                        exec('/usr/bin/elastix-helper rchkconfig --level 3 '.
+                        exec('/usr/bin/issabel-helper rchkconfig --level 3 '.
                             escapeshellarg($servicios[$sServicio]).' '.
                             escapeshellarg($sAccion), $output, $retval);    
                 
@@ -196,7 +196,7 @@ class Applet_ProcessesStatus
         // file pid service postfix     is /var/spool/postfix/pid/master.pid (can't to access to file by own permit,is better to use by CMD the serviceName is master)
         // file pid service mysql       is /var/run/mysqld/mysqld.pid (can't to access to file by own permit,is better to use by CMD the serviceName is mysqld)
         // file pid service apache      is /var/run/httpd.pid
-        // file pid service call_center is /opt/elastix/dialer/dialerd.pid
+        // file pid service call_center is /opt/issabel/dialer/dialerd.pid
 
         $arrSERVICES["Asterisk"]["status_service"] = $this->_existPID_ByFile("/var/run/asterisk/asterisk.pid","asterisk");
         $arrSERVICES["Asterisk"]["activate"] = $this->_isActivate("asterisk");
@@ -225,8 +225,8 @@ class Applet_ProcessesStatus
         $arrSERVICES["Apache"]["activate"]     = $this->_isActivate("httpd");
         $arrSERVICES["Apache"]["name_service"]     = "Web Server";
 
-        $arrSERVICES["Dialer"]["status_service"]   = $this->_existPID_ByFile("/opt/elastix/dialer/dialerd.pid","elastixdialer");
-        $arrSERVICES["Dialer"]["activate"]     = $this->_isActivate("elastixdialer");
+        $arrSERVICES["Dialer"]["status_service"]   = $this->_existPID_ByFile("/opt/issabel/dialer/dialerd.pid","issabelidaler");
+        $arrSERVICES["Dialer"]["activate"]     = $this->_isActivate("issabelidaler");
         $arrSERVICES["Dialer"]["name_service"]     = "Issabel Call Center Service";
 
         return $arrSERVICES;

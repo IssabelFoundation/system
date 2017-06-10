@@ -39,7 +39,7 @@ class PaloSantoDHCP
         // Trato de abrir el archivo de configuracion de dhcp
         $arrConfigurationDHCP = NULL;
         $output = $ret = NULL;
-        exec('/usr/bin/elastix-helper dhcpconfig --dumpconfig', $output, $ret);
+        exec('/usr/bin/issabel-helper dhcpconfig --dumpconfig', $output, $ret);
         if ($ret == 0) {
             foreach ($output as $linea_archivo) {
                 // RANGO DE IPS
@@ -159,7 +159,7 @@ class PaloSantoDHCP
     function startServiceDHCP()
     {
         $this->errMsg = '';
-        $sComando = '/usr/bin/elastix-helper dhcpconfig --start 2>&1';
+        $sComando = '/usr/bin/issabel-helper dhcpconfig --start 2>&1';
         $output = $ret = NULL;
         exec($sComando, $output, $ret);
         if ($ret != 0) {
@@ -172,7 +172,7 @@ class PaloSantoDHCP
     function stopServiceDHCP()
     {
         $this->errMsg = '';
-        $sComando = '/usr/bin/elastix-helper dhcpconfig --stop 2>&1';
+        $sComando = '/usr/bin/issabel-helper dhcpconfig --stop 2>&1';
         $output = $ret = NULL;
         exec($sComando, $output, $ret);
         if ($ret != 0) {
@@ -213,7 +213,7 @@ class PaloSantoDHCP
     {
         // $ip_gw_nm $IPSubnet $conf_red_actual no se usan
         $this->errMsg = '';
-        $sComando = '/usr/bin/elastix-helper dhcpconfig --config'.
+        $sComando = '/usr/bin/issabel-helper dhcpconfig --config'.
             ' --ip-start '.escapeshellcmd($ip_ini).
             ' --ip-end '.escapeshellcmd($ip_fin).
             ' --lease-time '.escapeshellcmd($in_lease_time).

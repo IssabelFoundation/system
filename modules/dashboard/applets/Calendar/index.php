@@ -40,7 +40,7 @@ class Applet_Calendar
     {
         /* Se cierra la sesión para quitar el candado sobre la sesión y permitir
          * que otras operaciones ajax puedan funcionar. */
-        $elastixuser = $_SESSION['elastix_user'];
+        $issabeluser = $_SESSION['issabel_user'];
         session_commit();
         
         $respuesta = array(
@@ -50,9 +50,9 @@ class Applet_Calendar
         
         // Leer credenciales a partir del usuario y el perfil asociado
         global $arrConf;
-        $dbAcl = new paloDB($arrConf["elastix_dsn"]["acl"]);
+        $dbAcl = new paloDB($arrConf["issabel_dsn"]["acl"]);
         $pACL  = new paloACL($dbAcl);
-        $userId  = $pACL->getIdUser($elastixuser);
+        $userId  = $pACL->getIdUser($issabeluser);
         
         $listaEventos = $this->_leerRegistrosEventos($userId);
         $listaEventosDias = $this->_expandirRegistrosEventos($listaEventos);
@@ -75,7 +75,7 @@ class Applet_Calendar
     {
         global $arrConf;
 
-        $db = new paloDB("sqlite3:///{$arrConf['elastix_dbdir']}/calendar.db");
+        $db = new paloDB("sqlite3:///{$arrConf['issabel_dbdir']}/calendar.db");
         $sql = <<<SQL_EVENTOS
 SELECT id, subject, asterisk_call, startdate, enddate, starttime, endtime, eventtype
 FROM events
