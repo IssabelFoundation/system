@@ -457,8 +457,7 @@ function Array_Options($disabled="")
             "vtiger_db"         =>  array("desc"=>_tr('VtigerCRM Database')),
             "a2billing_db"      =>  array("desc"=>_tr('A2billing Database')),
             "mysql_db"          =>  array("desc"=>_tr('Mysql Database')),
-            "menus_permissions" =>  array("desc"=>_tr('Menus and Permissions')),
-            "fop_config"        =>  array("desc"=>_tr('Flash Operator Panel Config Files')),
+            "menus_permissions" =>  array("desc"=>_tr('Menus and Permissions'))
         ),
        "otros_new"      =>  array(
             "calendar_db"       =>  array("desc"=>_tr('Calendar  Database')),
