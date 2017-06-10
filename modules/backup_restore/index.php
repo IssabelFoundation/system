@@ -141,7 +141,7 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
             $arrTmp[1] = "<a href='?menu=$module_name&action=download_file&file_name=$nombre_archivo&rawmode=yes'>$nombre_archivo</a>";
             $fecha="";
             // se parsea el archivo para obtener la fecha
-            if(preg_match("/\w*-\d{4}\d{2}\d{2}\d{2}\d{2}\d{2}-\w{2}\.\w*/",$nombre_archivo)){ //elastixbackup-20110720122759-p7.tar
+            if(preg_match("/\w*-\d{4}\d{2}\d{2}\d{2}\d{2}\d{2}-\w{2}\.\w*/",$nombre_archivo)){ //issabelbackup-20110720122759-p7.tar
                 $arrMatchFile = preg_split("/-/",$nombre_archivo);
                 $data  = $arrMatchFile[1];
                 $fecha = substr($data,-8,2)."/".substr($data,-10,2)."/".substr($data,0,4)." ".substr($data,-6,2).":".substr($data,-4,2 ).":".substr($data,-2,2);
@@ -214,7 +214,7 @@ function downloadBackup($smarty, $module_name, $local_templates_dir, $dir_backup
     $file_name = getParameter("file_name");
     if (basename($file_name) != $file_name) {
         $bArchivoValido = FALSE;
-    } elseif (!preg_match('/(^elastix)|(^issabel)backup-\d{14}-\w{2}\.tar$/', $file_name)) {
+    } elseif (!preg_match('/(^issabel)backup-\d{14}-\w{2}\.tar$/', $file_name)) {
         $bArchivoValido = FALSE;
     }
 
