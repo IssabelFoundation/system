@@ -559,12 +559,12 @@ function boxAlert($smarty, $local_templates_dir, $versionList_current, $versionL
 function getValueofBackupOption($valueOp)
 {
     $arrayOptions = array(
-        "endpoint" => array("elastix-pbx"),
-        "fax" => array("elastix-fax"),
-        "email" => array("elastix","elastix-email_admin"),
-        "asterisk" => array("asterisk","dahdi","wanpipe-util","issabelpbx","elastix"),
-        "otros" => array("elastix-vtigercrm","elastix-a2billing","elastix","elastix-pbx","elastix-sugarcrm-addon"),
-        "otros_new" => array("elastix-pbx","elastix-agenda")
+        "endpoint" => array("issabel-pbx"),
+        "fax" => array("issabel-fax"),
+        "email" => array("issabel","issabel-email_admin"),
+        "asterisk" => array("asterisk","dahdi","wanpipe-util","issabelpbx","issabel"),
+        "otros" => array("issabel-vtigercrm","issabel-a2billing","issabel","issabel-pbx","issabel-sugarcrm-addon"),
+        "otros_new" => array("issabel-pbx","issabel-agenda")
     );
     $arrayResult = array();
     foreach($arrayOptions as $key => $value) {
@@ -596,9 +596,9 @@ function viewDetail($smarty, $module_name, $local_templates_dir, $path_backup)
 function getVersionPrograms_SYSTEM()
 {
     $packageList = array('asterisk', 'dahdi', 'wanpipe-util', 'issabelPBX',
-        'elastix', 'elastix-pbx', 'elastix-email_admin', 'elastix-agenda',
-        'elastix-fax', 'elastix-vtigercrm', 'elastix-a2billing',
-        'elastix-sugarcrm-addon');
+        'issabel', 'issabel-pbx', 'issabel-email_admin', 'issabel-agenda',
+        'issabel-fax', 'issabel-vtigercrm', 'issabel-a2billing',
+        'issabel-sugarcrm-addon');
     $output = $retval = NULL;
     exec("rpm -q --queryformat '%{name} %{version} %{release}\\n' ".implode(' ', $packageList),
         $output, $retval);
