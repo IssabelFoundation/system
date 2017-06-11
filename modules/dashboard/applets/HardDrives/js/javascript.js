@@ -1,8 +1,8 @@
 $(document).ready(function() {
 	$('#harddrives_dirspacereport_fetch').click(function() {
-		$('#harddrives_dirspacereport').html("<img class='ima' src='modules/" + getCurrentElastixModule() + "/images/loading.gif' border='0' align='absmiddle' />");
+		$('#harddrives_dirspacereport').html("<img class='ima' src='modules/" + getCurrentIssabelModule() + "/images/loading.gif' border='0' align='absmiddle' />");
 		$.get('index.php', {
-			menu: getCurrentElastixModule(),
+			menu: getCurrentIssabelModule(),
 			rawmode: 'yes',
 			applet: 'HardDrives',
 			action: 'dirspacereport'

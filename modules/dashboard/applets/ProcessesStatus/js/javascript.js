@@ -42,7 +42,7 @@ function neoAppletProcesses_manejarMenu(event)
 			$('#neo-applet-processes-controles').hide();
 			$('#neo-applet-processes-processing').show();
 			$.post('index.php', {
-				menu:		getCurrentElastixModule(), 
+				menu:		getCurrentIssabelModule(), 
 				rawmode:	'yes',
 				applet:		'ProcessesStatus',
 				action:		$(this).attr('name'),

@@ -131,7 +131,7 @@ action:     'ejecutarMaravilla'
 
 A esta petición se le agregan los parámetros adicionales que requiera la acción.
 Para que la implementación sea robusta, se recomienda que el parámetro menu se
-lo proporcione llamando a la función getCurrentElastixModule().
+lo proporcione llamando a la función getCurrentIssabelModule().
 
 Por ejemplo, si la acción adicional es la generación de una imagen, se debe
 construir una etiqueta imagen de la siguiente manera:
@@ -142,7 +142,7 @@ Si la acción adicional es una petición AJAX, se puede construir la petición d
 la siguiente manera (asumiendo uso de jQuery):
 
 $.post('index.php', {
-    menu:       getCurrentElastixModule(), 
+    menu:       getCurrentIssabelModule(), 
     rawmode:    'yes',
     applet:     'SuperMaravillosoApplet',
     action:     'ejecutarMaravilla'

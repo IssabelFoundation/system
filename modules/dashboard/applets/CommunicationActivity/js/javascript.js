@@ -4,7 +4,7 @@ $(document).ready(function() {
 	if (communicationactivity_status_timer != null) clearInterval(communicationactivity_status_timer);
 	communicationactivity_status_timer = setInterval(function() {
 		$.get('index.php', {
-			menu:		getCurrentElastixModule(),
+			menu:		getCurrentIssabelModule(),
 			rawmode:	'yes',
 			applet:		'CommunicationActivity',
 			action:		'updateStatus'

@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$('.telephonyhardware_editregister').click(function () {
 		$.get('index.php', {
-			menu:	getCurrentElastixModule(),
+			menu:	getCurrentIssabelModule(),
 			rawmode: 'yes',
 			applet: 'TelephonyHardware',
 			action: 'registerform',
@@ -21,7 +21,7 @@ function telephonyhardware_registersave()
 	$('.loading').show();
 	$('.message').text('');
 	$.post('index.php', {
-		menu:	getCurrentElastixModule(),
+		menu:	getCurrentIssabelModule(),
 		rawmode: 'yes',
 		applet: 'TelephonyHardware',
 		action: 'registersave',

@@ -21,7 +21,7 @@ $(document).ready(function() {
 	if (systemresources_status_timer != null) clearInterval(systemresources_status_timer);
 	systemresources_status_timer = setInterval(function() {
 		$.get('index.php', {
-			menu:		getCurrentElastixModule(),
+			menu:		getCurrentIssabelModule(),
 			rawmode:	'yes',
 			applet:		'SystemResources',
 			action:		'updateStatus'

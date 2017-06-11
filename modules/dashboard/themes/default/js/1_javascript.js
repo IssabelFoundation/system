@@ -25,7 +25,7 @@ $(document).ready(function() {
 
         	//console.debug(appletlist);
         	$.post('index.php', {
-        		menu: getCurrentElastixModule(),
+        		menu: getCurrentIssabelModule(),
         		rawmode: 'yes',
         		action: 'updateOrder',
         		appletorder: appletlist
@@ -49,7 +49,7 @@ function appletRefresh(appletwindow_content)
 	appletwindow_content.children('.appletwindow_fullcontent').hide().empty();
 	appletwindow_content.children('.appletwindow_wait').show();
 	$.get('index.php', {
-		menu: getCurrentElastixModule(),
+		menu: getCurrentIssabelModule(),
 		rawmode: 'yes',
 		applet: appletwindow_content.attr('id').substr(7), // para quitar 'Applet_'
 		action: 'getContent'

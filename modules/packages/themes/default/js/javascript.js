@@ -26,7 +26,7 @@ function ejecutarPeticionPaquete(msg_wait, request_param)
         $("#neo-table-header-filterrow").data("neo-table-header-filterrow-status", "hidden");
         $("#neo-tabla-header-row-filter-1").click();
 
-        request_param['menu'] = getCurrentElastixModule();
+        request_param['menu'] = getCurrentIssabelModule();
         request_param['rawmode'] = 'yes';
         $.post('index.php', request_param, function(response) {
             alert(response.statusResponse);
