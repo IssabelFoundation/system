@@ -497,7 +497,7 @@ function load_default_timezone()
     date_default_timezone_set($sDefaultTimezone);
 }
 
-function isPostfixToElastix2()
+function isPostfixToIssabel2()
 {
     foreach (file('/etc/imapd.conf') as $s) {
         if (strpos(trim($s), 'virtdomains: yes') === 0) return TRUE;
@@ -1520,7 +1520,7 @@ function prerestore_em_db($sLevelTag, &$backupComponent, $sWorkingDir)
         return FALSE;
     }
 
-    $bPostfixElastix2 = isPostfixToElastix2();
+    $bPostfixElastix2 = isPostfixToIssabel2();
 
     // Remove all current accounts of all known domains
     $removedDomains = array();
@@ -1650,7 +1650,7 @@ function postrestore_em_db($sLevelTag, &$backupComponent, $sWorkingDir)
         return FALSE;
     }
 
-    $bPostfixElastix2 = isPostfixToElastix2();
+    $bPostfixElastix2 = isPostfixToIssabel2();
 
     // Load all of the required domains and accounts
     $domainList = array(); $accountList = array();
