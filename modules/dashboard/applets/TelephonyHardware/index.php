@@ -24,7 +24,7 @@
 require_once "libs/paloSantoForm.class.php";
 
 define('WEBSERVICE_CARD_REGISTRATION',
-    'http://webservice.elastix.org/modules/serial_hardware_telephony/webservice/telephonyHardware.wsdl');
+    'http://cloud.issabel.org/modules/serial_hardware_telephony/webservice/telephonyHardware.wsdl');
 
 class Applet_TelephonyHardware
 {
