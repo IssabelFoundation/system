@@ -22,7 +22,7 @@ function ejecutarPeticionPaquete(msg_wait, request_param)
         $("#estaus_reloj").val('prendido');
         $("#relojArena").html("<img src='modules/packages/images/loading.gif' align='absmiddle' /> <br /> <font style='font-size:12px; color:red'>" + msg_wait + "</font>");
 
-        // TODO: las siguientes 2 acciones parece que no hacen nada en temas Elastix recientes
+        // TODO: las siguientes 2 acciones parece que no hacen nada en temas Issabel recientes
         $("#neo-table-header-filterrow").data("neo-table-header-filterrow-status", "hidden");
         $("#neo-tabla-header-row-filter-1").click();
 
