@@ -1520,7 +1520,7 @@ function prerestore_em_db($sLevelTag, &$backupComponent, $sWorkingDir)
         return FALSE;
     }
 
-    $bPostfixElastix2 = isPostfixToIssabel2();
+    $bPostfixIssabel2 = isPostfixToIssabel2();
 
     // Remove all current accounts of all known domains
     $removedDomains = array();
@@ -1563,7 +1563,7 @@ function prerestore_em_db($sLevelTag, &$backupComponent, $sWorkingDir)
                 }
 
                 // Remove sasl passwords linked to aliases
-                if (!$bPostfixElastix2 && count($aliasList) <= 0)
+                if (!$bPostfixIssabel2 && count($aliasList) <= 0)
                     $aliasList[] = $account['username'].'@'.SASL_DOMAIN;
                 foreach ($aliasList as $sAlias) {
                     $retval = NULL;
@@ -1593,7 +1593,7 @@ function prerestore_em_db($sLevelTag, &$backupComponent, $sWorkingDir)
 
     // Remove domains from /etc/postfix/main.cf and reload postfix.
     if (count($removedDomains) > 0) {
-        $sDomainKey = $bPostfixElastix2 ? 'virtual_mailbox_domains' : 'mydomain2';
+        $sDomainKey = $bPostfixIssabel2 ? 'virtual_mailbox_domains' : 'mydomain2';
         $postfixConf = file('/etc/postfix/main.cf');
         if ($postfixConf === FALSE) {
             fwrite(STDERR, "ERR: $sLevelTag: failed to load /etc/postfix/main.cf for domain update\n");
@@ -1650,7 +1650,7 @@ function postrestore_em_db($sLevelTag, &$backupComponent, $sWorkingDir)
         return FALSE;
     }
 
-    $bPostfixElastix2 = isPostfixToIssabel2();
+    $bPostfixIssabel2 = isPostfixToIssabel2();
 
     // Load all of the required domains and accounts
     $domainList = array(); $accountList = array();
@@ -1674,7 +1674,7 @@ function postrestore_em_db($sLevelTag, &$backupComponent, $sWorkingDir)
 
     // Create all of the new domains and reload postfix
     if (count($domainList) > 0) {
-        $sDomainKey = $bPostfixElastix2 ? 'virtual_mailbox_domains' : 'mydomain2';
+        $sDomainKey = $bPostfixIssabel2 ? 'virtual_mailbox_domains' : 'mydomain2';
         $postfixConf = file('/etc/postfix/main.cf');
         if ($postfixConf === FALSE) {
             fwrite(STDERR, "ERR: $sLevelTag: failed to load /etc/postfix/main.cf for domain update\n");
@@ -1721,7 +1721,7 @@ function postrestore_em_db($sLevelTag, &$backupComponent, $sWorkingDir)
 
         // Assign password for new user
         $sAccountCommand = 'echo '.escapeshellarg($account['password']).' | /usr/sbin/saslpasswd2 -c '.
-            ($bPostfixElastix2
+            ($bPostfixIssabel2
                 ? escapeshellarg($sEmail)
                 : escapeshellarg($account['username']).' -u '.SASL_DOMAIN);
         $retval = NULL;
