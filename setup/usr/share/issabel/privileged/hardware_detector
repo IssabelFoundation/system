@@ -155,7 +155,7 @@ fi
 # Clean out previous dahdi configuration. TODO: back up configuration instead...
 rm -f /etc/dahdi/system.conf /etc/asterisk/dahdi-channels.conf
 if [ -e /etc/asterisk/chan_dahdi.conf ] ; then
-    cp /etc/asterisk/chan_dahdi.conf /etc/asterisk/chan_dahdi.conf.elastixsave
+    cp /etc/asterisk/chan_dahdi.conf /etc/asterisk/chan_dahdi.conf.issabelsave
     if [ $overwrite_chan_dahdi = true  ]; then
         rm -f /etc/asterisk/chan_dahdi.conf
     fi

@@ -278,8 +278,8 @@ function configureDHCP($sIpStart, $sIpEnd, $iLeaseTime, $sGateway = NULL,
                 $sth = $conn->query('SELECT mac_prefix FROM mac_prefix ORDER BY mac_prefix');
                 $macs = $sth->fetchAll(PDO::FETCH_COLUMN);
                 if (count($macs) > 0) {
-                    $sMacAllow = 'allow members of "elastix-known-phones";';
-                    $sMacClass = "class \"elastix-known-phones\" {\n".
+                    $sMacAllow = 'allow members of "issabel-known-phones";';
+                    $sMacClass = "class \"issabel-known-phones\" {\n".
                         "\tmatch if substring(hardware,1,3) = ".
                         implode("\n\t\tor substring(hardware,1,3) = ", $macs).";\n}";
                 }
@@ -470,7 +470,7 @@ function action_refresh($opt)
             $sIpEnd = $regs[2];
         } elseif (preg_match('/^\s*default-lease-time\s+(\d+)/', $s, $regs)) {
             $iLeaseTime = $regs[1];
-        } elseif (strpos($s, 'elastix-known-phones') !== FALSE) {
+        } elseif (strpos($s, 'issabel-known-phones') !== FALSE) {
             $bPhonesOnly = TRUE;
         }
 
