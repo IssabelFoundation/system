@@ -596,7 +596,7 @@ function reportUserList($pACL, $idUserAccount, $smarty, $userLevel1, $userAccoun
             if(isset($_POST['id_user']) && $_POST['id_user']=='1') {
                 // No se puede elimiar al usuario admin
                 $smarty->assign("mb_title", _tr("ERROR"));
-                $smarty->assign("mb_message", _tr("The admin user cannot be deleted because is the default Elastix administrator. You can delete any other user."));
+                $smarty->assign("mb_message", _tr("The admin user cannot be deleted because is the default Issabel administrator. You can delete any other user."));
             } else {
                 $pACL->deleteUser($_POST['id_user']);
             }
