@@ -26,7 +26,7 @@ function _moduleContent(&$smarty, $module_name)
             $send="Tracepath";
             $hostname=$_POST['tracert_hostname'];
         }
-        $frame_url=$_SERVER[REQUEST_SCHEME]."://".$_SERVER['HTTP_HOST']."/modules/ping/generate.php?send=".$send."&hostname='".$hostname."'";
+        $frame_url=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/modules/ping/generate.php?send=".$send."&hostname='".$hostname."'";
         $smarty->assign("frame_url", $frame_url);    
     }else{
         $smarty->assign("frame_url", "");    
