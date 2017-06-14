@@ -19,11 +19,11 @@ function _moduleContent(&$smarty, $module_name)
     $local_templates_dir = "$base_dir/modules/$module_name/".$templates_dir.'/'.$arrConf['theme'];
     
     if ($_POST){
-        if($_POST['send'] == 'Ping' && isset($_POST['ping_hostname'])) {
-            $send="Ping";
+        if($_POST['send'] == 'ping' && isset($_POST['ping_hostname'])) {
+            $send="ping";
             $hostname=$_POST['ping_hostname'];
-        } else if($_POST['send'] == 'Tracepath' && isset($_POST['tracert_hostname'])) {
-            $send="Tracepath";
+        } else if($_POST['send'] == 'tracepath' && isset($_POST['tracert_hostname'])) {
+            $send="tracepath";
             $hostname=$_POST['tracert_hostname'];
         }
         $frame_url=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/modules/ping/generate.php?send=".$send."&hostname='".$hostname."'";

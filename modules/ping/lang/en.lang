@@ -5,7 +5,7 @@
   | Issabel version 1.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
-  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  | Copyright (c) 2017 Issabel Foundation                                |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
   | (GPL) Version 2 (the "License"); you may not use this file except in |
@@ -17,17 +17,11 @@
   | the License for the specific language governing rights and           |
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
-  | The Original Code is: Issabel Open Source.                           |
-  | The Initial Developer of the Original Code is PaloSanto Solutions    |
-  |                                                                      |
-  | Translate by: Bruno Macias                                           |
-  | Email: bmacias@palosanto.com                                         |
-  +----------------------------------------------------------------------+
-  $Id: en.lang,v 1.7 2008/02/18 09:49:00 bmacias Exp $ */
+                                                                        */
 global $arrLangModule;
 $arrLangModule=array(
-"Asterisk-Cli"=>"Asterisk-Cli",
-"Command"=> "Command",
-"Execute"=> "Execute",
+"Ping"=> "Ping",
+"Trace"=> "Trace",
+"Results"=> "Results"
 );
 ?>
