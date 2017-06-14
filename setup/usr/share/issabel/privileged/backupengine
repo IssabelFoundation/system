@@ -69,6 +69,9 @@ require_once 'Console/Getopt.php';
  */
 define('DEFAULT_BACKUP_DIR', '/var/www/backup');
 define('PASSWD_PATH', '/etc/issabel.conf');
+
+$adminpwd='issabel456';
+
 $BACKUP_PLAN = array(
     'asterisk'  =>  array(
         'as_db'             =>  array(
@@ -1014,7 +1017,7 @@ function backupComponent_bundle($sLevelTag, &$backupComponent, $sWorkingDir)
 
 function action_runRestore($opt)
 {
-    global $BACKUP_PLAN;
+    global $BACKUP_PLAN, $adminpwd;
 
     $sBackupFile = NULL;
     $sTempDir = DEFAULT_BACKUP_DIR;
@@ -1047,6 +1050,8 @@ function action_runRestore($opt)
     if (count($selectedComponents) <= 0) {
         error_exit("Option --components: Must specify a nonempty component list.\n");
     }
+
+    $adminpwd=trim(`sqlite3 /var/www/db/acl.db "select md5_password from acl_user where name='admin'"`);
 
     // Create temporary directory on backup directory, clean if required
     $sWorkingDir = $sTempDir.'/restore';
@@ -1894,12 +1899,13 @@ function postrestore_mysql_db($sLevelTag, &$backupComponent, $sWorkingDir)
 // Custom processing after restoring acl databases
 function postrestore_menu_permissions($sLevelTag, &$backupComponent, $sWorkingDir)
 {
+    global $adminpwd;
     $passwords = load_keys();
     try {
         $conn = new PDO('sqlite:/var/www/db/acl.db');
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sth = $conn->prepare('UPDATE acl_user SET md5_password = ? WHERE name = ?');
-        $sth->execute(array(md5($passwords['amiadminpwd']), 'admin'));
+        $sth->execute(array($adminpwd, 'admin'));
         $conn = NULL;
         return TRUE;
     } catch (PDOException $e) {
