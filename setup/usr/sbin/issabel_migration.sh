@@ -267,7 +267,6 @@ EOF
 )
 for i in $MODULES
 do
-	echo insert ${i/acl_resource/'acl_resource (name, description)'}
 	sqlite3 /var/www/db/acl.db "${i/acl_resource/acl_resource (name, description)}"
 done
 	IFS=$OLDIFS
