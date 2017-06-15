@@ -257,14 +257,17 @@ function downloadBackup($smarty, $module_name, $local_templates_dir, $dir_backup
 
 function delete_backup($smarty, $module_name, $local_templates_dir, $dir_backup, &$pDB)
 {
+
     function delete_backup_isInvalidFile($file_name) {
-        return !preg_match('/(^issabel)backup-\d{14}-\w{2}\.tar$/', $file_name);
+        return !preg_match('/(^issabel)|(^elastix)backup-\d{14}-\w{2}\.tar$/', $file_name);
     }
+
     function delete_backup_doDelete($filePath) {
         return file_exists($filePath) ? !unlink($filePath) : FALSE;
     }
 
     $archivos_borrar = isset($_POST['chk']) ? array_keys($_POST['chk']) : array();
+
     if (!is_array($archivos_borrar) || count($archivos_borrar) <= 0) {
         $smarty->assign('mb_message', _tr('There are not backup file selected'));
     } elseif (count(array_filter(array_map('delete_backup_isInvalidFile', $archivos_borrar))) > 0) {
