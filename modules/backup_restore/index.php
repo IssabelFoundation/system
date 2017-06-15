@@ -41,7 +41,6 @@ function _moduleContent(&$smarty, $module_name)
     global $arrConf;
     global $arrConfModule;
     $arrConf = array_merge($arrConf,$arrConfModule);
-
     //conexion resource
     $pDB = new paloDB($arrConf['dsn_conn_database']);
 
@@ -100,6 +99,10 @@ function _moduleContent(&$smarty, $module_name)
             $content = automatic_backup($smarty, $module_name, $local_templates_dir, $dir_backup,$pDB);
             break;
 /***************************************************************************************/
+        case "uploadbk":
+            upload_backup_file($smarty, $dir_backup); 
+            $content = report_backup_restore($smarty, $module_name, $local_templates_dir, $dir_backup, $pDB);
+            break;
         default:
             $content = report_backup_restore($smarty, $module_name, $local_templates_dir, $dir_backup, $pDB);
             break;
@@ -133,7 +136,7 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
 
     $arrData = null;
     if(is_array($nombre_archivos) && $total>0){
-        foreach($nombre_archivos as $key => $nombre_archivo){
+        foreach($nombre_archivos as $key => $nombre_archivo) {
 
             // Control to see if its an old elastix system to migrate, or a new issabel system to restore
             $dirarchi = $dir_backup."/".$nombre_archivo;
@@ -190,6 +193,7 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
     $oGrid->addNew("backup",_tr("Backup"));
     $oGrid->deleteList(_tr("Are you sure you wish to delete backup (s)?"),'delete_backup',_tr("Delete"));
     $oGrid->customAction("view_form_FTP",_tr("FTP Backup"), "cloud");
+    $oGrid->addHTMLAction("<input name='upload_backup_file' type=file class='jfilestyle' data-input='false' data-buttonText='Upload' onchange='return confirm_upload(this)'> ");
 
     $backupIntervals = array(
         'DISABLED'  =>  _tr('DISABLED'),
@@ -206,7 +210,7 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
 
 function automatic_backup($smarty, $module_name, $local_templates_dir, $dir_backup, &$pDB)
 {
-	$time = getParameter("time");
+    $time = getParameter("time");
 
     //if there is data in database
     $pFTPBackup = new paloSantoFTPBackup($pDB);
@@ -257,17 +261,18 @@ function delete_backup($smarty, $module_name, $local_templates_dir, $dir_backup,
         return !preg_match('/(^issabel)backup-\d{14}-\w{2}\.tar$/', $file_name);
     }
     function delete_backup_doDelete($filePath) {
-    	return file_exists($filePath) ? !unlink($filePath) : FALSE;
+        return file_exists($filePath) ? !unlink($filePath) : FALSE;
     }
 
     $archivos_borrar = isset($_POST['chk']) ? array_keys($_POST['chk']) : array();
     if (!is_array($archivos_borrar) || count($archivos_borrar) <= 0) {
-    	$smarty->assign('mb_message', _tr('There are not backup file selected'));
+        $smarty->assign('mb_message', _tr('There are not backup file selected'));
     } elseif (count(array_filter(array_map('delete_backup_isInvalidFile', $archivos_borrar))) > 0) {
         $smarty->assign('mb_message', _tr('Invalid files selected to delete'));
     } else {
-    	foreach (array_keys($archivos_borrar) as $i)
+        foreach(array_keys($archivos_borrar) as $i ) {
             $archivos_borrar[$i] = $dir_backup.'/'.$archivos_borrar[$i];
+        }
         if (count(array_filter(array_map('delete_backup_doDelete', $archivos_borrar))) > 0) {
             $smarty->assign('mb_message', _tr('Error when deleting backup file'));
         }
@@ -386,11 +391,11 @@ function restore_form($smarty, $local_templates_dir, $path_backup, $module_name)
 
 function process_backup($smarty, $local_templates_dir, $module_name)
 {
-	// Recolectar las claves conocidas seleccionadas
+    // Recolectar las claves conocidas seleccionadas
     $opcionesBackup = Array_Options();
     $clavesBackup = array();
-    foreach ($opcionesBackup as $opcionBackup) {
-    	$clavesBackup = array_merge($clavesBackup, array_keys($opcionBackup));
+    foreach($opcionesBackup as $opcionBackup) {
+        $clavesBackup = array_merge($clavesBackup, array_keys($opcionBackup));
     }
     $clavesSeleccion = array_intersect($clavesBackup, array_keys($_POST));
 
@@ -406,9 +411,9 @@ function process_backup($smarty, $local_templates_dir, $module_name)
         ' 2>&1';
     exec($sComando, $output, $retval);
     if ($retval == 0) {
-    	$smarty->assign('ERROR_MSG', _tr('Backup Complete!').': '.$sArchivoBackup);
+        $smarty->assign('ERROR_MSG', _tr('Backup Complete!').': '.$sArchivoBackup);
     } else {
-    	$sMensaje = _tr('Could not generate backup file').': '.$sArchivoBackup.'<br/>'.
+        $sMensaje = _tr('Could not generate backup file').': '.$sArchivoBackup.'<br/>'.
             _tr('Output follows: ').'<br/><br/>'.
             implode("<br/>\n", $output);
         $smarty->assign('ERROR_MSG', $sMensaje);
@@ -430,7 +435,7 @@ function process_restore($smarty, $local_templates_dir, $path_backup, $module_na
     $clavesSeleccion = array_intersect($clavesBackup, array_keys($_POST));
 
     if (count($clavesSeleccion) <= 0) {
-    	$smarty->assign('ERROR_MSG', _tr('Choose an option to restore'));
+        $smarty->assign('ERROR_MSG', _tr('Choose an option to restore'));
     } elseif (!isset($_POST['backup_file']) || trim($_POST['backup_file']) == '') {
         $smarty->assign('ERROR_MSG', _tr("Backup file path can't be empty"));
     } elseif (!file_exists($path_backup.'/'.$_POST['backup_file'])) {
@@ -446,7 +451,7 @@ function process_restore($smarty, $local_templates_dir, $path_backup, $module_na
             ' 2>&1';
         exec($sComando, $output, $retval);
         if ($retval == 0) {
-        	$smarty->assign('ERROR_MSG', _tr('Restore Complete!'));
+            $smarty->assign('ERROR_MSG', _tr('Restore Complete!'));
         } else {
             $sMensaje = _tr('Could not restore from backup file').': '.$_POST['backup_file'].'<br/>'.
                 _tr('Output follows: ').'<br/><br/>'.
@@ -495,11 +500,12 @@ function Array_Options($disabled="")
             "eop_db"            =>  array("desc"=>_tr('EOP')),
         ),
     );
-    foreach (array_keys($arrBackupOptions) as $k1)
-    foreach (array_keys($arrBackupOptions[$k1]) as $k2) {
-        $arrBackupOptions[$k1][$k2]['check'] = '';
-    	$arrBackupOptions[$k1][$k2]['msg'] = '';
-        $arrBackupOptions[$k1][$k2]['disable'] = "$disabled";
+    foreach (array_keys($arrBackupOptions) as $k1) {
+        foreach (array_keys($arrBackupOptions[$k1]) as $k2) {
+            $arrBackupOptions[$k1][$k2]['check'] = '';
+            $arrBackupOptions[$k1][$k2]['msg'] = '';
+            $arrBackupOptions[$k1][$k2]['disable'] = "$disabled";
+        }
     }
 
     return $arrBackupOptions;
@@ -556,7 +562,7 @@ function boxAlert($smarty, $local_templates_dir, $versionList_current, $versionL
             $versionList_torestore[$key]['version'] == $versionList_torestore[$key]['release']){
             $tupla['version_backup'] = "<span style='font-style: italic; color: red;'>"._tr("Package not installed")."</span>";
         } else {
-        	$tupla['version_backup'] = $versionList_torestore[$key]['version']."-".$versionList_torestore[$key]['release'];
+            $tupla['version_backup'] = $versionList_torestore[$key]['version']."-".$versionList_torestore[$key]['release'];
         }
 
         $tupla['version_current'] = $versionList_current[$key]['version']."-".$versionList_current[$key]['release'];
@@ -566,7 +572,7 @@ function boxAlert($smarty, $local_templates_dir, $versionList_current, $versionL
 
         $packagereport[] = array_merge($tupla, getValueofBackupOption($key));
     }
-	$smarty->assign(array(
+    $smarty->assign(array(
         'warning_details'   =>  _tr('warning_details'),
         'programs'          =>  _tr('programs'),
         'Package'           =>  _tr('Package'),
@@ -746,11 +752,16 @@ function viewFormFTPBackup($smarty, $module_name, $local_templates_dir, &$pDB)
         'pathServer'    =>  '/',
     );
     $dbcred = $pFTPBackup->obtenerCredencialesFTP();
-    if (is_array($dbcred)) foreach (array_keys($ftpcred) as $k) {
-    	if (isset($dbcred[$k])) $ftpcred[$k] = $dbcred[$k];
+
+    if (is_array($dbcred)) {
+        foreach (array_keys($ftpcred) as $k) {
+            if (isset($dbcred[$k])) $ftpcred[$k] = $dbcred[$k];
+        }
     }
-    foreach (array_keys($ftpcred) as $k)
+
+    foreach (array_keys($ftpcred) as $k) {
         if (isset($_POST[$k])) $ftpcred[$k] = $_POST[$k];
+    }
 
     // Listado de archivos local y remoto
     $smarty->assign('local_files', $pFTPBackup->obtainFiles($arrConf['dir']));
@@ -911,6 +922,7 @@ function getAction()
 {
     if      (isset($_POST["delete_backup"])) return "delete_backup";
     else if (isset($_POST["backup"])) return "backup";
+    else if (isset($_POST["uploadbk"])) return "uploadbk";
     else if (isset($_POST["submit_restore"])) return "submit_restore";
     else if (isset($_POST["submit_migrate"])) return "submit_migrate";
     else if (isset($_POST["process"]) && $_POST["option_url"]=="backup")  return  "process_backup";
@@ -933,5 +945,51 @@ function getAction()
 /**************************************************************************************/
     else return "report_backup_restore";
 
+}
+
+
+function upload_backup_file($smarty, $dir_backup) {
+
+    if(!$_FILES) {
+        return;
+    }
+
+    if(isset($_FILES['upload_backup_file']['error']) && $_FILES['upload_backup_file']['error'] == 0) {  //Update successful
+        if(!(isset($_FILES['upload_backup_file']['size'])) || $_FILES['upload_backup_file']['size'] > 600*1000*1000) { //Max file size 600 megabytes
+            $smarty->assign("mb_message",_tr("Backup file too big"));
+            return;
+        }
+
+        if (!move_uploaded_file($_FILES['upload_backup_file']['tmp_name'], $dir_backup."/".$_FILES['upload_backup_file']['name'])) {
+            $smarty->assign("mb_message",_tr("Problem moving the uploaded file"));
+        }
+
+        $smarty->assign("mb_message",_tr("Upload successfully"));
+
+    } else {
+
+        if(isset($_FILES['upload_backup_file']['error'])) {
+            switch($_FILES['upload_backup_file']['error']) {
+                case 1:
+                    $smarty->assign("mb_message",_tr("The file was larger than the server space 600M!"));
+                    break;
+                case 2:
+                    $smarty->assign("mb_message",_tr("The file was larger than the browser's limit"));
+                    break;
+                case 3:
+                    $smarty->assign("mb_message",_tr("The file was only partially uploaded"));
+                    break;
+                case 4:
+                    $smarty->assign("mb_message",_tr("Can not find uploaded file"));
+                    break;
+                case 5:
+                    $smarty->assign("mb_message",_tr("Failed to write to the temporary folder"));
+                    break;
+                case 6:
+                    $smarty->assign("mb_message",_tr("Failed to write to the temporary folder"));
+                    break;
+            }
+        }
+    }
 }
 ?>
