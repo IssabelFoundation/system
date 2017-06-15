@@ -99,6 +99,7 @@ mkdir -p $RPM_BUILD_ROOT/usr/sbin/
 
 # ** switch_wanpipe_media file ** #
 mv setup/usr/sbin/switch_wanpipe_media        $RPM_BUILD_ROOT/usr/sbin/
+mv setup/usr/sbin/issabel_migration.sh        $RPM_BUILD_ROOT/usr/sbin/
 rmdir setup/usr/sbin
 
 # ** The following selects oslec as default echo canceller ** #
@@ -177,6 +178,7 @@ fi
 /var/www/db/rpms_availables
 %defattr(755, root, root)
 /usr/sbin/switch_wanpipe_media
+/usr/sbin/issabel_migration.sh
 /usr/share/issabel/privileged/*
 %config(noreplace) /etc/dahdi/genconf_parameters
 
