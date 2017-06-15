@@ -138,6 +138,7 @@ $arrLangModule=array(
 "issabel-sugarcrm-addon" => "Issabel SugarCRM",
 "Package not installed" => "Not installed",
 "Version" => "Version",
+"Progress" => "Progress",
 "Please verify if the mysql password is the correct in /etc/issabel.conf (mysqlrootpwd)" => "Please verify if the mysql password is the correct in /etc/issabel.conf (mysqlrootpwd)",
 );
 ?>
