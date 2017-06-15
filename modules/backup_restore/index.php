@@ -62,8 +62,11 @@ function _moduleContent(&$smarty, $module_name)
         case 'backup': //BOTON "RESPALDAR"
             $content = backup_form($smarty, $local_templates_dir, $module_name);
             break;
-        case 'submit_restore': //BOTON DE RSTAURAR, lleva a la ventana de seleccion para restaurar
+        case 'submit_restore': //BOTON DE RESTAURAR, lleva a la ventana de seleccion para restaurar
             $content = restore_form($smarty, $local_templates_dir, $dir_backup, $module_name);
+            break;
+        case 'submit_migrate': //BOTON DE MIGRACION desde Elastix o Systemas antiguos
+            $content = migrate_form($smarty, $local_templates_dir, $dir_backup, $module_name);
             break;
         case 'process_backup':
             $content = process_backup($smarty, $local_templates_dir, $module_name);
@@ -131,6 +134,19 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
     $arrData = null;
     if(is_array($nombre_archivos) && $total>0){
         foreach($nombre_archivos as $key => $nombre_archivo){
+
+            // Control to see if its an old elastix system to migrate, or a new issabel system to restore
+            $dirarchi = $dir_backup."/".$nombre_archivo;
+            if(is_file($dirarchi)) {
+                $versions = `tar Oxvf $dirarchi backup/versions.xml`;
+
+                if(preg_match("/freepbx/",$versions)) {
+                    $migrate=1;
+                } else {
+                    $migrate=0;
+                }
+            }
+            
             $arrTmp[0] = "<input type='checkbox' name='chk[".$nombre_archivo."]' id='chk[".$nombre_archivo."]'/>";
             $arrTmp[1] = "<a href='?menu=$module_name&action=download_file&file_name=$nombre_archivo&rawmode=yes'>$nombre_archivo</a>";
             $fecha="";
@@ -143,7 +159,11 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
             }
 
             $arrTmp[2] = $fecha;
-            $arrTmp[3] = "<input type='submit' name='submit_restore[".$nombre_archivo."]' value='"._tr('Restore')."' class='button' />";
+            if($migrate==1) {
+                $arrTmp[3] = "<input type='submit' name='submit_migrate[".$nombre_archivo."]' value='"._tr('Migrate from Elastix')."' class='button' />";
+            } else {
+                $arrTmp[3] = "<input type='submit' name='submit_restore[".$nombre_archivo."]' value='"._tr('Restore')."' class='button' />";
+            }
             $arrData[] = $arrTmp;
         }
     }
@@ -170,6 +190,7 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
     $oGrid->addNew("backup",_tr("Backup"));
     $oGrid->deleteList(_tr("Are you sure you wish to delete backup (s)?"),'delete_backup',_tr("Delete"));
     $oGrid->customAction("view_form_FTP",_tr("FTP Backup"), "cloud");
+    $oGrid->addFileAction("upload",_tr("Upload Backup File"), "cloud");
 
     $backupIntervals = array(
         'DISABLED'  =>  _tr('DISABLED'),
@@ -298,14 +319,29 @@ function backup_form($smarty, $local_templates_dir, $module_name)
     return form_general($smarty, $local_templates_dir, $arrBackupOptions, $module_name);
 }
 
+function migrate_form($smarty, $local_templates_dir, $path_backup, $module_name)
+{
+    $smarty->assign("module", $module_name);
+    if(isset($_POST["submit_migrate"])) {
+        $arr = array_keys($_POST["submit_migrate"]);
+        $filename = $arr[0];
+    }
+    $filename = $filename; 
+    $frame_url=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/modules/backup_restore/restore.php?filename=".$filename;
+    $smarty->assign("frame_url", $frame_url);    
+    return $smarty->fetch("$local_templates_dir/migration.tpl");
+}
+
 function restore_form($smarty, $local_templates_dir, $path_backup, $module_name)
 {
     $arrBackupOptions = Array_Options("disabled='disabled'");
-    if(isset($_POST["submit_restore"]))
-    {
+
+    if(isset($_POST["submit_restore"])) {
         $arr = array_keys($_POST["submit_restore"]);
         $archivo_post = $arr[0];
-    }else $archivo_post = isset($_POST["backup_file"])?$_POST["backup_file"]:"";
+    } else {
+      $archivo_post = isset($_POST["backup_file"])?$_POST["backup_file"]:"";
+    }
     $archivo_post = basename($archivo_post);
 
     if (!preg_match('/(^issabel)backup-\d{14}-\w{2}\.tar$/', $archivo_post)) {
@@ -877,6 +913,7 @@ function getAction()
     if      (isset($_POST["delete_backup"])) return "delete_backup";
     else if (isset($_POST["backup"])) return "backup";
     else if (isset($_POST["submit_restore"])) return "submit_restore";
+    else if (isset($_POST["submit_migrate"])) return "submit_migrate";
     else if (isset($_POST["process"]) && $_POST["option_url"]=="backup")  return  "process_backup";
     else if (isset($_POST["process"]) && $_POST["option_url"]=="restore") return  "process_restore";
 
