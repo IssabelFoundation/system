@@ -190,7 +190,6 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
     $oGrid->addNew("backup",_tr("Backup"));
     $oGrid->deleteList(_tr("Are you sure you wish to delete backup (s)?"),'delete_backup',_tr("Delete"));
     $oGrid->customAction("view_form_FTP",_tr("FTP Backup"), "cloud");
-    $oGrid->addFileAction("upload",_tr("Upload Backup File"), "cloud");
 
     $backupIntervals = array(
         'DISABLED'  =>  _tr('DISABLED'),
