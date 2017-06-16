@@ -958,7 +958,7 @@ function upload_backup_file($smarty, $dir_backup) {
     }
 
     if(isset($_FILES['upload_backup_file']['error']) && $_FILES['upload_backup_file']['error'] == 0) {  //Update successful
-        if(!(isset($_FILES['upload_backup_file']['size'])) || $_FILES['upload_backup_file']['size'] > 600*1000*1000) { //Max file size 600 megabytes
+        if(!(isset($_FILES['upload_backup_file']['size'])) || $_FILES['upload_backup_file']['size'] > 3072*1024*1024) { //Max file size 3 GB
             $smarty->assign("mb_message",_tr("Backup file too big"));
             return;
         }
@@ -974,7 +974,7 @@ function upload_backup_file($smarty, $dir_backup) {
         if(isset($_FILES['upload_backup_file']['error'])) {
             switch($_FILES['upload_backup_file']['error']) {
                 case 1:
-                    $smarty->assign("mb_message",_tr("The file was larger than the server space 600M!"));
+                    $smarty->assign("mb_message",_tr("The file was larger than the server space 3 GB!"));
                     break;
                 case 2:
                     $smarty->assign("mb_message",_tr("The file was larger than the browser's limit"));

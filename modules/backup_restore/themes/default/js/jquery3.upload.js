@@ -29,8 +29,8 @@ function confirm_upload(obj) {
         }
     }
 
-    if(filesize > 6000*1000*100) {
-        alert("Maximum allowed file size is 600 MB");
+    if(filesize > 3072*1024*1024) {
+        alert("Maximum allowed file size is 3 GB");
         return false;
     }
 
