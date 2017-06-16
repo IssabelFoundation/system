@@ -93,6 +93,7 @@ function restore_sqlite_dbs {
 	done
 	chown -R asterisk:asterisk /var/www/db
 	sqlite3 /var/www/db/acl.db "update acl_user set md5_password='$ADMINPWD'"
+	mysql -uroot -p$MYSQLPWD asterisk -e "UPDATE ampusers SET password_sha1 = sha1('$ADMINPWD') WHERE username='admin'"
 }
 
 function restore_sounds {
