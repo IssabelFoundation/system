@@ -5,6 +5,7 @@ DATADIR="/var/spool/issabel_migration.$(date +%s)"
 #BACKUPFILE=$1
 PARSED_OPTIONS=$(getopt -n "$0"  -o dhb: --long "dadhi,help,backup-file:"  -- "$@")
 alias cp=cp
+alias mv=mv
 
 function print_usage {
 	echo "Usage:"
@@ -29,6 +30,10 @@ function open_backup_file {
 	fi
 	mkdir -p $DATADIR
 	tar -xf $BACKUPFILE -C $DATADIR
+	if [ ! -d $DATADIR/backup ]
+	then
+		mv $DATADIR/backup* /$DATADIR/backup
+	fi
 	cd $DATADIR/backup
 	if [ -f $DATADIR/backup/mysqldb_asterisk.tgz ]
         then
@@ -384,6 +389,7 @@ sed -i $(grep -n amiadminpwd /etc/issabel.conf|cut -f1 -d:)"s/.*/amiadminpwd=$AM
 /usr/sbin/amportal a ma delete sipstation 2>$1 > /dev/null
 /usr/sbin/amportal a ma delete irc 2>$1 > /dev/null
 /usr/sbin/amportal a ma upgradeall 2>$1 > /dev/null
+cp -p /var/www/html/index.php $DATADIR
 for i in $(/usr/sbin/amportal a ma list | grep -E 'Broken|Disabled' | cut -d" " -f1)
 do
 	echo "Updating IssabelPBX module: $i"
@@ -391,6 +397,28 @@ do
 	/usr/sbin/amportal a ma install $i 2>$1 > /dev/null
 	echo Done
 done
+for i in $(/usr/sbin/amportal a ma list | grep -E 'Broken|Disabled' | cut -d" " -f1)
+do
+        echo "Updating IssabelPBX module: $i"
+        /usr/sbin/amportal a ma download $i 2>$1 > /dev/null
+        /usr/sbin/amportal a ma install $i 2>$1 > /dev/null
+        echo Done
+done
+for i in $(/usr/sbin/amportal a ma list | grep -E 'Broken|Disabled' | cut -d" " -f1)
+do
+        echo "Updating IssabelPBX module: $i"
+        /usr/sbin/amportal a ma download $i 2>$1 > /dev/null
+        /usr/sbin/amportal a ma install $i 2>$1 > /dev/null
+        echo Done
+done
+for i in $(/usr/sbin/amportal a ma list | grep -E 'Broken|Disabled' | cut -d" " -f1)
+do
+        echo "Updating IssabelPBX module: $i"
+        /usr/sbin/amportal a ma download $i 2>$1 > /dev/null
+        /usr/sbin/amportal a ma install $i 2>$1 > /dev/null
+        echo Done
+done
 su - asterisk /var/lib/asterisk/bin/retrieve_conf 2>$1 > /dev/null
 /usr/sbin/asterisk -rx "core reload" 2>$1 > /dev/null
+mv $DATADIR/index.php /var/www/html/index.php
 rm -rf /$DATADIR/backup
