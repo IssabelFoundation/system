@@ -131,7 +131,7 @@ class Applet_ProcessesStatus
             'Postfix'   =>  'postfix',
             'MySQL'     =>  'mysqld',
             'Apache'    =>  'httpd',
-            'Dialer'    =>  'issabelidaler',
+            'Dialer'    =>  'issabeldialer',
         );
     	if (!isset($_REQUEST['process'])) {
     		$respuesta['status'] = 'error';
@@ -219,8 +219,8 @@ class Applet_ProcessesStatus
         $arrSERVICES["Apache"]["activate"]     = $this->_isActivate("httpd");
         $arrSERVICES["Apache"]["name_service"]     = "Web Server";
 
-        $arrSERVICES["Dialer"]["status_service"]   = $this->_existPID_ByFile("/opt/issabel/dialer/dialerd.pid","issabelidaler");
-        $arrSERVICES["Dialer"]["activate"]     = $this->_isActivate("issabelidaler");
+        $arrSERVICES["Dialer"]["status_service"]   = $this->_existPID_ByFile("/opt/issabel/dialer/dialerd.pid","issabeldialer");
+        $arrSERVICES["Dialer"]["activate"]     = $this->_isActivate("issabeldialer");
         $arrSERVICES["Dialer"]["name_service"]     = "Issabel Call Center Service";
 
         return $arrSERVICES;
