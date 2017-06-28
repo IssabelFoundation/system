@@ -78,7 +78,7 @@ function restore_asteriskfiles {
 	then
                 return 1
         fi
-	tar -xzf $DATADIR/backup/etc.asterisk.tgz --strip-components=1 -C /etc/asterisk 2>&1 >/dev/null
+	tar --exclude='cdr_mysql.conf' --exclude='cbmysql.conf' -xzf $DATADIR/backup/etc.asterisk.tgz --strip-components=1 -C /etc/asterisk 2>&1 >/dev/null
 	if [ "$RESTORE_DAHDI" != "1" ]
 	then
 		for i in $(ls $DATADIR/*dahdi*conf.pre)
