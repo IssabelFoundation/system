@@ -395,6 +395,7 @@ do
 	echo "Updating IssabelPBX module: $i"
 	/usr/sbin/amportal a ma download $i 2>$1 > /dev/null
 	/usr/sbin/amportal a ma install $i 2>$1 > /dev/null
+	cp -p $DATADIR/index.php /var/www/html/
 	echo Done
 done
 for i in $(/usr/sbin/amportal a ma list | grep -E 'Broken|Disabled' | cut -d" " -f1)
@@ -402,6 +403,7 @@ do
         echo "Updating IssabelPBX module: $i"
         /usr/sbin/amportal a ma download $i 2>$1 > /dev/null
         /usr/sbin/amportal a ma install $i 2>$1 > /dev/null
+	cp -p $DATADIR/index.php /var/www/html/
         echo Done
 done
 for i in $(/usr/sbin/amportal a ma list | grep -E 'Broken|Disabled' | cut -d" " -f1)
@@ -409,6 +411,7 @@ do
         echo "Updating IssabelPBX module: $i"
         /usr/sbin/amportal a ma download $i 2>$1 > /dev/null
         /usr/sbin/amportal a ma install $i 2>$1 > /dev/null
+	cp -p $DATADIR/index.php /var/www/html/
         echo Done
 done
 for i in $(/usr/sbin/amportal a ma list | grep -E 'Broken|Disabled' | cut -d" " -f1)
@@ -416,9 +419,11 @@ do
         echo "Updating IssabelPBX module: $i"
         /usr/sbin/amportal a ma download $i 2>$1 > /dev/null
         /usr/sbin/amportal a ma install $i 2>$1 > /dev/null
+	cp -p $DATADIR/index.php /var/www/html/
         echo Done
 done
+/usr/sbin/amportal a ma install customcontexts
 su - asterisk /var/lib/asterisk/bin/retrieve_conf 2>$1 > /dev/null
 /usr/sbin/asterisk -rx "core reload" 2>$1 > /dev/null
-mv $DATADIR/index.php /var/www/html/index.php
+mv $DATADIR/index.php /var/www/html/
 rm -rf /$DATADIR/backup
