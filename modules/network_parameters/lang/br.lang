@@ -2,14 +2,13 @@
 /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 0.5                                                  |
+  | Issabel version  4.0                                                 |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
-  | Translate bye: Erwan DESVERGNES - SDCI                               |
-  | erwan.desvergnes@SDCI.fr                                             |
-  |                                                                      |                                               |
+  | Translate by: Ibinetwork Informática                                 |
+  | rafael@ibinetwork.com.br                                             |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
   | (GPL) Version 2 (the "License"); you may not use this file except in |
@@ -23,23 +22,23 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: br.lang,v 1.6 2007/09/05 00:36:42 gcarrillo Exp $ */
+  $Id: pt-br.lang,v 1.8 2017-06-15 09:08:29 Ibinetwork Informática rafael@ibinetwork.com.br Exp $ */
 global $arrLangModule;
 $arrLangModule=array(
 "Network Parameters" => "Configuração de Rede",
 "Device" => "Dispositivos",
-"Type" => "Tipos",
+"Type" => "Tipo",
 "IP" => "IP",
 "Mask" => "Mascára",
-"MAC Address" => "End. MAC",
-"HW Info" => "Info. de Hardware",
+"MAC Address" => "Endereço MAC",
+"HW Info" => "Placa de Rede",
 "Status" => "Status",
 "Ethernet Interfaces List" => "Lista de Interfaces de Rede",
-"Connected" => "COnectado",
+"Connected" => "Conectado",
 "Not Connected" => "Não Conectado",
 "Edit Interface" => "Editar Interface",
 "Validation Error" => "Erro de Validação",
-"The following fields contain errors" => "Os Seguintes Campos contém erros",
+"The following fields contain errors" => "Os seguintes campos contém erros",
 "Host" => "Host",
 "Primary DNS" => "DNS Primário",
 "Secondary DNS" => "DNS Secondário",
@@ -51,6 +50,6 @@ $arrLangModule=array(
 "Edit Network Parameters" => "Editar Config. de Rede",
 "Required field" => "Campo Requerido",
 "Apply changes" => "Aplicar Modificações",
-"Are you sure you want to edit network parameters?" => "Tem certeza que deseja editar config. de rede?",
+"Are you sure you want to edit network parameters?" => "Tem certeza que deseja editar configuração de rede?",
 );
 ?>

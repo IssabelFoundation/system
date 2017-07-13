@@ -2,14 +2,10 @@
 /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 0.5                                                  |
+  | Issabel version 1.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
-  +----------------------------------------------------------------------+
-  | Translate bye: Erwan DESVERGNES - SDCI                               |
-  | erwan.desvergnes@SDCI.fr                                             |
-  |                                                                      |                                               |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
   | (GPL) Version 2 (the "License"); you may not use this file except in |
@@ -22,17 +18,20 @@
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Bruno Macias                                           |
+  | Email: bmacias@palosanto.com                                         |
   +----------------------------------------------------------------------+
-  $Id: br.lang,v 1.6 2007/09/05 00:36:42 gcarrillo Exp $ */
+  $Id: en.lang,v 1.7 2008/02/18 09:49:00 bmacias Exp $ */
 global $arrLangModule;
 $arrLangModule=array(
-"Shutdown" => "Desligar",
-"Accept" => "Aceitar",
-"Halt" => "Desativar/Desligar",
-"Reboot" => "Reiniciar",
-"Shutdown in progress" => "Desligamento em Progresso",
-"Your system in shutting down now. Please, try again later." => "Seu Sistema irá reiniciar agora. Por favor, tente mais tarde.",
-"The reboot signal has been sent correctly." => "The reboot signal has been sent correctly.",
-"Continue" => "Continue"
+"Shutdown"=>"Desligar",
+"Accept"=>"Proceder...",
+"Halt"=>"Desligar",
+"Reboot"=>"Reiniciar",
+"Shutdown in progress"=>"Em progresso",
+"Your system in shutting down now. Please, try again later."=>"O comando de desligar foi enviado corretamente.",
+"The reboot signal has been sent correctly." => "O sinal de reinciar foi enviado corretamente.",
+"Continue" => "Continuar"
 );
 ?>

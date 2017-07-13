@@ -1,15 +1,11 @@
 <?php
-/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 0.5                                                  |
+  | Issabel version 1.0-16                                               |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
-  +----------------------------------------------------------------------+
-  | Translate bye: Erwan DESVERGNES - SDCI                               |
-  | erwan.desvergnes@SDCI.fr                                             |
-  |                                                                               |                                               |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
   | (GPL) Version 2 (the "License"); you may not use this file except in |
@@ -23,17 +19,29 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: br.lang,v 1.6 2007/09/05 00:36:42 gcarrillo Exp $ */
+  */ 
 global $arrLangModule;
 $arrLangModule=array(
-"Date and Time Configuration"  =>  "Date/Time",
-"Current Datetime"  =>  "Current Datetime",
-"New Date"  =>  "New Date",
-"New Time"  =>  "New Time",
-"New Timezone"  =>  "New Timezone",
-"The change of date and time can concern important  system processes."  =>  "The change of date and time can concern important  system processes.",
-"System time changed correctly" => "System time changed correctly",
-"You can not change the system time" => "You can not change the system time",
-"Can not find file" => "Can not find file",
+/*system - date/time*/
+"Date/Time" => "Data/Hora",
+"Date and Time Configuration" => "Data/Hora",
+"Current Datetime" => "Data e hora atual",
+"New Date" => "Nova data",
+"New Time" => "Novo horário",
+"New Timezone" => "Novo fuso horário",
+"Date not valid" => "Data inválida",
+"Unable to locate file" => "Não foi possível localizar o arquivo",
+"Internal has failed" => "(internal) chown/etc/localtime falhou",
+"Internal reading" => "(internal) leitura",
+"Internal aperture" => "(internal) abertura (w) /etc/localtime falhou",
+"Internal chown" => "(internal) chown /var/spool/postfix/etc/localtime falhou",
+"Internal aperture localtime" => "(internal) abertura (w) /var/spool/postfix/etc/localtime falhou",
+"Internal chown clock" => "(internal) chown /etc/sysconfig/clock falhou",
+"Internal aperture clock" => "(internal) abertura (w) /etc/sysconfig/clock falhou",
+"has failed" => "falhou",
+"System time changed successfully" => "Data e hora do sistema alterada com sucesso",
+"The change of date and time can concern important  system processes." => "Alterar a data e a hora no sistema pode criar valores inesperados ou inconsistentes nos processos cujos cálculos dependem, como na geração de Relatórios, Condições de Tempo, etc.",
+"Can not find file" => "Não é possível encontrar o arquivo",
+/*end system - date/time*/
 );
 ?>
