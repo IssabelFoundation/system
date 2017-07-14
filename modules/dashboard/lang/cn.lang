@@ -2,10 +2,15 @@
 /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 0.5                                                  |
-  | http://www.issabel.org                                               |
+  | Elastix version 0.5                                                  |
+  | http://www.elastix.com                                               |
   +----------------------------------------------------------------------+
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
+  | Telfs. 2283-268, 2294-440, 2284-356                                  |
+  | Guayaquil - Ecuador                                                  |
+  | http://www.palosanto.com                                             |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
   | (GPL) Version 2 (the "License"); you may not use this file except in |
@@ -17,12 +22,18 @@
   | the License for the specific language governing rights and           |
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
-  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  | The Original Code is: Elastix Open Source.                           |
+  | add chinese by james.zhu@hiastar.com                                 |
   +----------------------------------------------------------------------+
   $Id: es.lang,v 1.7 2007/09/05 00:36:42 alex Exp $ */
 global $arrLangModule;
 $arrLangModule = array(
     "System Resources" => "系统资源",
     "Hard Drives" => "硬盘",
+	"Communication Activity" => "通信状态",
+	"Performance Graphic" => "性能图示",
+	"Processes Status" => "进程状态",
+	"Total Calls" => "总呼叫量",
+	"Total Channels" => "总通道数",
 );
 ?>
