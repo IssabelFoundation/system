@@ -38,8 +38,11 @@ function confirm_upload(obj) {
 
     var res = filename.match(/([^-]*)-(\d{14})-([^\.]*).tar/);
     if(res === null) {
-        alert("Invalid file name");
-        return false;
+        var res = filename.match(/(\d{8})-(\d{6})-(\d{10})-(.*).tgz/);
+	if(res === null) {
+        	alert("Invalid file name");
+        	return false;
+	}
     }
 
     if (window.confirm("Are you sure?")) {

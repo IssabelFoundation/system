@@ -3,7 +3,7 @@
 Summary: Issabel System Module
 Name:    issabel-%{modname}
 Version: 4.0.0
-Release: 2
+Release: 3
 License: GPL
 Group:   Applications/System
 Source0: %{modname}_%{version}-%{release}.tgz
@@ -100,6 +100,7 @@ mkdir -p $RPM_BUILD_ROOT/usr/sbin/
 # ** switch_wanpipe_media file ** #
 mv setup/usr/sbin/switch_wanpipe_media        $RPM_BUILD_ROOT/usr/sbin/
 mv setup/usr/sbin/issabel_migration.sh        $RPM_BUILD_ROOT/usr/sbin/
+mv setup/usr/sbin/issabel_migration_fpbx.sh   $RPM_BUILD_ROOT/usr/sbin/
 rmdir setup/usr/sbin
 
 # ** The following selects oslec as default echo canceller ** #
@@ -179,6 +180,7 @@ fi
 %defattr(755, root, root)
 /usr/sbin/switch_wanpipe_media
 /usr/sbin/issabel_migration.sh
+/usr/sbin/issabel_migration_fpbx.sh
 /usr/share/issabel/privileged/*
 %config(noreplace) /etc/dahdi/genconf_parameters
 
