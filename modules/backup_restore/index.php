@@ -142,11 +142,11 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
             $dirarchi = $dir_backup."/".$nombre_archivo;
             if(is_file($dirarchi)) {
                 $versions = `tar Oxvf $dirarchi backup/versions.xml`;
-                $manifest = `tar Oxvf $dirarchi ./manifest`;
+		$manifest = `tar Oxvf $dirarchi ./manifest`;
                 if(preg_match("/freepbx/",$versions)) {
                     $migrate=1;
-                } elseif (preg_match("/pbx_framework_version/",$manifest)) {
-                    $migratefpbx=1;
+		} elseif (preg_match("/pbx_framework_version/",$manifest)) {
+		    $migratefpbx=1;
                 } else {
                     $migrate=0;
                 }
@@ -162,8 +162,8 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
                 $fecha = substr($data,-8,2)."/".substr($data,-10,2)."/".substr($data,0,4)." ".substr($data,-6,2).":".substr($data,-4,2 ).":".substr($data,-2,2);
                 $id    = $arrMatchFile[1]."-".$arrMatchFile[2];
             }
-            // If FPBX backup
-            if(preg_match("/\w*\d{4}\d{2}\d{2}-\d{2}\d{2}\d{2}-\.*/",$nombre_archivo)){ //20170627-125546-1498578946-13.0.192.9-1829244042.tgz
+	    // If FPBX backup
+	    if(preg_match("/\w*\d{4}\d{2}\d{2}-\d{2}\d{2}\d{2}-\.*/",$nombre_archivo)){ //20170627-125546-1498578946-13.0.192.9-1829244042.tgz
                 $arrMatchFile = preg_split("/-/",$nombre_archivo);
                 $data  = $arrMatchFile[0].$arrMatchFile[1];
                 $fecha = substr($data,-8,2)."/".substr($data,-10,2)."/".substr($data,0,4)." ".substr($data,-6,2).":".substr($data,-4,2 ).":".substr($data,-2,2);
@@ -173,8 +173,8 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
             $arrTmp[2] = $fecha;
             if($migrate==1) {
                 $arrTmp[3] = "<input type='submit' name='submit_migrate[".$nombre_archivo."]' value='"._tr('Migrate from Elastix')."' class='button' />";
-            } elseif($migratefpbx==1) {
-                $arrTmp[3] = "<input type='submit' name='submit_migrate[".$nombre_archivo."]' value='"._tr('Migrate from FreePBX')."' class='button' />";
+	    } elseif($migratefpbx==1) {
+		$arrTmp[3] = "<input type='submit' name='submit_migrate[".$nombre_archivo."]' value='"._tr('Migrate from FreePBX')."' class='button' />";
             } else {
                 $arrTmp[3] = "<input type='submit' name='submit_restore[".$nombre_archivo."]' value='"._tr('Restore')."' class='button' />";
             }
