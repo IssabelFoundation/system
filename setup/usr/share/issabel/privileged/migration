@@ -49,9 +49,9 @@ $file = $ret[1][0];
 if($file=='') { echo "No file specified"; exit(1); }
 
 if (preg_match('/.tgz/',$file)) {
-	passthru("/usr/sbin/issabel_migration_fpbx.sh $dahdi -b $file");
+    passthru("/usr/sbin/issabel_migration_fpbx.sh $dahdi -b $file");
 } else {
-	passthru("/usr/sbin/issabel_migration.sh $dahdi -b $file");
+    passthru("/usr/sbin/issabel_migration.sh $dahdi -b $file");
 }
 
 function error_exit($sMsg, $errorcode = 1)

@@ -41,9 +41,6 @@ $backup_dir = $arrConfModule['dir'];
 if (isset($_REQUEST['filename'])){
     $filename = escapeshellarg($_REQUEST['filename']);
     $filename = substr($filename,1,-1);
-    if (preg_match('/.tgz/',$filename)) {
-	$fromfpbx = 1;
-    }
     $filename = $backup_dir."/".$filename;
     if(is_file($filename)) { 
         echo "<div style='font-family: \"Lucida Console\", Monaco, monospace'>";
