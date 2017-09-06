@@ -1,8 +1,8 @@
 <?php
-/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 0.5                                                  |
+  | Issabel version 1.0                                               |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
@@ -19,11 +19,15 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: es.lang,v 1.7 2007/09/05 00:36:42 alex Exp $ */
+  $Id: br.lang,v 1.0 2017-09-05 23:00:00 Ibinetwork Informatia rafael@ibinetwork.com.br $ */
 global $arrLangModule;
 $arrLangModule = array(
-    "CPU Info" => "Informação do Processador",
-    "Uptime" => "Tempo de Funcionamento",
-    "Memory usage" => "Utilisação da Memória",
+    "CPU Info" => "Processador",
+    "Uptime" => "Tempo Ligado",
+    "CPU Speed" => "Velocidade da CPU",
+    "Memory usage" => "Utilização da Memória",
+    "minute(s)" => "minuto(s)",
+    "hour(s)" => "hora(s)",
+    "day(s)" => "dia(s)",
 );
 ?>
