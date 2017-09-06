@@ -1,3 +1,4 @@
+
 <?php
 /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
@@ -19,10 +20,40 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: es.lang,v 1.7 2007/09/05 00:36:42 alex Exp $ */
+  $Id: br.lang,v 1.0 2017/09/05 23:00:00 Ibinetwork Informatica rafael@ibinetwork.com.br $ */
 global $arrLangModule;
 $arrLangModule = array(
-    "System Resources" => "Recursos do Sistema",
-    "Hard Drives" => "Disco Rigído",
+	"Loading" => "Carregando",
+	"System Resources" => "Recursos do Sistema",
+	"Processes Status" => "Processos",
+	"Hard Drives" => "Discos",
+	"Calls" => "Ligações",
+	"Dashboard" => "Painel",
+	"You haven't extension" => "Ramal não esta assinado.",
+	"Performance Graphic" => "Gráfico de Performance",
+	"News" => "Novidades",
+	"Communication Activity" => "Atividade de Comunicação",
+	"Calendar" => "Calendário",
+	"Faxes" => "Faxes",
+	"Telephony Hardware" => "Hardware de Telefonia",
+	"Unimplemented method" => "Método não implementado",
+	"Invalid request" => "Solicitação Inválida",
+	"Emails" => "Emails",
+	"Voicemails" => "Caixa-postais",
+	"RUNNING" => "RODANDO",
+	"Total calls:" => "Total de ligações:",
+	"Total channels:" => "Total de canais:",
+	"Calls in queue:" => "Ligações na fila:",
+	"Extensions" => "Ramais",
+	"Trunks" => "Troncos",
+	"Network Traffic:" => "Trafego de Rede",
+	"Internal calls" => "Ligações internas",
+	"Extenal calls" => "Ligações externas",
+	"channels" => "canais",
+	"Waiting" => "Aguardando",
+	"Registered" => "Registrado",
+	"Not Registered" => "Não Registrado",
+	"Unknown" => "Desconhecido",
+	"CPU Speed:" => "Velocidade da CPU:"
 );
 ?>
