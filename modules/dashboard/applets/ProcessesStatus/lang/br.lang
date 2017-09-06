@@ -1,8 +1,8 @@
 <?php
-/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 0.5                                                  |
+  | Issabel version 1.0-16                                               |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
@@ -19,9 +19,28 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: es.lang,v 1.7 2007/09/05 00:36:42 alex Exp $ */
+  $Id: br.lang,v 1.0 2017-09-05 23:00:00 Ibinetwork Informatia rafael@ibinetwork.com.br $ */
 global $arrLangModule;
 $arrLangModule = array(
-    "Not running" => "Service Not Activated",
+    "Start process" => "Iniciar",
+    "Stop process" => "Parar",
+    "Restart process" => "Reiniciar",
+    "Enable process" => "Habilitar",
+    "Disable process" => "Desabilitar",
+    "Running" => "Iniciado",
+    "Not running" => "Parado",
+    "Not installed" => "Não instalado",
+    "Telephony Service" => "Telefonia",
+    "Instant Messaging Service" => "Mensagem Instantânea",
+    "Fax Service" => "Fax",
+    "IAXModem Service" => "IAXModem",
+    "Email Service" => "Email",
+    "Database Service" => "Banco de Dados",
+    "Web Server" => "Servidor Web",
+    "Elastix Call Center Service" => "Call Center",
+    "Invalid service" => "Inválido",
+    "Invalid process action" => "Ação inválida",
+    "Process control restricted to administrators" => "Restrito ao Administrador",
+	"Issabel Call Center Service" => "Serviço de Call Center Issabel",
 );
 ?>
