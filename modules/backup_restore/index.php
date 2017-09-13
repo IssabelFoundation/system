@@ -139,8 +139,6 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
         foreach($nombre_archivos as $key => $nombre_archivo) {
 
             // Control to see if its an old elastix system to migrate, or a new issabel system to restore
-            ob_flush();
-            flush();
             $versions    = '';
             $manifest    = '';
             $migrate     = 0;
