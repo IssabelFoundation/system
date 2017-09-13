@@ -21,26 +21,17 @@
   +----------------------------------------------------------------------+
   $Id: br.lang,v 1.0 2017-09-05 23:00:00 Ibinetwork Informatia rafael@ibinetwork.com.br $ */
 global $arrLangModule;
-$arrLangModule = array(
-    "Start process" => "Iniciar",
-    "Stop process" => "Parar",
-    "Restart process" => "Reiniciar",
-    "Enable process" => "Habilitar",
-    "Disable process" => "Desabilitar",
-    "Running" => "Iniciado",
-    "Not running" => "Parado",
-    "Not installed" => "Não instalado",
-    "Telephony Service" => "Telefonia",
-    "Instant Messaging Service" => "Mensagem Instantânea",
-    "Fax Service" => "Fax",
-    "IAXModem Service" => "IAXModem",
-    "Email Service" => "Email",
-    "Database Service" => "Banco de Dados",
-    "Web Server" => "Servidor Web",
-    "Elastix Call Center Service" => "Call Center",
-    "Invalid service" => "Inválido",
-    "Invalid process action" => "Ação inválida",
-    "Process control restricted to administrators" => "Restrito ao Administrador",
-	"Issabel Call Center Service" => "Serviço de Call Center Issabel",
+$arrLangModule=array(
+    "Click below to fetch directory report. WARNING: this operation may take a long time AND impact system performance." => "Clique no botão abaixo para recolher informações detalhadas sobre o uso de cada diretório.<br>ATENÇÃO: está operação pode demorar E impactar na perfomance do sistema.",
+    "Fetch directory report" => "Relatório detalhado do disco",
+    "Logs" => "Logs",
+    "Local Backups" => "Backups Local",
+    "Configuration" => "Configuração",
+    "Recordings" => "Gravações",
+    "Used" => "Usado",
+    "Available" => "Disponível",
+    "Hard Disk Capacity" => "Tamanho",
+    "Mount Point" => "Montagem",
+    "Manufacturer" => "Fabricante",
 );
 ?>
