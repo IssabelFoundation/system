@@ -99,6 +99,11 @@ function action_dateConfiguration($opt)
             if ($sTimezone != $sTimezoneAnterior) {
                 // Update /var/spool/postfix/etc/localtime if present
                 // TODO: symlink?
+
+                $fp = fopen("/etc/php.d/timezone.ini","w");
+                fputs($fp,"date.timezone='$sTimezone'\n");
+                fclose($fp);
+
                 if ($bExito && file_exists('/var/spool/postfix/etc/localtime') 
                     && !copy($sZonefile, '/var/spool/postfix/etc/localtime')) {
                     $bExito = FALSE;    	
