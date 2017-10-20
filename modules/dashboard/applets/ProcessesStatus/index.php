@@ -2,9 +2,10 @@
 /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 0.5                                                  |
+  | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -49,6 +50,7 @@ class Applet_ProcessesStatus
         $listaIconos = array(
             'Asterisk'  =>  'icon_pbx.png',
             'OpenFire'  =>  'icon_im.png',
+            'Prosody'   =>  'icon_im.png',
             'Hylafax'   =>  'icon_fax.png',
             'Postfix'   =>  'icon_email.png',
             'MySQL'     =>  'icon_db.png',
@@ -91,7 +93,7 @@ class Applet_ProcessesStatus
 
     function handleJSON_processcontrol_stop($smarty, $module_name, $appletlist)
     {
-    	return $this->_controlServicio('stop');
+        return $this->_controlServicio('stop');
     }
 
     function handleJSON_processcontrol_start($smarty, $module_name, $appletlist)
@@ -127,22 +129,23 @@ class Applet_ProcessesStatus
         $servicios = array(
             'Asterisk'  =>  'asterisk',            
             'OpenFire'  =>  'openfire',            
+            'Prosody'   =>  'prosody',            
             'Hylafax'   =>  'hylafax',
             'Postfix'   =>  'postfix',
             'MySQL'     =>  'mysqld',
             'Apache'    =>  'httpd',
             'Dialer'    =>  'issabeldialer',
         );
-    	if (!isset($_REQUEST['process'])) {
-    		$respuesta['status'] = 'error';
+        if (!isset($_REQUEST['process'])) {
+            $respuesta['status'] = 'error';
             $respuesta['message'] = _tr('Invalid request');
-    	} elseif (!in_array($_REQUEST['process'], array_keys($servicios))) {
+        } elseif (!in_array($_REQUEST['process'], array_keys($servicios))) {
             $respuesta['status'] = 'error';
             $respuesta['message'] = _tr('Invalid service');
-    	} elseif (!in_array($sAccion, $acciones)) {
+        } elseif (!in_array($sAccion, $acciones)) {
             $respuesta['status'] = 'error';
             $respuesta['message'] = _tr('Invalid process action');
-    	} else {
+        } else {
             $pDBACL = new paloDB($arrConf['issabel_dsn']['acl']);
             if (!empty($pDBACL->errMsg)) {
                 $respuesta['status'] = 'error';
@@ -175,8 +178,8 @@ class Applet_ProcessesStatus
                         exec('sudo -u root service generic-cloexec '.$servicios[$sServicio].' '.$sAccion.' 1>/dev/null 2>/dev/null');
                 }
             }
-    	}
-    
+        }
+ 
         $json = new Services_JSON();
         Header('Content-Type: application/json');
         return $json->encode($respuesta);
@@ -195,10 +198,19 @@ class Applet_ProcessesStatus
         $arrSERVICES["Asterisk"]["status_service"] = $this->_existPID_ByFile("/var/run/asterisk/asterisk.pid","asterisk");
         $arrSERVICES["Asterisk"]["activate"] = $this->_isActivate("asterisk");
         $arrSERVICES["Asterisk"]["name_service"]   = "Telephony Service";
-
-        $arrSERVICES["OpenFire"]["status_service"] = $this->_existPID_ByFile("/var/run/openfire.pid","openfire");
-        $arrSERVICES["OpenFire"]["activate"] = $this->_isActivate("openfire");
-        $arrSERVICES["OpenFire"]["name_service"]   = "Instant Messaging Service";
+        if($this->_existPID_ByFile("/var/run/openfire.pid","openfire") <> 'Not_exists') {
+            $arrSERVICES["OpenFire"]["status_service"] = $this->_existPID_ByFile("/var/run/openfire.pid","openfire");
+            $arrSERVICES["OpenFire"]["activate"] = $this->_isActivate("openfire");
+            $arrSERVICES["OpenFire"]["name_service"]   = "Instant Messaging Service";
+        } else if ($this->_existPID_ByFile("/var/run/prosody/prosody.pid","prosody") <> 'Not_exists'){
+            $arrSERVICES["Prosody"]["activate"] = $this->_isActivate("prosody");
+            $arrSERVICES["Prosody"]["status_service"] = $this->_existPID_ByFile("/var/run/prosody/prosody.pid","prosody");
+            $arrSERVICES["Prosody"]["name_service"]   = "Instant Messaging Service";
+        } else {
+            $arrSERVICES["OpenFire"]["status_service"] = $this->_existPID_ByFile("/var/run/openfire.pid","openfire");
+            $arrSERVICES["OpenFire"]["activate"] = $this->_isActivate("openfire");
+            $arrSERVICES["OpenFire"]["name_service"]   = "Instant Messaging Service";
+        }
 
         $arrSERVICES["Hylafax"]["status_service"]  = $this->getStatusHylafax();
         $arrSERVICES["Hylafax"]["activate"]        = $this->_isActivate("hylafax");
@@ -265,6 +277,11 @@ class Applet_ProcessesStatus
             
             // Esta lista asume systemd
             foreach (glob('/etc/systemd/system/multi-user.target.wants/*.service') as $path) {
+                $regs = NULL;
+                if (preg_match('|([^/]+)\.service$|', $path, $regs))
+                    $this->_initscript_cache[] = $regs[1];
+            }
+            foreach (glob('/usr/lib/systemd/system/*.service') as $path) {
                 $regs = NULL;
                 if (preg_match('|([^/]+)\.service$|', $path, $regs))
                     $this->_initscript_cache[] = $regs[1];
