@@ -275,7 +275,7 @@ function delete_backup($smarty, $module_name, $local_templates_dir, $dir_backup,
 {
 
     function delete_backup_isInvalidFile($file_name) {
-        return !preg_match('/(^issabel)|(^elastix)backup-\d{14}-\w{2}\.tar$i|^[0-9]{8}-[0-9]{6}-.*/', $file_name);
+        return !preg_match('/^(issabel|elastix)backup-\d{14}-\w{2}\.tar|^[0-9]{8}-[0-9]{6}-.*/', $file_name);
     }
 
     function delete_backup_doDelete($filePath) {
