@@ -91,6 +91,15 @@
                             <b>{$in_gwm_4.LABEL}</b>{$in_gwm_4.INPUT}
                         </td>
                     </tr>-->
+                    <tr>
+                        <td width="26%"><b>{$NEXT_SERVER}: </b></td>
+                        <td>
+                            {$in_next_1.LABEL}{$in_next_1.INPUT}
+                            <b>{$in_next_2.LABEL}</b>{$in_next_2.INPUT}
+                            <b>{$in_next_3.LABEL}</b>{$in_next_3.INPUT}
+                            <b>{$in_next_4.LABEL}</b>{$in_next_4.INPUT}&nbsp;&nbsp;({$OPTIONAL})
+                        </td>
+                    </tr>
                 </table>
             </td>
         </tr>
