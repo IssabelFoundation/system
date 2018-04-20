@@ -87,6 +87,17 @@ class PaloSantoDHCP
                     $arrConfigurationDHCP["WINS"]["in_wins_4"] = $arrReg[4];
                 }
 
+                //NEXT SERVER
+                $patron = "^[[:space:]]*next-server[[:space:]]+([[:digit:]]{1,3})\.([[:digit:]]{1,3})\." .
+                        "([[:digit:]]{1,3})\.([[:digit:]]{1,3})[[:space:]]?";
+                if(preg_match("/$patron/", $linea_archivo, $arrReg)) {
+                    $arrConfigurationDHCP["NEXT"]["in_next_1"] = $arrReg[1];
+                    $arrConfigurationDHCP["NEXT"]["in_next_2"] = $arrReg[2];
+                    $arrConfigurationDHCP["NEXT"]["in_next_3"] = $arrReg[3];
+                    $arrConfigurationDHCP["NEXT"]["in_next_4"] = $arrReg[4];
+                }
+                //TODO: filename parameter
+
                 // DNSs
                 $patron = '/^\s*option domain-name-servers\s+([\d\.\s,]+)/';
                 if (preg_match($patron, $linea_archivo, $arrReg)) {
@@ -203,7 +214,9 @@ class PaloSantoDHCP
                 $conf_red_actual,
                 $ip_ini,
                 $ip_fin,
-                $in_lease_time)
+                $in_lease_time,
+                $ip_next,
+                $in_filename)
     {
         // $ip_gw_nm $IPSubnet $conf_red_actual no se usan
         $this->errMsg = '';
@@ -213,6 +226,8 @@ class PaloSantoDHCP
             ' --lease-time '.escapeshellcmd($in_lease_time).
             (($ip_gw != '...') ? ' --gateway '.escapeshellcmd($ip_gw) : '').
             (($ip_wins != '...') ? ' --wins '.escapeshellcmd($ip_wins) : '').
+            (($ip_next != '...') ? ' --next-server '.escapeshellcmd($ip_next) : '').
+            (($in_filename != '') ? ' --filename '.escapeshellcmd($in_filename) : '').
             (($ip_dns1 != '...') ? ' --dns1 '.escapeshellcmd($ip_dns1) : '').
             (($ip_dns2 != '...') ? ' --dns2 '.escapeshellcmd($ip_dns2) : '').
             ' 2>&1';

@@ -59,6 +59,7 @@ function _moduleContent(&$smarty, $module_name)
     $smarty->assign("WINS", _tr("WINS"));
     $smarty->assign("GATEWAY", _tr("Gateway"));
     $smarty->assign("OPTIONAL", _tr("Optional"));
+    $smarty->assign("NEXT_SERVER", _tr("PXE Boot Server"));
     $smarty->assign("icon", "modules/$module_name/images/system_network_dhcp_server.png");
     $smarty->assign("OF_1_TO_50000_SECONDS", _tr("Of 1 to 50000 Seconds"));
 
@@ -235,6 +236,30 @@ function createFieldForm()
                                                      "INPUT_TYPE"             => "TEXT",
                                                      "INPUT_EXTRA_PARAM"      => array("style" => "width:30px;text-align:center","maxlength" =>"3"),
                                                      "VALIDATION_TYPE"        => "numeric",
+                                                     "VALIDATION_EXTRA_PARAM" => ""),
+                             "in_next_1"      => array("LABEL"                  => "",
+                                                     "REQUIRED"               => "yes",
+                                                     "INPUT_TYPE"             => "TEXT",
+                                                     "INPUT_EXTRA_PARAM"      => array("style" => "width:30px;text-align:center","maxlength" =>"3"),
+                                                     "VALIDATION_TYPE"        => "numeric",
+                                                     "VALIDATION_EXTRA_PARAM" => ""),
+                             "in_next_2"      => array("LABEL"                  => ". ",
+                                                     "REQUIRED"               => "yes",
+                                                     "INPUT_TYPE"             => "TEXT",
+                                                     "INPUT_EXTRA_PARAM"      => array("style" => "width:30px;text-align:center","maxlength" =>"3"),
+                                                     "VALIDATION_TYPE"        => "numeric",
+                                                     "VALIDATION_EXTRA_PARAM" => ""),
+                             "in_next_3"      => array("LABEL"                  => ". ",
+                                                     "REQUIRED"               => "yes",
+                                                     "INPUT_TYPE"             => "TEXT",
+                                                     "INPUT_EXTRA_PARAM"      => array("style" => "width:30px;text-align:center","maxlength" =>"3"),
+                                                     "VALIDATION_TYPE"        => "numeric",
+                                                     "VALIDATION_EXTRA_PARAM" => ""),
+                             "in_next_4"      => array("LABEL"                  => ". ",
+                                                     "REQUIRED"               => "yes",
+                                                     "INPUT_TYPE"             => "TEXT",
+                                                     "INPUT_EXTRA_PARAM"      => array("style" => "width:30px;text-align:center","maxlength" =>"3"),
+                                                     "VALIDATION_TYPE"        => "numeric",
                                                      "VALIDATION_EXTRA_PARAM" => "")/*,
                              "in_gwm_1"     => array("LABEL"                  => "",
                                                      "REQUIRED"               => "yes",
@@ -356,6 +381,10 @@ function serviceUpdateDHCP($smarty, $module_name, $local_templates_dir, &$oForm)
     $in_gw_3 = trim($_POST['in_gw_3']); $in_gw_4 = trim($_POST['in_gw_4']);
     $ip_gw   = "$in_gw_1.$in_gw_2.$in_gw_3.$in_gw_4";
 
+    $in_next_1 = trim($_POST['in_next_1']); $in_next_2 = trim($_POST['in_next_2']);
+    $in_next_3 = trim($_POST['in_next_3']); $in_next_4 = trim($_POST['in_next_4']);
+    $ip_next   = "$in_next_1.$in_next_2.$in_next_3.$in_next_4";
+
     /*$in_gw_nm_1 = trim($_POST['in_gwm_1']); $in_gw_nm_2 = trim($_POST['in_gwm_2']);
     $in_gw_nm_3 = trim($_POST['in_gwm_3']); $in_gw_nm_4 = trim($_POST['in_gwm_4']);
     $ip_gw_nm   = "$in_gw_nm_1.$in_gw_nm_2.$in_gw_nm_3.$in_gw_nm_4";*/
@@ -421,6 +450,11 @@ function serviceUpdateDHCP($smarty, $module_name, $local_templates_dir, &$oForm)
     if($ip_dns1!="...")$val->validar("DNS 1",$ip_dns1,"ip");
     if($ip_dns2!="...") $val->validar("DNS 2",  $ip_dns2,"ip");
     if($ip_wins!="...") $val->validar("WINS",  $ip_wins,"ip");
+    if($ip_next!="...") $val->validar("NEXT",  $ip_next,"ip"); 
+    //filename paramenter is not in the form
+    if(empty($in_filename) and $ip_next!="..."){
+        $in_filename = "syslinux/pxelinux.0";
+    }
     if($ip_gw !="..."){
         if ($val->validar("Gateway",$ip_gw,"ip")){
             if ($interfazEncontrada) {
@@ -450,7 +484,7 @@ function serviceUpdateDHCP($smarty, $module_name, $local_templates_dir, &$oForm)
         // Pase la validacion, empiezo a generar la data que constituira el archivo de configuracion nuevo
         if(!$paloDHCP->updateFileConfDHCP($ip_gw,$ip_gw_nm,$ip_wins,$ip_dns1,$ip_dns2,
                                           $IPSubnet,$configuracion_de_red_actual,
-                                          $ip_ini,$ip_fin,$in_lease_time)){
+                                          $ip_ini,$ip_fin,$in_lease_time,$ip_next,$in_filename)){
             $smarty->assign("mb_title",_tr("Update Error").":");
             $smarty->assign("mb_message",$paloDHCP->errMsg);
             $huboError=true;

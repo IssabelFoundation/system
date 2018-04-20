@@ -44,6 +44,8 @@ $opt = Console_Getopt::getopt($argv, '', array(
     'dns2=',        // DNS 2 (optional)
     'gateway=',     // Network gateway (optional)
     'wins=',        // New hostname (optional)
+    'next-server=',  // PXE Boot Server
+    'filename=',     // Filename for PXE Boot
     'phonesonly',   // If specified, restrict DHCP to known phones only
 ));
 if (PEAR::isError($opt)) error_exit($opt->getMessage()."\n");
@@ -100,6 +102,7 @@ function validateOptions($opt)
     case '--dns2':
     case '--gateway':
     case '--wins':
+    case '--next-server':
     case '--ip-start':
     case '--ip-end':
         $regs = NULL;
@@ -130,7 +133,7 @@ function action_configuration($opt)
 {
     $bExito = TRUE;
 
-    $sIpStart = $sIpEnd = $iLeaseTime = $sGateway = $sDNS1 = $sDNS2 = $sWINS = NULL;
+    $sIpStart = $sIpEnd = $iLeaseTime = $sGateway = $sDNS1 = $sDNS2 = $sWINS = $sNEXTSERVER = $sFILENAME = NULL;
     $bPhonesOnly = FALSE;
     foreach ($opt[0] as $option) switch ($option[0]) {
     case '--ip-start':
@@ -153,6 +156,15 @@ function action_configuration($opt)
         break;
     case '--wins':
         $sWINS = $option[1];
+        break;
+    case '--next-server':
+        $sNEXTSERVER = $option[1];
+        break;
+    case '--filename':
+        $sFILENAME = $option[1];
+        break;
+    case '--filename':
+        $sFILENAME = $option[1];
         break;
     case '--phonesonly':
         $bPhonesOnly = TRUE;
@@ -179,14 +191,14 @@ function action_configuration($opt)
 
     if ($bExito) {
         $bExito = configureDHCP($sIpStart, $sIpEnd, $iLeaseTime, $sGateway,
-            $sDNS1, $sDNS2, $sWINS, $bPhonesOnly);
+            $sDNS1, $sDNS2, $sWINS, $sNEXTSERVER, $sFILENAME, $bPhonesOnly);
     }
     return $bExito;
 }
 
 // Write out DHCP configuration from requested parameters. Return TRUE on success
 function configureDHCP($sIpStart, $sIpEnd, $iLeaseTime, $sGateway = NULL,
-    $sDNS1 = NULL, $sDNS2 = NULL, $sWINS = NULL, $bPhonesOnly = FALSE)
+    $sDNS1 = NULL, $sDNS2 = NULL, $sWINS = NULL, $sNEXTSERVER = NULL, $sFILENAME = NULL, $bPhonesOnly = FALSE)
 {
     $bExito = TRUE;
 
@@ -201,6 +213,10 @@ function configureDHCP($sIpStart, $sIpEnd, $iLeaseTime, $sGateway = NULL,
         $sConfigGateway = "\toption routers\t\t\t{$sGateway};\n";
     if (!is_null($sWINS))
         $sConfigWINS = "\toption netbios-name-servers\t{$sWINS};\n";
+    if (!is_null($sNEXTSERVER))
+        $sConfigNEXTSERVER = "\tnext-server\t{$sNEXTSERVER};\n";
+    if (!is_null($sFILENAME))
+        $sConfigFILENAME = "\tfilename\t\"{$sFILENAME}\";\n";
     $dnsList = array();
     if (!is_null($sDNS1)) $dnsList[] = $sDNS1;
     if (!is_null($sDNS2)) $dnsList[] = $sDNS2;
@@ -310,6 +326,8 @@ function configureDHCP($sIpStart, $sIpEnd, $iLeaseTime, $sGateway = NULL,
             $sPlantilla = <<<PLANTILLA_DHCP
 ddns-update-style interim;
 ignore client-updates;
+allow booting;
+allow bootp;
 
 # The following option tells Cisco phones the address of the TFTP server
 option cisco-tftp-server code 150 = ip-address;
@@ -329,6 +347,8 @@ $sConfigDNS
 	option ntp-servers		$sIpAddress;
 	option tftp-server-name		"$sIpAddress";
 $sConfigWINS
+$sConfigNEXTSERVER
+$sConfigFILENAME
 
 	option cisco-tftp-server	$sIpAddress;
 #	class "polycom-phones" {
@@ -447,7 +467,7 @@ function action_refresh($opt)
 {
     $bExito = TRUE;
 
-    $sIpStart = $sIpEnd = $iLeaseTime = $sGateway = $sDNS1 = $sDNS2 = $sWINS = NULL;
+    $sIpStart = $sIpEnd = $iLeaseTime = $sGateway = $sDNS1 = $sDNS2 = $sWINS = $sNEXTSERVER = $sFILENAME = NULL;
     $bSeenSubnet = FALSE;
     $bPhonesOnly = FALSE;
     foreach (file('/etc/dhcpd.conf') as $s) {
@@ -461,6 +481,10 @@ function action_refresh($opt)
             $sGateway = $regs[1];
         } elseif (preg_match('/^\s*option\s+netbios-name-servers\s+(\S+)\s*;/', $s, $regs)) {
             $sWINS = $regs[1];
+        } elseif (preg_match('/^\s*next-server\s+(\S+)\s*;/', $s, $regs)) {
+            $sNEXTSERVER = $regs[1];
+        } elseif (preg_match('/^\s*filename\s+(\S+)\s*;/', $s, $regs)) {
+            $sFILENAME = $regs[1];
         } elseif (preg_match('/^\s*option\s+domain-name-servers\s+(\S+)\s*;/', $s, $regs)) {
             if (is_null($sDNS1))
                 $sDNS1 = $regs[1];
@@ -479,7 +503,7 @@ function action_refresh($opt)
 
     if ($bExito) {
         $bExito = configureDHCP($sIpStart, $sIpEnd, $iLeaseTime, $sGateway,
-            $sDNS1, $sDNS2, $sWINS, $bPhonesOnly);
+            $sDNS1, $sDNS2, $sWINS, $sNEXTSERVER, $sFILENAME, $bPhonesOnly);
     }
 
     return $bExito;
