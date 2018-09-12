@@ -110,7 +110,7 @@ function restore_asteriskfiles {
 function restore_sqlite_dbs {
 	#REVISAR: creo que menu.db no va
 	rm -f $DATADIR/backup/menu.db
-	cp -p $DATADIR/backup/acl.db $DATADIR/backup/acl.db.bkp
+	mv $DATADIR/backup/acl.db $DATADIR/backup/acl.db.bkp
 	ADMINPWD=$(sqlite3 /var/www/db/acl.db "select md5_password from acl_user where id=1")
 	for i in $(ls $DATADIR/backup/*.db)
 	do
@@ -214,7 +214,7 @@ function restore_voicemail {
 }
 
 function check_versions {
-	if grep -qE 'id="elastix" ver="4|id="elastix" ver="2.5' $DATADIR/backup/versions.xml
+	if grep -qE 'id="elastix" ver="4|id="elastix" ver="2.4' $DATADIR/backup/versions.xml
 	then
         	echo Elastix Version OK
 	else
