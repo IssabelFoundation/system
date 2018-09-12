@@ -292,7 +292,7 @@ function restore_asterisksql {
         mysql -uroot -p$MYSQLPWD $TEMPDB -e "INSERT INTO asterisk.queueprio SELECT queueprio_id, queue_priority, description, dest FROM queueprio;"
 	echo queues_config
 	mysql -uroot -p$MYSQLPWD $TEMPDB -e "TRUNCATE TABLE asterisk.queues_config;"
-        mysql -uroot -p$MYSQLPWD $TEMPDB -e "INSERT INTO asterisk.queues_config SELECT extension, descr, grppre, alertinfo, ringing, maxwait, password, ivr_id, dest, cwignore, qregex, agentannounce_id, joinannounce_id, queuewait, use_queue_context, togglehint, qnoanswer, callconfirm, callconfirm_id,  monitor_type, monitor_heard, monitor_spoken, callback_id FROM queues_config;"
+        mysql -uroot -p$MYSQLPWD $TEMPDB -e "INSERT INTO asterisk.queues_config(extension, descr, grppre, alertinfo, ringing, maxwait, password, ivr_id, dest, cwignore, qregex, agentannounce_id, joinannounce_id, queuewait, use_queue_context, togglehint, qnoanswer, callconfirm, callconfirm_id,  monitor_type, monitor_heard, monitor_spoken, callback_id) SELECT extension, descr, grppre, alertinfo, ringing, maxwait, password, ivr_id, dest, cwignore, qregex, agentannounce_id, joinannounce_id, queuewait, use_queue_context, togglehint, qnoanswer, callconfirm, callconfirm_id,  monitor_type, monitor_heard, monitor_spoken, callback_id FROM queues_config;"
 	echo queues_details
 	mysql -uroot -p$MYSQLPWD $TEMPDB -e "TRUNCATE TABLE asterisk.queues_details;"
         mysql -uroot -p$MYSQLPWD $TEMPDB -e "INSERT INTO asterisk.queues_details SELECT id, keyword, data, flags FROM queues_details;"
