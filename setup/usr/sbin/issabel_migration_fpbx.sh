@@ -1,4 +1,22 @@
 #!/bin/bash
+#
+# Copyright (C) 2017 Issabel Foundation
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either
+# version 2 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
 MYSQLPWD=$(cat /etc/issabel.conf  | grep mysqlrootpwd | cut -d"=" -f2)
 DATADIR="/var/spool/issabel_migration.$(date +%s)"
 TEMPDB=migration_asterisk_$RANDOM
@@ -274,7 +292,7 @@ function restore_asterisksql {
         mysql -uroot -p$MYSQLPWD $TEMPDB -e "INSERT INTO asterisk.queueprio SELECT queueprio_id, queue_priority, description, dest FROM queueprio;"
 	echo queues_config
 	mysql -uroot -p$MYSQLPWD $TEMPDB -e "TRUNCATE TABLE asterisk.queues_config;"
-        mysql -uroot -p$MYSQLPWD $TEMPDB -e "INSERT INTO asterisk.queues_config SELECT extension, descr, grppre, alertinfo, ringing, maxwait, password, ivr_id, dest, cwignore, qregex, agentannounce_id, joinannounce_id, queuewait, use_queue_context, togglehint, qnoanswer, callconfirm, callconfirm_id,  monitor_type, monitor_heard, monitor_spoken, callback_id FROM queues_config;"
+        mysql -uroot -p$MYSQLPWD $TEMPDB -e "INSERT INTO asterisk.queues_config(extension, descr, grppre, alertinfo, ringing, maxwait, password, ivr_id, dest, cwignore, qregex, agentannounce_id, joinannounce_id, queuewait, use_queue_context, togglehint, qnoanswer, callconfirm, callconfirm_id,  monitor_type, monitor_heard, monitor_spoken, callback_id) SELECT extension, descr, grppre, alertinfo, ringing, maxwait, password, ivr_id, dest, cwignore, qregex, agentannounce_id, joinannounce_id, queuewait, use_queue_context, togglehint, qnoanswer, callconfirm, callconfirm_id,  monitor_type, monitor_heard, monitor_spoken, callback_id FROM queues_config;"
 	echo queues_details
 	mysql -uroot -p$MYSQLPWD $TEMPDB -e "TRUNCATE TABLE asterisk.queues_details;"
         mysql -uroot -p$MYSQLPWD $TEMPDB -e "INSERT INTO asterisk.queues_details SELECT id, keyword, data, flags FROM queues_details;"
