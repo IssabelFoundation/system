@@ -214,7 +214,7 @@ function restore_voicemail {
 }
 
 function check_versions {
-	if grep -qE 'id="elastix" ver="4|id="elastix" ver="2.4' $DATADIR/backup/versions.xml
+	if grep -qE 'id="elastix" ver="4|id="elastix" ver="2.5' $DATADIR/backup/versions.xml
 	then
         	echo Elastix Version OK
 	else
