@@ -1542,6 +1542,40 @@ function postrestore_as_config_files($sLevelTag, &$backupComponent, $sWorkingDir
         }
     }
 
+    // Verificar si voicemail.conf tiene formato nuevo con includes o viejo todo en uno
+    $s = file_get_contents('/etc/asterisk/voicemail.conf');
+    if(!preg_match("/#include vm_general.inc/",$s)) {
+        $lineas = preg_split("/\n/",$s);
+        $vm_general_content = '';
+        $defaultsection=0;
+        foreach($lineas as $linea) {
+            if($defaultsection==1 && substr($linea,0,1)=='[') { $defaultsection=0; }
+            if(preg_match("/\[default\]/",$linea)) {
+                $defaultsection=1;
+            }
+            if($defaultsection==0 && !preg_match("/emailbody/",$linea)) {
+                if(substr($linea,0,1)=='[' && !preg_match("/general/",$linea)) { $defaultsection=2; continue; }
+                $vm_general_content.=$linea."\n";
+            }
+            if($defaultsection==1) {
+                if(trim($linea)=='') { continue; }
+                if(substr(trim($linea),0,1)==';') { continue; }
+                if(preg_match("/Example/i",$linea) && substr($linea,0,4)=='1234') { continue; }
+                $default_content.=$linea."\n";
+            }
+        }
+        file_put_contents('/etc/asterisk/vm_general.inc', $vm_general_content);
+
+        $r = "[general]
+#include vm_general.inc
+#include vm_email.inc
+
+";
+        $r.= "\n$default_content\n";
+        file_put_contents('/etc/asterisk/voicemail.conf',$r);
+    }
+
+
     return TRUE;
 }
 
