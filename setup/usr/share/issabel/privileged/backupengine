@@ -7,6 +7,7 @@
   | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2018 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -21,7 +22,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: dhcpconfig.php,v 1.1 2007/01/09 23:49:36 alex Exp $
+  $Id: backupengine.php, Fri 28 Sep 2018 10:25:54 AM EDT, nicolas@issabel.com
 */
 require_once 'Console/Getopt.php';
 
@@ -534,9 +535,9 @@ function loadCyrusPassword()
 // Need custom function to load conf file, odd characters choke parse_ini_file()
 function load_keys()
 {
-	$keys = array();
+    $keys = array();
     if (file_exists(PASSWD_PATH)) foreach (file(PASSWD_PATH) as $s) {
-    	$s = rtrim($s, "\r\n");
+        $s = rtrim($s, "\r\n");
         $regs = NULL;
         if (preg_match('/^(\w+)=(.*)$/', $s, $regs))
             $keys[$regs[1]] = $regs[2];
@@ -641,7 +642,7 @@ function expandBackupComponents($comp)
 
     $knownKeys = array();
     foreach ($BACKUP_PLAN as $firstLevel) {
-    	$knownKeys = array_merge($knownKeys, array_keys($firstLevel));
+        $knownKeys = array_merge($knownKeys, array_keys($firstLevel));
     }
     $knownSelection = array_intersect($knownKeys, $selection);
     $unknownSelection = array_diff($selection, $knownKeys);
@@ -652,7 +653,7 @@ function action_runBackup($opt)
 {
     global $BACKUP_PLAN;
 
-	$sBackupFile = NULL;
+    $sBackupFile = NULL;
     $sTempDir = DEFAULT_BACKUP_DIR;
     $sComponentString = 'all';
     $selectedComponents = array();
@@ -671,7 +672,7 @@ function action_runBackup($opt)
     }
     $regs = NULL;
     if (preg_match('|^(.+)/$|', $sTempDir, $regs)) {
-    	$sTempDir = $regs[1];
+        $sTempDir = $regs[1];
     }
     if (!is_null($sBackupFile) && file_exists($sTempDir.'/'.$sBackupFile)) {
         error_exit("Option --backupfile: File already exists!\n");
@@ -684,10 +685,10 @@ function action_runBackup($opt)
     // Create temporary directory on backup directory, clean if required
     $sWorkingDir = $sTempDir.'/backup';
     if (file_exists($sWorkingDir)) {
-    	$output = $retval = NULL;
+        $output = $retval = NULL;
         exec('rm -rf '.escapeshellarg($sWorkingDir), $output, $retval);
         if ($output != 0 && file_exists($sWorkingDir)) {
-        	error_exit("FATAL: failed to remove existing working directory $sWorkingDir\n");
+            error_exit("FATAL: failed to remove existing working directory $sWorkingDir\n");
         }
     }
     mkdir($sWorkingDir, 0755);
@@ -701,30 +702,30 @@ function action_runBackup($opt)
      * backup. */
     $bGlobalSuccess = TRUE;
     foreach ($BACKUP_PLAN as $firstLevelKey => $firstLevelGroup) {
-    	foreach ($firstLevelGroup as $secondLevelKey => $backupComponent) {
+        foreach ($firstLevelGroup as $secondLevelKey => $backupComponent) {
             if (in_array($secondLevelKey, $selectedComponents)) {
-        		$bResult = backupComponent($firstLevelKey.'/'.$secondLevelKey, $backupComponent, $sWorkingDir);
+                $bResult = backupComponent($firstLevelKey.'/'.$secondLevelKey, $backupComponent, $sWorkingDir);
                 if (!$bResult) $bGlobalSuccess = FALSE;
             }
-    	}
+        }
     }
 
     if (!is_null($sBackupFile)) {
-		// Create tarball with final result
-		$output = $retval = NULL;
-		$sBackupPath = $sTempDir.'/'.$sBackupFile;
-		exec('tar -C '.escapeshellarg($sTempDir).' -cf '.escapeshellarg($sBackupPath).' backup', $output, $retval);
-		if ($retval != 0) {
-		    error_exit("FATAL: failed to pack final tarball on $sWorkingDir\n");
-		}
+        // Create tarball with final result
+        $output = $retval = NULL;
+        $sBackupPath = $sTempDir.'/'.$sBackupFile;
+        exec('tar -C '.escapeshellarg($sTempDir).' -cf '.escapeshellarg($sBackupPath).' backup', $output, $retval);
+        if ($retval != 0) {
+            error_exit("FATAL: failed to pack final tarball on $sWorkingDir\n");
+        }
 
-		// Remove working directory
-		$output = $retval = NULL;
-		exec('rm -rf '.escapeshellarg($sWorkingDir), $output, $retval);
+        // Remove working directory
+        $output = $retval = NULL;
+        exec('rm -rf '.escapeshellarg($sWorkingDir), $output, $retval);
 
-		// Switch tarball file permission to asterisk:asterisk
-		chown($sBackupPath, 'asterisk');
-		chgrp($sBackupPath, 'asterisk');
+        // Switch tarball file permission to asterisk:asterisk
+        chown($sBackupPath, 'asterisk');
+        chgrp($sBackupPath, 'asterisk');
     }
 
     return $bGlobalSuccess;
@@ -737,23 +738,23 @@ function writeSelectedComponentManifest(&$selectedComponents, $sOutputPath)
 
     $xml_manifest = new SimpleXMLElement('<raiz />');
     foreach (array_keys($BACKUP_PLAN) as $firstLevelKey) {
-    	$xml_optiongroup = $xml_manifest->addChild('options');
+        $xml_optiongroup = $xml_manifest->addChild('options');
         $xml_optiongroup->addAttribute('id', $firstLevelKey);
         foreach (array_keys($BACKUP_PLAN[$firstLevelKey]) as $secondLevelKey) {
-        	if (in_array($secondLevelKey, $selectedComponents)) {
-        		$xml_optiongroup->addChild('option', $secondLevelKey);
-        	}
+            if (in_array($secondLevelKey, $selectedComponents)) {
+                $xml_optiongroup->addChild('option', $secondLevelKey);
+            }
         }
     }
     if (!$xml_manifest->asXML($sOutputPath)) {
-    	error_exit("FATAL: failed to write selected options manifest!\n");
+        error_exit("FATAL: failed to write selected options manifest!\n");
     }
 }
 
 // Write manifest of installed packages
 function writeInstalledPackagesManifest($sOutputPath)
 {
-	$packageList = array('asterisk', 'dahdi', 'wanpipe-util', 'issabelPBX',
+    $packageList = array('asterisk', 'dahdi', 'wanpipe-util', 'issabelPBX',
         'issabel', 'issabel-pbx', 'issabel-email_admin', 'issabel-agenda',
         'issabel-fax', 'issabel-vtigercrm', 'issabel-a2billing',
         'issabel-sugarcrm-addon');
@@ -764,7 +765,7 @@ function writeInstalledPackagesManifest($sOutputPath)
     // Add all existing packages to XML tree
     $xml_manifest = new SimpleXMLElement('<versions />');
     foreach ($output as $s) {
-    	$fields = explode(' ', trim($s));
+        $fields = explode(' ', trim($s));
         if (count($fields) == 3 && in_array($fields[0], $packageList)) {
 
             // This is needed for compatibility with previous backup implementation
@@ -805,32 +806,32 @@ function writeInstalledPackagesManifest($sOutputPath)
  */
 function backupComponent($sLevelTag, &$backupComponent, $sWorkingDir)
 {
-	$bGlobalSuccess = TRUE;
+    $bGlobalSuccess = TRUE;
 
     print "INFO: backing up component $sLevelTag...\n";
 
     foreach ($backupComponent['components'] as $component) {
-		$sProcName = 'backupComponent_'.$component['type'];
+        $sProcName = 'backupComponent_'.$component['type'];
         if (function_exists($sProcName)) {
-        	$bResult = $sProcName($sLevelTag, $component, $sWorkingDir);
+            $bResult = $sProcName($sLevelTag, $component, $sWorkingDir);
             if (!$bResult) $bGlobalSuccess = FALSE;
         } else {
             error_exit('FATAL: unimplemented backup component type '.$component['type']."\n");
         }
-	}
+    }
     return $bGlobalSuccess;
 }
 
 function backupComponent_sqlitedb($sLevelTag, &$backupComponent, $sWorkingDir)
 {
-	return backupComponent_file($sLevelTag, $backupComponent, $sWorkingDir);
+    return backupComponent_file($sLevelTag, $backupComponent, $sWorkingDir);
 }
 
 function backupComponent_file($sLevelTag, &$backupComponent, $sWorkingDir)
 {
-	$bResult = TRUE;
+    $bResult = TRUE;
 
-	// If an array, backup the first one found
+    // If an array, backup the first one found
     $backuppath = NULL;
     if (is_array($backupComponent['path'])) {
         foreach ($backupComponent['path'] as $bp) {
@@ -844,7 +845,7 @@ function backupComponent_file($sLevelTag, &$backupComponent, $sWorkingDir)
     $sDestination = $sWorkingDir.'/'.basename($backuppath);
     if (!copy($backuppath, $sDestination)) {
         fwrite(STDERR, "ERR: $sLevelTag: failed to copy ".$backuppath." to destination $sWorkingDir\n");
-    	$bResult = FALSE;
+        $bResult = FALSE;
     }
     return $bResult;
 }
@@ -932,7 +933,7 @@ function backupComponent_mysqldb($sLevelTag, &$backupComponent, $sWorkingDir)
     // Check whether selected database exists
     if (!in_array($backupComponent['database'], $mysqlSchemata)) {
         fprintf(STDERR, "WARN: $sLevelTag: database ".$backupComponent['database']." not found\n");
-    	return TRUE;
+        return TRUE;
     }
 
     /* Due to memory constraints, the database schema will be cached in memory
@@ -978,7 +979,7 @@ function backupComponent_mysqldb($sLevelTag, &$backupComponent, $sWorkingDir)
 
     // Create tarball if required
     if (!is_null($backupComponent['backupfile'])) {
-    	$output = $retval = NULL;
+        $output = $retval = NULL;
         exec('tar -C '.escapeshellarg($sWorkingDir).' -czf '.
             escapeshellarg($sWorkingDir.'/'.$backupComponent['backupfile']).' '.
             escapeshellarg($backupComponent['database'].'.sql'),
@@ -998,7 +999,7 @@ function backupComponent_bundle($sLevelTag, &$backupComponent, $sWorkingDir)
     $sWorkingSubdir = $sWorkingDir.'/'.$backupComponent['backupdir'];
     if (!mkdir($sWorkingSubdir, 0755)) {
         fprintf(STDERR, "ERR: $sLevelTag: failed to create directory $sWorkingSubdir\n");
-    	return FALSE;
+        return FALSE;
     }
 
     // Recursively run backup subcomponents
@@ -1011,7 +1012,7 @@ function backupComponent_bundle($sLevelTag, &$backupComponent, $sWorkingDir)
         'backupfile'    =>  $backupComponent['backupfile'],
     );
     if (!backupComponent_dir($sLevelTag, $bundleComponent, $sWorkingDir)) {
-    	$bGlobalSuccess = FALSE;
+        $bGlobalSuccess = FALSE;
     }
 
     $output = $retval = NULL;
@@ -1076,7 +1077,7 @@ function action_runRestore($opt)
     if ($retval != 0) {
         error_exit("FATAL: failed to unpack tarball on $sWorkingDir\n");
     } elseif (!is_dir($sUnpackedDir)) {
-    	error_exit("FATAL: invalid tarball on $sWorkingDir - missing backup directory\n");
+        error_exit("FATAL: invalid tarball on $sWorkingDir - missing backup directory\n");
     }
 
     // Load options that were specified in backup
@@ -1087,9 +1088,9 @@ function action_runRestore($opt)
     if (!$xml_manifest)
         error_exit("FATAL: invalid tarball on $sWorkingDir - invalid a_options.xml\n");
     foreach ($xml_manifest->options as $xml_optionlist) {
-    	foreach ($xml_optionlist->option as $xml_option) {
-    		$availableOptions[] = (string)$xml_option;
-    	}
+        foreach ($xml_optionlist->option as $xml_option) {
+            $availableOptions[] = (string)$xml_option;
+        }
     }
 
     /* Process each backup component. In keeping with backward compatibility,
@@ -1104,7 +1105,7 @@ function action_runRestore($opt)
                     $bResult = restoreComponent($sLevelTag, $backupComponent, $sUnpackedDir);
                     if (!$bResult) $bGlobalSuccess = FALSE;
                 } else {
-                	fprintf(STDERR, "WARN: $sLevelTag: specified in restore but not available in backup\n");
+                    fprintf(STDERR, "WARN: $sLevelTag: specified in restore but not available in backup\n");
                 }
             }
         }
@@ -1132,12 +1133,12 @@ function restoreComponent($sLevelTag, &$backupComponent, $sWorkingDir)
 
     // Run any custom pre-restore operation
     if (isset($backupComponent['prerestore'])) {
-    	if (function_exists($backupComponent['prerestore'])) {
-    		$bResult = $backupComponent['prerestore']($sLevelTag, $backupComponent, $sWorkingDir);
+        if (function_exists($backupComponent['prerestore'])) {
+            $bResult = $backupComponent['prerestore']($sLevelTag, $backupComponent, $sWorkingDir);
             if (!$bResult) $bGlobalSuccess = FALSE;
-    	} else {
+        } else {
             error_exit('FATAL: unimplemented pre-restore action '.$backupComponent['prerestore']."\n");
-    	}
+        }
     }
 
     foreach ($backupComponent['components'] as $component) {
@@ -1186,7 +1187,7 @@ function restoreComponent_file($sLevelTag, &$backupComponent, $sWorkingDir)
         fwrite(STDERR, "ERR: $sLevelTag: failed to copy ".$backuppath." from source $sWorkingDir\n");
         $bResult = FALSE;
     } else {
-    	// Restore owner and permissions
+        // Restore owner and permissions
         if (isset($backupComponent['restoreperm'])) {
             chmod($backuppath, $backupComponent['restoreperm']);
         }
@@ -1207,7 +1208,7 @@ function restoreComponent_dir($sLevelTag, &$backupComponent, $sWorkingDir, $keep
 {
     if (isset($backupComponent['dirname'])) {
         $sFullDirPath = $backupComponent['parentdir'].'/'.$backupComponent['dirname'];
-    	if (is_dir($sFullDirPath)) {
+        if (is_dir($sFullDirPath)) {
             // Make a backup of the directory contents in case the restore is botched
             $sCommand = 'tar -czf '.
                 escapeshellarg($sFullDirPath.'.tgz').' '.
@@ -1276,7 +1277,7 @@ function restoreComponent_mysqldb($sLevelTag, &$backupComponent, $sWorkingDir)
         $sDbTarball = $sWorkingDir.'/'.$backupComponent['backupfile'];
         if (!file_exists($sDbTarball)) {
             fprintf(STDERR, "WARN: $sLevelTag: $sDbTarball not found, not restoring database...\n");
-        	return TRUE;
+            return TRUE;
         }
         $sCommand = 'tar -C '.escapeshellarg($sWorkingDir).' -xzf '.escapeshellarg($sDbTarball);
         $output = $retval = NULL;
@@ -1352,8 +1353,8 @@ function postrestore_as_db($sLevelTag, &$backupComponent, $sWorkingDir)
 
     if (file_exists('/usr/sbin/astdb2sqlite3') && file_exists($sWorkingDir.'/astdb')) {
         // Backup originated from asterisk 1.8 and restored on asterisk 11
-		if (file_exists('/var/lib/asterisk/astdb.sqlite3'))
-			unlink('/var/lib/asterisk/astdb.sqlite3');
+        if (file_exists('/var/lib/asterisk/astdb.sqlite3'))
+            unlink('/var/lib/asterisk/astdb.sqlite3');
         system('/usr/sbin/astdb2sqlite3 /var/lib/asterisk/astdb');
     }
 
@@ -1367,9 +1368,9 @@ function postrestore_as_db($sLevelTag, &$backupComponent, $sWorkingDir)
 
     // Read information from /etc/amportal.conf
     foreach (file('/etc/amportal.conf') as $s) {
-    	$regs = NULL;
+        $regs = NULL;
         if (preg_match('/^(\w+)\s*=\s*(.+)/', trim($s), $regs)) {
-        	if (in_array($regs[1], $keysFromFPBX)) $fpbxConf[$regs[1]] = $regs[2];
+            if (in_array($regs[1], $keysFromFPBX)) $fpbxConf[$regs[1]] = $regs[2];
         }
     }
 
@@ -1462,7 +1463,7 @@ function postrestore_as_db($sLevelTag, &$backupComponent, $sWorkingDir)
 // Custom processing after restoring asterisk configuration files
 function postrestore_as_config_files($sLevelTag, &$backupComponent, $sWorkingDir)
 {
-	/* Workaround for Elastix bug #164. If backing up in 32-bit and restoring in
+    /* Workaround for Elastix bug #164. If backing up in 32-bit and restoring in
      * 64-bit, or viceversa, the module directory will be incorrect - fix it. */
     $sModulePath = '/usr/lib/asterisk/modules';
     if (is_dir('/usr/lib64/asterisk/modules')) {
@@ -1560,11 +1561,11 @@ function change_ami_password(&$content, $sNewPassword)
 // Custom processing after restoring fax database
 function postrestore_fx_db($sLevelTag, &$backupComponent, $sWorkingDir)
 {
-	$output = $retval = NULL;
+    $output = $retval = NULL;
     exec('/usr/share/issabel/privileged/faxconfig --refresh', $output, $retval);
     if ($retval != 0) {
         fwrite(STDERR, "ERR: $sLevelTag: failed to refresh fax configuration after restore\n");
-    	return FALSE;
+        return FALSE;
     }
     return TRUE;
 }
@@ -1579,7 +1580,7 @@ function prerestore_em_db($sLevelTag, &$backupComponent, $sWorkingDir)
 
     loadCyrusPassword();
 
-	require_once('libs/cyradm.php');
+    require_once('libs/cyradm.php');
 
     // Connect to IMAP before doing anything else
     $cyr_conn = new cyradm;
@@ -1931,7 +1932,7 @@ function postrestore_mysql_db($sLevelTag, &$backupComponent, $sWorkingDir)
         $quotedPwd = $rootconn->quote($sMysqlRootPass);
         if ($quotedPwd === FALSE) {
             fwrite(STDERR, 'FATAL: failed to quote MySQL password');
-        	return FALSE;
+            return FALSE;
         }
         $rootconn->exec("GRANT USAGE ON *.* TO root@localhost IDENTIFIED BY $quotedPwd");
         $rootconn->exec("GRANT USAGE ON *.* TO root IDENTIFIED BY $quotedPwd");
@@ -1943,7 +1944,7 @@ function postrestore_mysql_db($sLevelTag, &$backupComponent, $sWorkingDir)
             $quotedPwd = $rootconn->quote($passwords['amiadminpwd']);
             if ($quotedPwd === FALSE) {
                 fwrite(STDERR, 'FATAL: failed to quote new AMPDBPASS password');
-            	return FALSE;
+                return FALSE;
             }
             $rootconn->exec("GRANT USAGE ON *.* TO asteriskuser@localhost IDENTIFIED BY $quotedPwd");
         } else {
