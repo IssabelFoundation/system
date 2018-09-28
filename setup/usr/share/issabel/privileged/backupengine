@@ -106,10 +106,10 @@ $BACKUP_PLAN = array(
                     'restoreown'    =>  array('asterisk', 'asterisk'),
                 ),
                 array(
-                    'type'          =>  'dir',
+                    'type'          =>  'dirkeep',
                     'parentdir'     =>  '/var/www/html',
                     'dirname'       =>  'admin',
-                    'backupfile'    =>  'var.www.html.admin.tgz',
+                    'backupfile'    =>  'var.www.html.admin.tgz'
                 ),
             ),
             'prerestore'    =>  'prerestore_as_db',
@@ -849,6 +849,11 @@ function backupComponent_file($sLevelTag, &$backupComponent, $sWorkingDir)
     return $bResult;
 }
 
+function backupComponent_dirkeep($sLevelTag, &$backupComponent, $sWorkingDir)
+{
+    return backupComponent_dir($sLevelTag, $backupComponent, $sWorkingDir);
+}
+
 function backupComponent_dir($sLevelTag, &$backupComponent, $sWorkingDir)
 {
     if (isset($backupComponent['dirname']) &&
@@ -1193,7 +1198,12 @@ function restoreComponent_file($sLevelTag, &$backupComponent, $sWorkingDir)
     return $bResult;
 }
 
-function restoreComponent_dir($sLevelTag, &$backupComponent, $sWorkingDir)
+function restoreComponent_dirkeep($sLevelTag, &$backupComponent, $sWorkingDir)
+{
+    return restoreComponent_dir($sLevelTag, $backupComponent, $sWorkingDir, $keep=TRUE);
+}
+
+function restoreComponent_dir($sLevelTag, &$backupComponent, $sWorkingDir, $keep=FALSE)
 {
     if (isset($backupComponent['dirname'])) {
         $sFullDirPath = $backupComponent['parentdir'].'/'.$backupComponent['dirname'];
@@ -1229,14 +1239,21 @@ function restoreComponent_dir($sLevelTag, &$backupComponent, $sWorkingDir)
     }
 
     // Restore inside parentdir
-    $sCommand = 'tar -C '.escapeshellarg($backupComponent['parentdir']).
-        ' -xvf '.escapeshellarg($sWorkingDir.'/'.$backupComponent['backupfile']);
+    $sCommand = 'tar -C '.escapeshellarg($backupComponent['parentdir']).' -xvf '.escapeshellarg($sWorkingDir.'/'.$backupComponent['backupfile']);
     $output = $retval = NULL;
     exec($sCommand, $output, $retval);
+
     if ($retval != 0) {
         fwrite(STDERR, "ERR: $sLevelTag: failed to unpack tarball ".$backupComponent['backupfile']." from source $sWorkingDir\n");
         return FALSE;
     } else {
+
+        if($keep === TRUE) {
+           $sCommand = 'tar -xzf '.  escapeshellarg($sFullDirPath.'.tgz').' -C /';
+           exec($sCommand, $output, $retval);
+           unlink($sFullDirPath.'.tgz');
+        }
+
         // Restore owner and permissions if restoring a full directory
         if (isset($backupComponent['dirname']) && isset($backupComponent['restoreown'])) {
             $output = $retval = NULL;
@@ -1340,6 +1357,11 @@ function postrestore_as_db($sLevelTag, &$backupComponent, $sWorkingDir)
         system('/usr/sbin/astdb2sqlite3 /var/lib/asterisk/astdb');
     }
 
+    // remove legacy astetc files from issabelPBX that will conflict with newer versions
+    if(is_dir('/var/www/html/admin/modules/framework/amp_conf/')) {
+        system('rm -rf /var/www/html/admin/modules/framework/amp_conf/');
+    }
+
     // asterisk must be restarted in order for retrieve_conf to work correctly
     exec('/sbin/service asterisk start > /dev/null 2>&1');
 
@@ -1374,18 +1396,59 @@ function postrestore_as_db($sLevelTag, &$backupComponent, $sWorkingDir)
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $conn->query("UPDATE admin SET value = 'false' WHERE variable = 'need_reload'");
 
+
         // Restore the admin password from /etc/issabel.conf
         $passwords = load_keys();
         if (isset($passwords['amiadminpwd'])) {
             $sth = $conn->prepare('UPDATE asterisk.ampusers SET password_sha1 = SHA1(?) WHERE username = ?');
             $sth->execute(array($passwords['amiadminpwd'], 'admin'));
             $sth = NULL;
+
+            $sth = $conn->prepare("UPDATE issabelpbx_settings SET value=? WHERE keyword IN ('ARI_ADMIN_PASSWORD','AMPMGRPASS')");
+            $sth->execute(array($passwords['amiadminpwd']));
+            $sth = NULL;
+
+            $manager_file = '/etc/asterisk/manager.conf';
+            $content = file_get_contents($manager_file);
+            $bAdmin = FALSE;
+            for ($i = 0; $i < count($content); $i++) {
+                $regs = NULL;
+                if (preg_match('/^\[(\w+)\]/', $content[$i], $regs)) {
+                    $bAdmin = ($regs[1] == 'admin');
+                } elseif ($bAdmin && preg_match('/^secret\s*=\s*/', $content[$i])) {
+                    $content[$i] = "secret = $sNewPassword\n";
+                }
+            }
+            file_put_contents($manager_file,$content);
+
+
         }
 
         $conn = NULL;
     } catch (PDOException $e) {
         fwrite(STDERR, "WARN: $sLevelTag: failed to reset IssabelPBX update flag!\n");
     }
+
+    // If we restore an old database for IssabelPBX, then migrate modules so DB gets updated and module enabled
+    exec("/var/lib/asterisk/bin/module_admin list | grep Pending | awk '{print $1}'",$output,$ret);
+
+    // first install priority modules if needed
+    $priority_modules = array ('framework','core','recordings');
+    foreach($priority_modules as $mm) {
+        if(in_array($mm,$output)) {
+            exec('/var/lib/asterisk/bin/module_admin install '.$mm,$ocore);
+        }
+    }
+
+    // then attempt to install all disabled pending upgrade modules
+    foreach($output as $module) {
+        if(in_array($module,$priority_modules)) { continue; }
+        exec('/var/lib/asterisk/bin/module_admin install '.escapeshellarg($module),$output,$ret);
+    }
+
+    // Finally install all local available modules that are pending also
+    exec('/var/lib/asterisk/bin/module_admin installlocal',$output,$ret);
+
     if (isset($fpbxConf['POST_RELOAD'])) {
         exec('su -s /bin/sh - asterisk -c '.escapeshellarg($fpbxConf['POST_RELOAD']));
     }
