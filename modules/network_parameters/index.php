@@ -87,7 +87,7 @@ function _moduleContent(&$smarty, $module_name)
                                                      "INPUT_TYPE"             => "HIDDEN",
                                                      "INPUT_EXTRA_PARAM"      => "",
                                                      "VALIDATION_TYPE"        => "ereg",
-                                                     "VALIDATION_EXTRA_PARAM" => "^[[:alnum:]-]+$"));
+                                                     "VALIDATION_EXTRA_PARAM" => "^[[:alnum:]\.-]+$"));
 
     $strReturn ="";
 
@@ -221,9 +221,15 @@ function _moduleContent(&$smarty, $module_name)
         $arrEths = $pNet->obtener_interfases_red_fisicas();
         $end = count($arrEths);
 
+        $vlan_dictionary = array();
+        $vlan_dictionary['eth0.100']='WAN';
+        $vlan_dictionary['eth0.200']='LAN';
+
         foreach($arrEths as $idEth=>$arrEth) {
+
+            $nicname = isset($vlan_dictionary[$arrEth['Name']])?$vlan_dictionary[$arrEth['Name']]:$arrEth['Name'];
             $arrTmp    = array();
-            $arrTmp[0] = "&nbsp;<a href='?menu=network&action=editInterfase&id=$idEth'>" . $arrEth['Name'] . "</a>";
+            $arrTmp[0] = "&nbsp;<a href='?menu=network&action=editInterfase&id=$idEth'>" . $nicname . "</a>";
             $arrTmp[1] = strtoupper($arrEth['Type']);
             $arrTmp[2] = $arrEth['Inet Addr'];
             $arrTmp[3] = $arrEth['Mask'];
