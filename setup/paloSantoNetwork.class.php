@@ -111,7 +111,7 @@ class paloNetwork
         $if_flags = NULL;
         foreach ($output as $s) {
             $regs = NULL;
-            if (preg_match('/^\d+:\s+([[:alnum:]_-]+)(@\S+)?:\s*<(.*)>(.*)/', $s, $regs)) {
+            if (preg_match('/^\d+:\s+([[:alnum:]\._-]+)(@\S+)?:\s*<(.*)>(.*)/', $s, $regs)) {
                 $if_actual = $regs[1];
                 $if_flags = explode(',', $regs[3]);
                 if(preg_match("/state DOWN/",$regs[4])) {  // State down in output, not in flags for a present card that is not plugged
@@ -191,7 +191,7 @@ class paloNetwork
             $output = NULL;
             exec('/sbin/ip addr show dev '.$if_actual, $output);
             foreach ($output as $s) {
-                if (preg_match('|\s*inet (\d+\.\d+\.\d+.\d+)/(\d+).+\s(([[:alnum:]_-]+)(:(\d+))?)\s*$|', trim($s), $regs)) {
+                if (preg_match('|\s*inet (\d+\.\d+\.\d+.\d+)/(\d+).+\s(([[:alnum:]\._-]+)(:(\d+))?)\s*$|', trim($s), $regs)) {
                     // Calcular IP de máscara a partir de número de bits
                     $iMaskBits = $regs[2];
                     $iMask = (0xFFFFFFFF << (32 - $iMaskBits)) & 0xFFFFFFFF;
@@ -240,9 +240,19 @@ class paloNetwork
 
         // Selecciono solo las interfases de red fisicas
         $arrInterfasesRed=array();
+        $hideNic=array();
         foreach($arrInterfasesRedPreliminar as $nombreReal => $arrData) {
+            if(preg_match("/^dummy/",$nombreReal)) continue;
+            if(preg_match("/\./",$nombreReal)) {
+                // if vlan, hide parent/real nic
+                $parts = preg_split("/\./",$nombreReal);
+                $hideNic[] = $parts[0];
+            }
             if (isset($arrData['Link']) && $arrData['Link'] == 'ether')
                 $arrInterfasesRed[$nombreReal]=$arrData;
+        }
+        foreach($hideNic as $nic) {
+            unset($arrInterfasesRed[$nic]);
         }
 
         return $arrInterfasesRed;
