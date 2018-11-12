@@ -73,7 +73,7 @@ function validateOptions($opt)
         break;
     case '--device':
         // Only support ethernet for now
-        if (!preg_match('/^[[:alnum:]_-]+$/', $option[1]))
+        if (!preg_match('/^[[:alnum:]\._-]+$/', $option[1]))
             error_exit('Option '.$option[0].": Invalid network device\n");
         break;
     case '--bootproto':
@@ -362,6 +362,18 @@ function action_interfaceConfiguration($opt)
             'NETMASK'   =>  '',
             'NOZEROCONF'=>  'yes',
         );
+        if(preg_match("/\./",$sDevice)) {
+            $settings = array(
+                'DEVICE'    =>  $sDevice,
+                'BOOTPROTO' =>  $sBootproto,
+                'ONBOOT'    =>  'yes',
+                'VLAN'      =>  'yes',
+                'IPADDR'    =>  '',
+                'NETMASK'   =>  '',
+                'NOZEROCONF'=>  'yes',
+            );
+        }
+
         if ($sBootproto == 'static') {
             $settings['IPADDR']     = $sIpAddr;
             $settings['NETMASK']    = $sNetMask;
