@@ -7,6 +7,7 @@
   | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2018 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -21,7 +22,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: netconfig.php,v 1.1 2007/01/09 23:49:36 alex Exp $
+  $Id: netconfig.php, Mon 12 Nov 2018 09:03:03 AM EST, nicolas@issabel.com
 */
 require_once 'Console/Getopt.php';
 
