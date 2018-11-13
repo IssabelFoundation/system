@@ -213,7 +213,7 @@ class Applet_ProcessesStatus
         }
 
         $arrSERVICES["Hylafax"]["status_service"]  = $this->getStatusHylafax();
-        $arrSERVICES["Hylafax"]["activate"]        = $this->_isActivate("hylafax");
+        $arrSERVICES["Hylafax"]["activate"]        = $this->_isActivate("hylafax") || $this->_isActivate("hylafax-hfaxd") ;
         $arrSERVICES["Hylafax"]["name_service"]    = "Fax Service";
 /*
         $arrSERVICES["IAXModem"]["status_service"] = $this->_existPID_ByFile("/var/run/iaxmodem.pid","iaxmodem");
@@ -294,13 +294,14 @@ class Applet_ProcessesStatus
                     $this->_initscript_cache[] = $regs[1];
             }
         }
+
         return in_array($process, $this->_initscript_cache) ? 1 : 0;
     }
 
     private function getStatusHylafax()
     {
-        $status_hfaxd = $this->_existPID_ByCMD("hfaxd","hylafax");
-        $status_faxq  = $this->_existPID_ByCMD("faxq","hylafax");
+        $status_hfaxd = $this->_existPID_ByCMD("hfaxd","hylafax") || $this->_existPID_ByCMD("hylafax-hfaxd","hylafax");
+        $status_faxq  = $this->_existPID_ByCMD("faxq","hylafax") || $this->_existPID_ByCMD("hylafax-faxq","hylafax");
         if($status_hfaxd == "OK" && $status_faxq == "OK")
             return "OK";
         elseif($status_hfaxd == "Shutdown" && $status_faxq == "Shutdown")
