@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php,v 1.1 2007/01/09 23:49:36 alex Exp $
+  $Id: index.php, Tue 13 Nov 2018 12:23:20 PM EST, nicolas@issabel.com
 */
 
 class Applet_ProcessesStatus
@@ -213,7 +213,7 @@ class Applet_ProcessesStatus
         }
 
         $arrSERVICES["Hylafax"]["status_service"]  = $this->getStatusHylafax();
-        $arrSERVICES["Hylafax"]["activate"]        = $this->_isActivate("hylafax") || $this->_isActivate("hylafax-hfaxd") ;
+        $arrSERVICES["Hylafax"]["activate"]        = $this->_isActivate("hylafax");
         $arrSERVICES["Hylafax"]["name_service"]    = "Fax Service";
 /*
         $arrSERVICES["IAXModem"]["status_service"] = $this->_existPID_ByFile("/var/run/iaxmodem.pid","iaxmodem");
@@ -300,8 +300,8 @@ class Applet_ProcessesStatus
 
     private function getStatusHylafax()
     {
-        $status_hfaxd = $this->_existPID_ByCMD("hfaxd","hylafax") || $this->_existPID_ByCMD("hylafax-hfaxd","hylafax");
-        $status_faxq  = $this->_existPID_ByCMD("faxq","hylafax") || $this->_existPID_ByCMD("hylafax-faxq","hylafax");
+        $status_hfaxd = $this->_existPID_ByCMD("hfaxd","hylafax");
+        $status_faxq  = $this->_existPID_ByCMD("faxq","hylafax");
         if($status_hfaxd == "OK" && $status_faxq == "OK")
             return "OK";
         elseif($status_hfaxd == "Shutdown" && $status_faxq == "Shutdown")
