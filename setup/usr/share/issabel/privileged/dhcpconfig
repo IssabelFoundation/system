@@ -394,12 +394,12 @@ function listIpAddresses()
     $ip = NULL;
     foreach ($output as $s) {
         $regs = NULL;
-        if (preg_match('/^\d+:\s+([\w-]+)(@\w+)?:\s*<(.*)>/', $s, $regs)) {
+        if (preg_match('/^\d+:\s+([\w\.-]+)(@\w+)?:\s*<(.*)>/', $s, $regs)) {
             $if = $regs[1];
             $bIsEther = FALSE;
         } elseif (strpos($s, 'link/ether') !== FALSE) {
             $bIsEther = TRUE;
-        } elseif (preg_match('|\s*inet (\d+\.\d+\.\d+.\d+)/(\d+) brd (\d+\.\d+\.\d+.\d+).+\s(([\w-]+)(:(\d+))?)\s*$|', trim($s), $regs)) {
+        } elseif (preg_match('|\s*inet (\d+\.\d+\.\d+.\d+)/(\d+) brd (\d+\.\d+\.\d+.\d+).+\s(([\w\.-]+)(:(\d+)?)?)\s*$|', trim($s), $regs)) {
             // Calcular IP de máscara a partir de número de bits
             $iMaskBits = $regs[2];
             $iMask = (0xFFFFFFFF << (32 - $iMaskBits)) & 0xFFFFFFFF;

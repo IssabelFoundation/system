@@ -19,8 +19,8 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php,v 1.1 2008/01/04 10:39:57 bmacias Exp $ */
-
+  $Id: index.php, Mon 12 Nov 2018 09:09:17 PM EST, nicolas@issabel.com
+*/
 function _moduleContent(&$smarty, $module_name)
 {
     include_once "libs/paloSantoForm.class.php";
@@ -412,8 +412,10 @@ function serviceUpdateDHCP($smarty, $module_name, $local_templates_dir, &$oForm)
         $IpSubred="";
 
         foreach($interfases as $dev=>$datos){
+            if(preg_match("/^dummy/",$dev)) continue;
             if (($dev != "lo") && !$interfazEncontrada){
                 $valorIP=$datos["Inet Addr"];
+                if($valorIP=='') continue;
                 $valorMask=$datos["Mask"];
                 if(isset($val->arrErrores[_tr("Start range of IPs")]['mensaje']))
                     unset($val->arrErrores[_tr("Start range of IPs")]);
