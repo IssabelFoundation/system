@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Mon 12 Nov 2018 09:01:01 AM EST, nicolas@issabel.com
+  $Id: index.php, Thu 15 Nov 2018 09:16:29 AM EST, nicolas@issabel.com
 */
 function _moduleContent(&$smarty, $module_name)
 {
@@ -39,6 +39,19 @@ function _moduleContent(&$smarty, $module_name)
     $base_dir=dirname($_SERVER['SCRIPT_FILENAME']);
     $templates_dir=(isset($arrConf['templates_dir']))?$arrConf['templates_dir']:'themes';
     $local_templates_dir="$base_dir/modules/$module_name/".$templates_dir.'/'.$arrConf['theme'];
+
+    // Dictionary names for UCS Micro VLAN interfaces
+    $vlan_dictionary = array();
+    $vlan_dictionary['eth0.100']='WAN';
+    $vlan_dictionary['eth0.200']='LAN';
+
+    $pNet = new paloNetwork();
+    $arrEths = $pNet->obtener_interfases_red_fisicas();
+    $nics = array();
+    foreach($arrEths as $iface=>$idata) {
+        $nicname = isset($vlan_dictionary[$idata['Name']])?$vlan_dictionary[$idata['Name']]:$idata['Name'];
+        $nics[$iface]=$nicname;
+    }
 
     $arrFormNetwork  = array("host"         => array("LABEL"                  => ""._tr('Host')." (Ex. host.example.com)",
                                                      "REQUIRED"               => "yes",
@@ -63,7 +76,15 @@ function _moduleContent(&$smarty, $module_name)
                                                      "INPUT_TYPE"             => "TEXT",
                                                      "INPUT_EXTRA_PARAM"      => "",
                                                      "VALIDATION_TYPE"        => "ip",
-                                                     "VALIDATION_EXTRA_PARAM" => ""));
+                                                     "VALIDATION_EXTRA_PARAM" => ""),
+                             "gateway_dev"  => array("LABEL"                  => _tr("Gateway Device"),
+                                                     "REQUIRED"               => "yes",
+                                                     "INPUT_TYPE"             => "SELECT",
+                                                     "INPUT_EXTRA_PARAM"      => $nics,
+                                                     "VALIDATION_TYPE"        => "text",
+                                                     "VALIDATION_EXTRA_PARAM" => ""),
+
+);
 
     $arrFormInterfase = array("ip"          => array("LABEL"                  => _tr("IP Address"),
                                                      "REQUIRED"               => "yes",
@@ -92,7 +113,6 @@ function _moduleContent(&$smarty, $module_name)
 
     $strReturn ="";
 
-    $pNet = new paloNetwork();
 
     // MANEJO DE ACCIONES
 
@@ -105,6 +125,7 @@ function _moduleContent(&$smarty, $module_name)
             $arrNetworkData['dns2'] = isset($arrNetwork['dns'][1])?$arrNetwork['dns'][1]:'';
             $arrNetworkData['host'] = isset($arrNetwork['host'])?$arrNetwork['host']:'';
             $arrNetworkData['gateway'] = isset($arrNetwork['gateway'])?$arrNetwork['gateway']:'';
+            $arrNetworkData['gateway_dev'] = isset($arrNetwork['gateway_dev'])?$arrNetwork['gateway_dev']:'';
         }
 
         $oForm = new paloForm($smarty, $arrFormNetwork);
@@ -124,6 +145,7 @@ function _moduleContent(&$smarty, $module_name)
             $arrNetConf['dns_ip_1'] = $_POST['dns1'];
             $arrNetConf['dns_ip_2'] = $_POST['dns2'];
             $arrNetConf['gateway_ip'] = $_POST['gateway'];
+            $arrNetConf['gateway_dev'] = $_POST['gateway_dev'];
             $pNet->escribir_configuracion_red_sistema($arrNetConf);
             if(!empty($pNet->errMsg)) {
                 $smarty->assign("mb_message", $pNet->errMsg);
@@ -206,12 +228,12 @@ function _moduleContent(&$smarty, $module_name)
     } else {
         // SECCION NETWORK PARAMETERS
         $arrNetwork = $pNet->obtener_configuracion_red();
-
         if(is_array($arrNetwork)) {
             $arrNetworkData['dns1'] = isset($arrNetwork['dns'][0])?$arrNetwork['dns'][0]:'';
             $arrNetworkData['dns2'] = isset($arrNetwork['dns'][1])?$arrNetwork['dns'][1]:'';
             $arrNetworkData['host'] = isset($arrNetwork['host'])?$arrNetwork['host']:'';
             $arrNetworkData['gateway'] = isset($arrNetwork['gateway'])?$arrNetwork['gateway']:'';
+            $arrNetworkData['gateway_dev'] = isset($arrNetwork['gateway_dev'])?$arrNetwork['gateway_dev']:'';
         }
 
         $oForm = new paloForm($smarty, $arrFormNetwork);
@@ -221,10 +243,6 @@ function _moduleContent(&$smarty, $module_name)
         $arrData = array();
         $arrEths = $pNet->obtener_interfases_red_fisicas();
         $end = count($arrEths);
-
-        $vlan_dictionary = array();
-        $vlan_dictionary['eth0.100']='WAN';
-        $vlan_dictionary['eth0.200']='LAN';
 
         foreach($arrEths as $idEth=>$arrEth) {
 

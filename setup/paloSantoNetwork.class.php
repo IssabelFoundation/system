@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoNetwork.class.php, Mon 12 Nov 2018 09:01:43 AM EST, nicolas@issabel.com
+  $Id: paloSantoNetwork.class.php, Thu 15 Nov 2018 09:13:41 AM EST, nicolas@issabel.com
 */
 
 class paloNetwork
@@ -160,7 +160,7 @@ class paloNetwork
 
             // Nombre del controlador del dispositivo de red
             if (file_exists("/sys/class/net/$if_actual/device/driver")) {
-            	$interfases[$if_actual]['HW_info'] = basename(readlink("/sys/class/net/$if_actual/device/driver"));
+                $interfases[$if_actual]['HW_info'] = basename(readlink("/sys/class/net/$if_actual/device/driver"));
             }
         }
 
@@ -273,9 +273,10 @@ class paloNetwork
     {
         $archivoResolv = "/etc/resolv.conf";
         $arrResult = array(
-            'dns'       =>  array(),
-            'host'      =>  NULL,
-            'gateway'   =>  NULL,
+            'dns'         =>  array(),
+            'host'        =>  NULL,
+            'gateway'     =>  NULL,
+            'gateway_dev' =>  NULL,
         );
 
         //- Obtengo los dnss
@@ -301,6 +302,9 @@ class paloNetwork
             foreach($arrOutput as $linea) {
                 if(preg_match("/^0.0.0.0[[:space:]]+(([[:digit:]]{1,3})\.([[:digit:]]{1,3})\.([[:digit:]]{1,3})\.([[:digit:]]{1,3}))/", $linea, $arrReg)) {
                     $arrResult['gateway'] = $arrReg[1];
+                    $gwdevparts = explode(" ",$linea);
+                    $gwdev = array_pop($gwdevparts); 
+                    $arrResult['gateway_dev'] = $gwdev;
                 }
             }
         }
@@ -325,8 +329,15 @@ class paloNetwork
     function escribir_configuracion_red_sistema($config_red)
     {
         $this->errMsg = '';
-    	$sComando = '/usr/bin/issabel-helper netconfig --genconf'.
-            ' --host '.escapeshellarg($config_red['host']).
+        $sComando = '/usr/bin/issabel-helper netconfig --genconf';
+
+        if(isset($config_red['gateway_dev'])) {
+            if($config_red['gateway_dev']<>'') {
+                $sComando .= ' --gateway-dev '.escapeshellarg($config_red['gateway_dev']);
+            }
+        }
+
+        $sComando .= ' --host '.escapeshellarg($config_red['host']).
             ' --gateway '.escapeshellarg($config_red['gateway_ip']).
             ' --dns1 '.escapeshellarg($config_red['dns_ip_1']).
             ($config_red['dns_ip_2'] == '' ? '' : ' --dns2 '.escapeshellarg($config_red['dns_ip_2'])).
@@ -335,7 +346,7 @@ class paloNetwork
         exec($sComando, $output, $ret);
         if ($ret != 0) {
             $this->errMsg = implode('', $output);
-        	return FALSE;
+                return FALSE;
         }
         return TRUE;
     }
@@ -384,7 +395,7 @@ class paloNetwork
         $octetos_net = array(0, 0, 0, 0);
         if ($mask <= 0 || $mask > 32) return NULL;
         for ($k = 0; $k < 4 && $mask; $k++) {
-        	$octetmask = ($mask >= 8) ? 8 : $mask;
+            $octetmask = ($mask >= 8) ? 8 : $mask;
             $mask -= $octetmask;
             $octetos_net[$k] = (int)$octetos_ip[$k] & ((0xFF << (8 - $octetmask)) & 0xFF);
         }
@@ -408,7 +419,7 @@ class paloNetwork
             $octeto = (int)$octeto & 0xFF;
             while (($octeto & 0x80) != 0) {
                 $octeto = ($octeto << 1) & 0xFF;
-            	$decimal++;
+                $decimal++;
             }
         }
         return $decimal;
