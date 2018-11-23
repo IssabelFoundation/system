@@ -31,6 +31,11 @@
 	<td width="20%">{$dns2.LABEL}: </td>
 	<td width="30%">{$dns2.INPUT}</td>
       </tr>
+      <tr>
+	<td>{$gateway_dev.LABEL}: {if $mode eq 'input'} <span  class="required">*</span>{/if}</td>
+	<td>{$gateway_dev.INPUT}</td>
+        <td colspan=2></td>
+      </tr>
     </table>
   </td>
 </tr>
