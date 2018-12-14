@@ -106,6 +106,8 @@ rmdir setup/usr/sbin
 # ** The following selects oslec as default echo canceller ** #
 echo "echo_can oslec" > $RPM_BUILD_ROOT/etc/dahdi/genconf_parameters
 echo "bri_sig_style bri" >> $RPM_BUILD_ROOT/etc/dahdi/genconf_parameters
+echo "context_lines from-pstn" >> $RPM_BUILD_ROOT/etc/dahdi/genconf_parameters
+echo "context_phones default" >> $RPM_BUILD_ROOT/etc/dahdi/genconf_parameters
 
 rmdir setup/usr
 
