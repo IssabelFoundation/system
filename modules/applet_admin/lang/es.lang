@@ -22,7 +22,8 @@
   | Translated by: YOUR_NAME_HERE                                        |
   | Email: youremail@example.org                                         |
   +----------------------------------------------------------------------+
-  $Id: en.lang,v 1.7 2013-07-31 17:32:20 username Exp $ */
+  $Id: en.lang,v 1.7 2013-07-31 17:32:20 username Exp $ 
+*/
 global $arrLangModule;
 $arrLangModule=array(
 	"Activated" => "Activado",
@@ -30,7 +31,7 @@ $arrLangModule=array(
 	"Processes Status" => "Estado de Procesos",
 	"Hard Drives" => "Discos Duros",
 	"Performance Graphic" => "Gráfico de Rendimiento",
-	"News" => "Noticias",
+	"News" => "Anuncios",
 	"Communication Activity" => "Actividad de Comunicación",
 	"Calendar" => "Calendario",
 	"Calls" => "Llamadas",
@@ -41,6 +42,6 @@ $arrLangModule=array(
 	"Check All" => "Seleccionar/Deseleccionar Todo",
 	"Applet" => "Applet",
 	"Dashboard Applet Admin" => "Gestión de Applets",
-        "You must have at least one applet activated" => "Debe tener al menos un applet activado",
+    "You must have at least one applet activated" => "Debe tener al menos un applet activado",
 );
 ?>

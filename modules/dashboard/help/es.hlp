@@ -28,7 +28,7 @@
 <p>Figura 4</p>
 </div>
 <br />
-<p><b>Noticias: </b>Muestra las últimas noticias sobre Issabel desde la página web www.issabel.org</p>
+<p><b>Anuncios: </b>Muestra los últimos anuncios sobre Issabel desde la página web www.issabel.org</p>
 <div align="center" class="hlp_figures"><img src="../modules/{$node_id}/images/help/es_news.png" border="0">
 <p>Figura 5</p>
 </div>
