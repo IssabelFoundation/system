@@ -222,9 +222,9 @@ class paloSantoFTPBackup {
 
     ///////////////////////////////
 
-    function getStatusAutomaticBackupById()
+    function getStatusAutomaticBackupById($id)
     {
-        $query = "SELECT status FROM automatic_backup WHERE id=1";
+        $query = "SELECT status FROM automatic_backup WHERE id=$id";
 
         $result=$this->_DB->getFirstRowQuery($query,true);
 
@@ -235,10 +235,10 @@ class paloSantoFTPBackup {
         return $result;
     }
 
-    function updateStatus($status)
+    function updateStatus($id,$status)
     {
-        $query = 'UPDATE automatic_backup SET status = ? WHERE id = 1';
-        $result = $this->_DB->genQuery($query, array($status));
+        $query = "UPDATE automatic_backup SET status = ? WHERE id = ?";
+        $result = $this->_DB->genQuery($query, array($status,$id));
 
         if($result==FALSE){
             $this->errMsg = $this->_DB->errMsg;
@@ -247,10 +247,10 @@ class paloSantoFTPBackup {
         return true;
     }
 
-    function insertStatus($status)
+    function insertStatus($id,$status)
     {
-        $query = "INSERT INTO automatic_backup(status) VALUES(?);";
-        $result=$this->_DB->genQuery($query, array($status));
+        $query = "INSERT INTO automatic_backup(id,status) VALUES(?,?);";
+        $result=$this->_DB->genQuery($query, array($id,$status));
 
         if($result==FALSE){
             $this->errMsg = $this->_DB->errMsg;
@@ -259,18 +259,32 @@ class paloSantoFTPBackup {
         return true;
     }
     
-    function createCronFile($time)
+    function createCronFile($id,$time)
     {
-        $time = strtolower($time);
-        if (!in_array($time, array('daily', 'monthly', 'weekly'))) $time = 'off';
-        $sComando = '/usr/bin/issabel-helper backupengine --autobackup '.$time;
-        $output = $retval = NULL;
-        exec($sComando, $output, $retval);
-        if ($retval != 0) {
-        	$this->errMsg = _tr('Unabled write file').' - '.implode("\n", $output);
-            return FALSE;
+        if ($id == 1) {  //automatic backup
+            $time = strtolower($time);
+            if (!in_array($time, array('daily', 'monthly', 'weekly'))) $time = 'off';
+            $sComando = '/usr/bin/issabel-helper backupengine --autobackup '.$time;
+            $output = $retval = NULL;
+            exec($sComando, $output, $retval);
+            if ($retval != 0) {
+            	$this->errMsg = _tr('Unabled write file').' - '.implode("\n", $output);
+                return FALSE;
+            }
+            return TRUE;
+        } elseif ($id == 2) { //auto delete backups
+           if ($time == "DISABLED") {
+               $time = 0;
+           }
+           //crear cron para borrado 
+           $sComando =  '/usr/bin/issabel-helper create_rm_crons --backups '.$time;
+           $output = $retval = NULL;
+           exec($sComando, $output, $retval);
+           if ($retval != 0) {
+                $this->errMsg = _tr('Unabled write file').' - '.implode("\n", $output);
+                return FALSE;
+           }
         }
-        return TRUE;
     }
 }
 ?>

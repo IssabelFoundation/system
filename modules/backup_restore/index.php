@@ -96,7 +96,11 @@ function _moduleContent(&$smarty, $module_name)
             break;
 /******************************* PARA BACKUP AUTOMATICO ********************************/
         case "automatic":
-            $content = automatic_backup($smarty, $module_name, $local_templates_dir, $dir_backup,$pDB);
+            $content = automatic_backup($smarty, $module_name, $local_templates_dir, $dir_backup,$pDB,"1");
+            break;
+/******************************* PARA BORRADO AUTOMATICO BACKUP ********************************/
+        case "automatic_del":
+            $content = automatic_backup($smarty, $module_name, $local_templates_dir, $dir_backup,$pDB,"2");
             break;
 /***************************************************************************************/
         case "uploadbk":
@@ -133,18 +137,22 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
     if(!(is_array($_DATA) & count($_DATA)>0)){
         $_DATA['status'] = "DISABLED";
     }
+    $_DATADEL = $pFTPBackup->getStatusAutomaticBackupById(2);
+    if(!(is_array($_DATADEL) & count($_DATADEL)>0)){
+        $_DATADEL['status'] = "DISABLED";
+    }
+
 
     $arrData = null;
     if(is_array($nombre_archivos) && $total>0){
         foreach($nombre_archivos as $key => $nombre_archivo) {
 
             // Control to see if its an old elastix system to migrate, or a new issabel system to restore
-	    ob_flush();
-	    flush();
-	    $versions='';
-	    $manifest='';
-	    $migrate=0;
-	    $migratefpbx=0;
+            $versions    = '';
+            $manifest    = '';
+            $migrate     = 0;
+            $migratefpbx = 0;
+
             $dirarchi = $dir_backup."/".$nombre_archivo;
             if(is_file($dirarchi)) {
                 $versions = `tar Oxvf $dirarchi backup/versions.xml`;
@@ -202,6 +210,7 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
                                     )
                     );
     $time = $_DATA['status'];
+    $deltime = $_DATADEL['status'];
 
     $smarty->assign("FILE_UPLOAD", _tr('File Upload'));
     $smarty->assign("AUTOMATIC", _tr('AUTOMATIC'));
@@ -218,26 +227,44 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
         'MONTHLY'   =>  _tr('MONTHLY'),
         'WEEKLY'    =>  _tr('WEEKLY'),
     );
+    $deleteIntervals = array(
+        'DISABLED'  =>  _tr('DISABLED'),
+        '1'     =>  "1 "._tr('DAY'),
+        '7'   =>  "7 "._tr('DAYS'),
+        '30'    =>  "30 "._tr('DAYS'),
+        '60'    =>  "60 "._tr('DAYS'),
+        '120'    => "120 ". _tr('DAYS'),
+        '365'    => "365 ". _tr('DAYS'),
+    );
 
     $oGrid->addComboAction("time",_tr("AUTOMATIC"),$backupIntervals,$time,'automatic');
+    $oGrid->addComboAction("deltime",_tr("DELETEB"),$deleteIntervals,$deltime,'automatic_del');
     $contenidoModulo = $oGrid->fetchGrid($arrGrid, $arrData);
 
     return $contenidoModulo;
 }
 
-function automatic_backup($smarty, $module_name, $local_templates_dir, $dir_backup, &$pDB)
+function automatic_backup($smarty, $module_name, $local_templates_dir, $dir_backup, &$pDB, $id)
 {
-    $time = getParameter("time");
+    if ($id == 1) {  // auto backup
+       $time = getParameter("time");
+    } elseif ($id == 2) {   //auto del backups
+       $time = getParameter("deltime");
+    }
 
     //if there is data in database
     $pFTPBackup = new paloSantoFTPBackup($pDB);
-    $result = $pFTPBackup->getStatusAutomaticBackupById();
+    $result = $pFTPBackup->getStatusAutomaticBackupById($id);
     if(isset($result) && $result != "")
-        $pFTPBackup->updateStatus($time);
+        $pFTPBackup->updateStatus($id,$time);
     else
-        $pFTPBackup->insertStatus($time);
-    $smarty->assign("mb_message", _tr('SUCCESSFUL'));
-    $pFTPBackup->createCronFile($time);
+        $pFTPBackup->insertStatus($id,$time);
+        if ($id == 2 && $time != "DISABLED") {
+            $smarty->assign("mb_message", _tr('SUCCESSFUL').". "._tr('EVERYDAYBACKUP')." ".$time." "._tr('WILLBEDELETED'));
+        } else { 
+           $smarty->assign("mb_message", _tr('SUCCESSFUL'));
+        }
+    $pFTPBackup->createCronFile($id,$time);
 
     return report_backup_restore($smarty, $module_name, $local_templates_dir, $dir_backup, $pDB);
 }
@@ -276,7 +303,7 @@ function delete_backup($smarty, $module_name, $local_templates_dir, $dir_backup,
 {
 
     function delete_backup_isInvalidFile($file_name) {
-        return !preg_match('/(^issabel)|(^elastix)backup-\d{14}-\w{2}\.tar$i|^[0-9]{8}-[0-9]{6}-.*/', $file_name);
+        return !preg_match('/^(issabel|elastix)backup-\d{14}-\w{2}\.tar|^[0-9]{8}-[0-9]{6}-.*/', $file_name);
     }
 
     function delete_backup_doDelete($filePath) {
@@ -958,6 +985,7 @@ function getAction()
     else if (getParameter("action")=="detail") return "detail";
 /****************************** PARA BACKUP AUTOMATICO ********************************/
     else if (isset($_POST["automatic"])) return "automatic";
+    else if (isset($_POST["automatic_del"])) return "automatic_del";
 /**************************************************************************************/
 /****************************** PARA EL CONTROL AJAX **********************************/
     else if (getParameter("action") == "uploadFTPServer") return "uploadFTPServer";
