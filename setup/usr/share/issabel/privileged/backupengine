@@ -308,6 +308,16 @@ $BACKUP_PLAN = array(
         ),
     ),
     'otros'     =>  array(
+        'callcenter_db'          =>  array(
+            'desc'          =>  'Call Center CE Database',
+            'components'    =>  array(
+                array(
+                    'type'      =>  'mysqldb',
+                    'database'  =>  'call_center',
+                    'backupfile'=>  'callcenter_mysql.tgz',
+                ),
+            ),
+        ),
         'sugar_db'          =>  array(
             'desc'          =>  'SugarCRM Database',
             'components'    =>  array(
