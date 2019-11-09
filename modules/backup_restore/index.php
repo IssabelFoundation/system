@@ -536,6 +536,7 @@ function Array_Options($disabled="")
             "ep_config_files"   =>  array("desc"=>_tr('Configuration Files')),
         ),
         "otros"         =>  array(
+            "callcenter_db"          =>  array("desc"=>_tr('Call Center CE Database')),
             "sugar_db"          =>  array("desc"=>_tr('SugarCRM Database')),
             "vtiger_db"         =>  array("desc"=>_tr('VtigerCRM Database')),
             "a2billing_db"      =>  array("desc"=>_tr('A2billing Database')),
