@@ -261,6 +261,8 @@ function automatic_backup($smarty, $module_name, $local_templates_dir, $dir_back
         $pFTPBackup->insertStatus($id,$time);
         if ($id == 2 && $time != "DISABLED") {
             $smarty->assign("mb_message", _tr('SUCCESSFUL').". "._tr('EVERYDAYBACKUP')." ".$time." "._tr('WILLBEDELETED'));
+        } elseif ( $id == 1) {
+            $smarty->assign("mb_message", _tr('SUCCESSFUL').". "._tr('NOHEAVYCONTENT'));
         } else { 
            $smarty->assign("mb_message", _tr('SUCCESSFUL'));
         }

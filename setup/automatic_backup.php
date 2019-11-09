@@ -28,9 +28,10 @@ load_default_timezone();
 // All of the following assumes this script runs as root
 $sBackupFilename = 'issabelbackup-'.date('YmdHis').'-ab.tar';
 $sBackupDir = '/var/www/backup';
+$BackupComponents = 'as_db,as_config_files,as_sounds,as_mohmp3,as_dahdi,email,fax,endpoint,otros,otros_new';
 $retval = NULL;
 system('/usr/share/issabel/privileged/backupengine --backup --backupfile '.
-    $sBackupFilename.' --tmpdir '.$sBackupDir, $retval);
+    $sBackupFilename.' --tmpdir '.$sBackupDir.' --components='.$BackupComponents, $retval);
 exit($retval);
 
 function load_default_timezone()
