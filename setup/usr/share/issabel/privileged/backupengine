@@ -318,6 +318,27 @@ $BACKUP_PLAN = array(
                 ),
             ),
         ),
+        'asternic_db'          =>  array(
+            'desc'          =>  'Asternic Call Center Stats Database',
+            'components'    =>  array(
+                array(
+                    'type'      =>  'mysqldb',
+                    'database'  =>  'qstats',
+                    'backupfile'=>  'qstats_mysql.tgz',
+                ),
+            ),
+        ),
+        'FOP2_settings_db'      =>  array(
+            'desc'          =>  'FOP2 User Settings',
+            'components'    =>  array(
+                array(
+                    'type'      =>  'sqlitedb',
+                    'path'          =>  '/usr/local/fop2/fop2settings.db',
+                    'restoreperm'   =>  0644,
+                    'restoreown'    =>  array('asterisk', 'asterisk'),
+                ),
+            ),
+        ),
         'sugar_db'          =>  array(
             'desc'          =>  'SugarCRM Database',
             'components'    =>  array(
