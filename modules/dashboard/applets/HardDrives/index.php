@@ -133,31 +133,37 @@ class Applet_HardDrives
                 'dir'   =>  '/var/log',
                 'tag'   =>  _tr('Logs'),
                 'use'   =>  'N/A',
+                'avail' =>  'N/A',
             ),
             'backups'  =>  array(
                 'dir'   =>  '/var/www/backup',
                 'tag'   =>  _tr('Local Backups'),
                 'use'   =>  'N/A',
+                'avail' =>  'N/A',
             ),
             'emails'  =>  array(
                 'dir'   =>  '/var/spool/imap',
                 'tag'   =>  _tr('Emails'),
                 'use'   =>  'N/A',
+                'avail' =>  'N/A',
             ),
             'config'  =>  array(
                 'dir'   =>  '/etc',
                 'tag'   =>  _tr('Configuration'),
                 'use'   =>  'N/A',
+                'avail' =>  'N/A',
             ),
             'voicemails'  =>  array(
                 'dir'   =>  '/var/spool/asterisk/voicemail',
                 'tag'   =>  _tr('Voicemails'),
                 'use'   =>  'N/A',
+                'avail' =>  'N/A',
             ),
             'recordings'  =>  array(
                 'dir'   =>  '/var/spool/asterisk/monitor',
                 'tag'   =>  _tr('Recordings'),
                 'use'   =>  'N/A',
+                'avail' =>  'N/A',
             ),
         );
         
@@ -165,7 +171,8 @@ class Applet_HardDrives
         while ($s = fgets($pipe_dirspace)) {
             $s = trim($s); $l = explode(' ', $s);
             if (count($l) > 1 && isset($listaReporteDir[$l[0]]))
-                $listaReporteDir[$l[0]]['use'] = $l[1];
+                $listaReporteDir[$l[0]]['use'] = $l[1]." "._tr('Used');
+                $listaReporteDir[$l[0]]['avail'] = $l[2]." "._tr('Available');
         }
         pclose($pipe_dirspace);
         
