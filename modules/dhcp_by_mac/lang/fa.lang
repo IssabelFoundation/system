@@ -1,10 +1,11 @@
 <?php
-  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 1.6-12                                               |
+  | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2019 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -18,17 +19,22 @@
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  | Translate by: Haamed Kouhfallah                                      |
+  | Email: k.haamed@gmail.com                                            |
   +----------------------------------------------------------------------+
-  $Id: en.lang,v 1.1 2009-11-12 04:11:04 Oscar Navarrete onavarrete.palosanto.com Exp $ */
+  $Id: fa.lang,v 1.1 2019-11-30 04:08:50 Haamed Kouhfallah k.haamed@gmail.com Exp $
+*/
 global $arrLangModule;
 $arrLangModule=array(
-"Assign IP Address to Host" => "اختصاص دادن آدرس آي پي به هاست",
+"Assign IP Address to Host" => "اختصاص آي پي آدرس به كلاينت",
 "Host Name" => "نام هاست",
-"IP Address" => "آدرس آي پي ",
-"MAC Address" => "آدرس مک",
+"IP Address" => "آي پي آدرس",
+"MAC Address" => "مك آدرس",
+
 "Hostname" => "نام هاست",
-"Assign IP Address" => "اختصاص دادن آدرس آي پي",
-"View edit" => "نمايش ويرايش",
+"Assign IP Address" => "اختصاص آي پي آدرس",
+"View edit" => "مشاهده ويرايش",
+
 "Are you sure you wish to delete the DHCP configuration." => "را حذف کنيد؟ DHCP آيا مطمئنيد که مي خواهيد تنظيمات",
 "The name of hostname is duplicated please changes to another name" => "نام هاست تکراري است لطفا به نام ديگري تغيير دهيد",
 "The following fields are duplicates or already exists" => ".فيلد هاي زير تکراري هستند يا از قبل وجود دارند",

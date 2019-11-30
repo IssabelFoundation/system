@@ -2,9 +2,10 @@
 /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 1.0                                                  |
+  | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2019 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -18,34 +19,32 @@
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
-  |                                                                     |
   | Translate by: Haamed Kouhfallah                                      |
-  | Email: haamed@cytco.net                                              |                                                                    |
+  | Email: k.haamed@gmail.com                                            |
   +----------------------------------------------------------------------+
-   $Id: fa.lang,v 1.2 2008/04/21 10:11:44 bmacias@palosanto.com Exp $ */
+  $Id: fa.lang,v 1.1 2019-11-30 04:08:50 Haamed Kouhfallah k.haamed@gmail.com Exp $
+*/
 global $arrLangModule;
 $arrLangModule=array(
 "Create New User" => "ایجاد کاربر جدید",
 "Name" => "نام",
-"Login" => "ورود",
+"Login" => "شناسه كاربري",
 "Password" => "رمز عبور",
 "Retype password" => "تایپ دوباره رمز",
 "New User" => "کاربر جدید",
 "Edit User" => "ویرایش  کاربر",
 "The passwords are empty or don't match" => "رمز عبور وارد شده یا خالی است و یا با تاییدیه یکسان نیست",
-"The admin user cannot be deleted because is the default Issabel administrator. You can delete any other user." => "این کاربر قابل حذف نیست زیرا کاربر پیش فرض سیستم می باشد، هر کاربر دیگری قابل حذف می باشد",
+"The admin user cannot be deleted because is the default Elastix administrator. You can delete any other user." => "این کاربر قابل حذف نیست زیرا کاربر پیش فرض سیستم می باشد، هر کاربر دیگری قابل حذف می باشد",
 "User List" => "لیست کاربران",
 "Real Name" => "نام حقیقی",
 "Extension" => "داخلی",
-"(Ex. John Doe)" => "(Ex. John Doe)",
+"(Ex. John Doe)" => "(مثال: حامد كوه فلاح)",
 "Webmail User" => "کاربر ایمیل تحت وب",
 "Webmail Domain" => "دامنه ایمیل تحت وب",
 "Webmail Password" => "رمز ایمیل ",
 "Retype Webmail password" => "رمز ایمیل تحت وب را دوباره وارد کنید",
 "Mail Profile" => "پروفایل ایمیل",
-"No extension associated" => "هيچ داخلي اضافه نشده",
-"userNoAllowed" => "User is not allowed to do this action",
-"You are not authorized to access to information of that user" => "You are not authorized to access to information of that user",
-"no extension" => "no extension"
+"No extension associated" => "داخلي انتخاب نشده",
+"userNoAllowed" => "كاربر اجازه اين كار را ندارد",
 );
 ?>

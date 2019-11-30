@@ -1,10 +1,11 @@
 <?php
-  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 1.4-1                                               |
+  | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2019 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -18,8 +19,11 @@
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  | Translate by: Haamed Kouhfallah                                      |
+  | Email: k.haamed@gmail.com                                            |
   +----------------------------------------------------------------------+
-  $Id: en.lang,v 1.1 2008-08-25 05:08:01 jvega jvega@palosanto.com Exp $ */
+  $Id: fa.lang,v 1.1 2019-11-30 04:08:50 Haamed Kouhfallah k.haamed@gmail.com Exp $
+*/
 global $arrLangModule;
 $arrLangModule=array(
 "Currency" => "پول رايج",
@@ -31,7 +35,7 @@ $arrLangModule=array(
 "Dong vietnamita" => "دنگ ويتنام",
 "Dólar del Caribe Oriental" => "Dólar del Caribe Oriental",
 "Corona danesa, corona sueca" => "Corona danesa, corona sueca",
-"Lira" => "Lira",
+"Lira" => "لير",
 "Lempira hondureño" => "Lempira hondureño",
 "Quetzal guatemalteco" => "Quetzal guatemalteco",
 "Euro" => "يورو",
@@ -47,11 +51,11 @@ $arrLangModule=array(
 "Yuan chino" => "يوان چين",
 "Rupia bengalí" => "روپيه بنگال",
 "Dólar de Singapur" => "دلار سنگاپور",
-"Error" => "Error",
-"Successfully saved" => "Successfully saved",
+"Error" => "خطا",
+"Successfully saved" => "با موفقيت ذخيره شد",
 "Colón costarricense" => "Costa Rican Colón",
-"GB Sterling" => "Great British Pound",
+"GB Sterling" => "پوند انگليس",
 "Rublo ruso" => "Russian Ruble",
-"Swiss Franc" => "Swiss Franc",
+"Rials" => "ريال",
 );
 ?>

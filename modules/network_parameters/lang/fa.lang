@@ -2,9 +2,10 @@
 /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 1.0                                                  |
+  | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2019 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -18,11 +19,11 @@
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
-  |                                                                      |
   | Translate by: Haamed Kouhfallah                                      |
-  | Email: haamed@cytco.net                                              |                                                                    |
+  | Email: k.haamed@gmail.com                                            |
   +----------------------------------------------------------------------+
-   $Id: fa.lang,v 1.2 2008/04/21 10:11:44 bmacias@palosanto.com Exp $ */
+  $Id: fa.lang,v 1.1 2019-11-30 04:08:50 Haamed Kouhfallah k.haamed@gmail.com Exp $
+*/
 global $arrLangModule;
 $arrLangModule=array(
 "Network Parameters" => "پارامتر های شبکه",
@@ -33,16 +34,16 @@ $arrLangModule=array(
 "MAC Address" => "آدرس مک کارت شبکه",
 "HW Info" => "اطلاعات سخت افزاری",
 "Status" => "وضعیت",
-"Ethernet Interfaces List" => "لیست رابط های شبکه",
-"Connected" => "متصل",
-"Not Connected" => "منفصل",
-"Edit Interface" => "ویرایش رابط شبکه",
+"Ethernet Interfaces List" => "ليست رابط‌هاي شبكه",
+"Connected" => "وصل",
+"Not Connected" => "قطع",
+"Edit Interface" => "ويرايش شبكه",
 "Validation Error" => "اعتبار تایید نشد",
 "The following fields contain errors" => "فیلدهای زیر دارای خطا هستند",
 "Host" => "میزبان",
-"Primary DNS" => "اولين DNS",
-"Secondary DNS" => "دومين DNS",
-"Default Gateway" => "دروازه پیش فرض",
+"Primary DNS" => "DNS اولين",
+"Secondary DNS" => "DNS دومين ",
+"Default Gateway" => "گيت وي پيش فرض",
 "IP Address" => "آی پی آدرس",
 "Network Mask" => "ماسک شبکه",
 "Interface Type" => "نوع رابط",

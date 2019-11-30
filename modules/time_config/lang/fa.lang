@@ -2,9 +2,10 @@
 /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 1.0                                                  |
+  | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2019 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -18,12 +19,11 @@
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
-  |                                                                      |
   | Translate by: Haamed Kouhfallah                                      |
-  | Email: haamed@cytco.net                                              |
-  |                                                                      |
+  | Email: k.haamed@gmail.com                                            |
   +----------------------------------------------------------------------+
-  $Id: fa.lang,v 1.2 2008/04/21 10:11:44 bmacias@palosanto.com Exp $ */
+  $Id: fa.lang,v 1.1 2019-11-30 04:08:50 Haamed Kouhfallah k.haamed@gmail.com Exp $
+*/
 global $arrLangModule;
 $arrLangModule=array(
 "Date and Time Configuration" => "تاریخ/زمان",
@@ -32,8 +32,8 @@ $arrLangModule=array(
 "New Time" => "تایم جدید",
 "New Timezone" => "منطقه جدید زمانی",
 "The change of date and time can concern important  system processes." => "تغییر تاریخ و زمان می تواند موجب مشکل در پردازش های سیستمی شود",
-"System time changed correctly" => "System time changed correctly",
-"You can not change the system time" => "You can not change the system time",
-"Can not find file" => "Can not find file",
+"System time changed correctly" => "زمان سيستم به درستي تغيير كرد",
+"You can not change the system time" => "شما نمي‌توانيد زمان سيستم را تغيير دهيد",
+"Can not find file" => "فايل پيدا نشد",
 );
 ?>
