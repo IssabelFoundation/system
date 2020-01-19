@@ -67,7 +67,7 @@ function validateOptions($opt)
             error_exit('Option '.$option[0].": Timezone not found\n");
         break;
     case '--datetime':
-        if (!preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $option[1]))
+        if (!preg_match('/^\d{4}-\d{2}-\d{2}/', $option[1]))
             error_exit('Option '.$option[0].": Invalid datetime\n");
         break;
     }
