@@ -873,6 +873,11 @@ function backupComponent_file($sLevelTag, &$backupComponent, $sWorkingDir)
         $backuppath = $backupComponent['path'];
     }
 
+    if(!is_file($backuppath)) {
+        fprintf(STDERR, "WARN: $sLevelTag: file ".$backuppath." not found\n");
+        return TRUE;
+    }
+
     $sDestination = $sWorkingDir.'/'.basename($backuppath);
     if (!copy($backuppath, $sDestination)) {
         fwrite(STDERR, "ERR: $sLevelTag: failed to copy ".$backuppath." to destination $sWorkingDir\n");
