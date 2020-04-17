@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Fri 17 Apr 2020 10:50:02 AM EDT, nicolas@issabel.com
+  $Id: index.php, Fri 17 Apr 2020 12:55:16 PM EDT, nicolas@issabel.com
 */
 require_once "libs/paloSantoGraphImage.lib.php";
 
@@ -48,17 +48,17 @@ class Applet_SystemResources
         } else {
             $lastdata = str_replace(array('[',']'),'',$lastdata);
             $partes = preg_split("/,/",$lastdata);
-
             $ll = get_language();
             if($ll=="br" || $ll=="pt-br") {
                 $lllocale = "pt_BR";
+            } else if($ll=="fa") {
+                $lllocale = "fa_IR";
             } else {
                 $lllocale = $ll."_".strtoupper($ll);
             }
             setlocale(LC_TIME, $lllocale);
-
-            $fecha = strftime("%x %T",strtotime($partes[0]));
-            $lastlogin   = sprintf(_tr('Last login on %s from %s'),$fecha,$partes[1]);
+            $fecha = strftime("%c",strtotime($partes[0]));
+            $lastlogin   = sprintf(_tr('Last login: %s from %s'),$fecha,$partes[1]);
         }
 
         $status = $this->_recolectarCargaSistema($module_name);

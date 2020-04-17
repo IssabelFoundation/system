@@ -30,7 +30,7 @@ $arrLangModule = array(
     "hour(s)" => "horas(s)",
     "day(s)" => "días(s)",
     "Uptime" => "Tiempo de Actividad",
-    "Last login on %s from %s" => "Ultimo acceso el %s desde %s",
+    "Last login: %s from %s" => "Ultimo acceso: %s desde %s",
     "No last login info" => "Sin información de último acceso"
 );
 ?>
