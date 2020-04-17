@@ -2,9 +2,10 @@
   /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 1.0                                               |
+  | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2020 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -29,5 +30,8 @@ $arrLangModule = array(
     "minute(s)" => "minuto(s)",
     "hour(s)" => "hora(s)",
     "day(s)" => "dia(s)",
+    "Last login on %s from %s" => "Ultimo login em %s de %s",
+    "No last login info" => "Nenhuma última informação de acesso"
+
 );
 ?>

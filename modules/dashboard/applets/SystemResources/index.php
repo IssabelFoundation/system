@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php,v 1.1 2007/01/09 23:49:36 alex Exp $
+  $Id: index.php, Fri 17 Apr 2020 10:50:02 AM EDT, nicolas@issabel.com
 */
 require_once "libs/paloSantoGraphImage.lib.php";
 
@@ -41,6 +41,25 @@ class Applet_SystemResources
             'LABEL_CPUSPEED'    =>  _tr('CPU Speed'),
             'LABEL_MEMORYUSE'   =>  _tr('Memory usage'),
         ));
+
+        $lastdata = `grep -h "Web Interface login successful" $(ls -rt /var/log/issabel/audit.log*) | tail -n 2 | head -n 1 | awk '{print $1" "$2" "$3","$15}'`;
+        if(trim($lastdata)=='') {
+            $lastlogin = _tr('No last login info');
+        } else {
+            $lastdata = str_replace(array('[',']'),'',$lastdata);
+            $partes = preg_split("/,/",$lastdata);
+
+            $ll = get_language();
+            if($ll=="br" || $ll=="pt-br") {
+                $lllocale = "pt_BR";
+            } else {
+                $lllocale = $ll."_".strtoupper($ll);
+            }
+            setlocale(LC_TIME, $lllocale);
+
+            $fecha = strftime("%x %T",strtotime($partes[0]));
+            $lastlogin   = sprintf(_tr('Last login on %s from %s'),$fecha,$partes[1]);
+        }
 
         $status = $this->_recolectarCargaSistema($module_name);
 
@@ -72,6 +91,7 @@ class Applet_SystemResources
             'speed'         =>  $speed,
             'memtotal'      =>  $inf2,
             'swaptotal'     =>  $inf3,
+            'lastlogin'     =>  $lastlogin,
         ));
         $smarty->assign($this->_formatGauges($status['cpugauge'], $status['memgauge'], $status['swapgauge']));
         $local_templates_dir = dirname($_SERVER['SCRIPT_FILENAME'])."/modules/$module_name/applets/SystemResources/tpl";

@@ -2,9 +2,10 @@
 /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 0.5                                                  |
+  | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2020 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: es.lang,v 1.7 2007/09/05 00:36:42 alex Exp $ */
+  $Id: es.lang,v 1.7 2020/04/17 00:36:42 nicolas@issabel.com Exp $ */
 global $arrLangModule;
 $arrLangModule = array(
     "CPU Info" => "CPU",
@@ -29,5 +30,7 @@ $arrLangModule = array(
     "hour(s)" => "horas(s)",
     "day(s)" => "días(s)",
     "Uptime" => "Tiempo de Actividad",
+    "Last login on %s from %s" => "Ultimo acceso el %s desde %s",
+    "No last login info" => "Sin información de último acceso"
 );
 ?>

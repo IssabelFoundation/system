@@ -1,6 +1,9 @@
 <link rel="stylesheet" media="screen" type="text/css" href="modules/{$module_name}/applets/SystemResources/tpl/css/styles.css" />
 <script type='text/javascript' src='modules/{$module_name}/applets/SystemResources/js/javascript.js'></script>
 <div style='height:165px; position:relative; text-align:center;'>
+    <div style='text-align:left; position: relative; border-bottom:1px solid #222; margin-top:-5px; margin-bottom:5px;' id='lastlogin'>
+        {$lastlogin}
+    </div>
     <div style='width:152px; float:left; position: relative;' id='cpugauge'>
         <div id="dashboard-applet-cpugauge" style="width:140px; height:140px"></div>
         <input type="hidden" name="cpugauge_value" id="cpugauge_value" value="{$cpugauge.fraction}" />
