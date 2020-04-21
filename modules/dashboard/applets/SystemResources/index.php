@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Fri 17 Apr 2020 12:55:16 PM EDT, nicolas@issabel.com
+  $Id: index.php, Mon 20 Apr 2020 08:13:43 PM EDT, nicolas@issabel.com
 */
 require_once "libs/paloSantoGraphImage.lib.php";
 
@@ -136,7 +136,7 @@ class Applet_SystemResources
         );
 
         $meminfo = $this->getMemInfo();
-        $fraction_mem_used = ($meminfo['MemTotal'] - $meminfo['MemFree'] - $meminfo['Cached'] - $meminfo['MemBuffers']) / $meminfo['MemTotal'];
+        $fraction_mem_used = ($meminfo['MemTotal'] - $meminfo['MemFree'] - $meminfo['Cached'] - $meminfo['SReclaimable'] - $meminfo['Buffers']) / $meminfo['MemTotal'];
         $fraction_swap_used = ($meminfo['SwapTotal'] - $meminfo['SwapFree']) / $meminfo['SwapTotal'];
 
         return array(
@@ -177,10 +177,11 @@ class Applet_SystemResources
         $arrInfo = array(
             'MemTotal'      =>  0,
             'MemFree'       =>  0,
-            'MemBuffers'    =>  0,
+            'Buffers'       =>  0,
             'SwapTotal'     =>  0,
             'SwapFree'      =>  0,
             'Cached'        =>  0,
+            'SReclaimable'  =>  0,
         );
         foreach (file('/proc/meminfo') as $linea) {
             $regs = NULL;
