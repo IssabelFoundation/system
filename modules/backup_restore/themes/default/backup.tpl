@@ -89,7 +89,7 @@ function popup_dif(content_popup)
                                 <tbody>
                                     {foreach key=key item=item from=$backup_endpoint}
                                     <tr>
-                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_endpoint');" {$item.check}>{$item.desc}&nbsp;{$item.msg}</td>
+                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_endpoint');" {$item.check}><span {if !empty($item.disable)}style="text-decoration: line-through"{/if}>{$item.desc}&nbsp;{$item.msg}</span></td>
                                     </tr>
                                     {/foreach}
                                 </tbody>
@@ -109,7 +109,7 @@ function popup_dif(content_popup)
                                 <tbody>
                                     {foreach key=key item=item from=$backup_fax}
                                     <tr>
-                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_fax');" {$item.check}>{$item.desc}&nbsp;{$item.msg}</td>
+                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_fax');" {$item.check}><span {if !empty($item.disable)}style="text-decoration: line-through"{/if}>{$item.desc}&nbsp;{$item.msg}<span></td>
                                     </tr>
                                     {/foreach}
                                 </tbody>
@@ -129,7 +129,7 @@ function popup_dif(content_popup)
                                 <tbody>
                                     {foreach key=key item=item from=$backup_email}
                                     <tr>
-                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_email');" {$item.check}>{$item.desc}&nbsp;{$item.msg}</td>
+                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_email');" {$item.check}><span {if !empty($item.disable)}style="text-decoration: line-through"{/if}>{$item.desc}&nbsp;{$item.msg}</span></td>
                                     </tr>
                                     {/foreach}
                                 </tbody>
@@ -151,7 +151,7 @@ function popup_dif(content_popup)
                                 <tbody>
                                     {foreach key=key item=item from=$backup_asterisk}
                                     <tr>
-                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_asterisk');" {$item.check}>{$item.desc}&nbsp;{$item.msg}</td>
+                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_asterisk');" {$item.check}><span {if !empty($item.disable)}style="text-decoration: line-through"{/if}>{$item.desc}&nbsp;{$item.msg}</span></td>
                                     </tr>
                                     {/foreach}
                                 </tbody>
@@ -171,7 +171,7 @@ function popup_dif(content_popup)
                                 <tbody>
                                     {foreach key=key item=item from=$backup_otros}
                                     <tr>
-                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_others');" {$item.check}>{$item.desc}&nbsp;{$item.msg}</td>
+                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_others');" {$item.check}><span {if !empty($item.disable)}style="text-decoration: line-through"{/if}>{$item.desc}&nbsp;{$item.msg}</span></td>
                                     </tr>
                                     {/foreach}
 									<tr><td height="20px">&nbsp;</td></tr>
@@ -192,7 +192,7 @@ function popup_dif(content_popup)
                                 <tbody>
                                     {foreach key=key item=item from=$backup_otros_new}
                                     <tr>
-                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_others_new');" {$item.check}>{$item.desc}&nbsp;{$item.msg}</td>
+                                        <td height="20px"><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_others_new');" {$item.check}><span {if !empty($item.disable)}style="text-decoration: line-through"{/if}>{$item.desc}&nbsp;{$item.msg}</span></td>
                                     </tr>
                                     {/foreach}
 									<tr><td height="20px">&nbsp;</td></tr>

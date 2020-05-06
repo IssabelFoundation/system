@@ -67,6 +67,9 @@ function _moduleContent(&$smarty, $module_name)
         case 'submit_migrate': //BOTON DE MIGRACION desde Elastix o Systemas antiguos
             $content = migrate_form($smarty, $local_templates_dir, $dir_backup, $module_name);
             break;
+        case 'submit_decrypt': //BOTON DE Decrypt
+            $content = decrypt_form($smarty, $local_templates_dir, $dir_backup, $module_name);
+            break;
         case 'process_backup':
             $content = process_backup($smarty, $local_templates_dir, $module_name);
             break;
@@ -117,7 +120,7 @@ function _moduleContent(&$smarty, $module_name)
 
 function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir_backup, &$pDB)
 {
-    $total_archivos = array_reverse(array_map('basename', glob("$dir_backup/*.t[ag][rz]")));
+    $total_archivos = array_reverse(array_map('basename', glob("$dir_backup/*.{tar,tgz,aes256}",GLOB_BRACE)));
 
     // Paginacion
     $limit = 10;
@@ -152,6 +155,7 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
             $manifest    = '';
             $migrate     = 0;
             $migratefpbx = 0;
+            $decrypt=0;
 
             $dirarchi = $dir_backup."/".$nombre_archivo;
             if(is_file($dirarchi)) {
@@ -163,6 +167,9 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
                     $migratefpbx=1;
                 } else {
                     $migrate=0;
+                }
+                if(preg_match("/\d{4}\d{2}\d{2}\d{2}\d{2}\d{2}.*.aes256/",$nombre_archivo)){
+                    $decrypt=1;
                 }
             }
             
@@ -183,12 +190,21 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
                 $fecha = substr($data,-8,2)."/".substr($data,-10,2)."/".substr($data,0,4)." ".substr($data,-6,2).":".substr($data,-4,2 ).":".substr($data,-2,2);
                 $id    = $arrMatchFile[1]."-".$arrMatchFile[2];
             }
+            // If Cloud Backup
+            if(preg_match("/\d{4}\d{2}\d{2}\d{2}\d{2}\d{2}.*.aes256/",$nombre_archivo)){ //20200505214940.tar.aes256
+                $arrMatchFile = explode(".",$nombre_archivo);
+                $data  = $arrMatchFile[0];
+                $fecha = substr($data,-8,2)."/".substr($data,-10,2)."/".substr($data,0,4)." ".substr($data,-6,2).":".substr($data,-4,2 ).":".substr($data,-2,2);
+                $id    = $arrMatchFile[1]."-".$arrMatchFile[2];
+            }
 
             $arrTmp[2] = $fecha;
             if($migrate==1) {
                 $arrTmp[3] = "<input type='submit' name='submit_migrate[".$nombre_archivo."]' value='"._tr('Migrate from Elastix')."' class='button' />";
             } elseif($migratefpbx==1) {
                 $arrTmp[3] = "<input type='submit' name='submit_migrate[".$nombre_archivo."]' value='"._tr('Migrate from FreePBX')."' class='button' />";
+            } elseif($decrypt==1) {
+                $arrTmp[3] = "<input type='submit' name='submit_decrypt[".$nombre_archivo."]' value='"._tr('Decrypt')."' class='button' />";
             } else {
                 $arrTmp[3] = "<input type='submit' name='submit_restore[".$nombre_archivo."]' value='"._tr('Restore')."' class='button' />";
             }
@@ -305,7 +321,7 @@ function delete_backup($smarty, $module_name, $local_templates_dir, $dir_backup,
 {
 
     function delete_backup_isInvalidFile($file_name) {
-        return !preg_match('/^(issabel|elastix)backup-\d{14}-\w{2}\.tar|^[0-9]{8}-[0-9]{6}-.*/', $file_name);
+        return !preg_match('/^(cloud|issabel|elastix)backup-\d{14}-\w{2}\.tar|^[0-9]{8}-[0-9]{6}-.*/', $file_name);
     }
 
     function delete_backup_doDelete($filePath) {
@@ -385,6 +401,67 @@ function migrate_form($smarty, $local_templates_dir, $path_backup, $module_name)
     return $smarty->fetch("$local_templates_dir/migration.tpl");
 }
 
+function decrypt_form($smarty, $local_templates_dir, $path_backup, $module_name)
+{
+    global $arrConf;
+    $smarty->assign("module", $module_name);
+    if(isset($_POST["submit_decrypt"])) {
+        $arr = array_keys($_POST["submit_decrypt"]);
+        $filename = $arr[0];
+    }
+//    $frame_url=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/modules/backup_restore/decrypt.php?filename=".$filename;
+//    $smarty->assign("frame_url", $frame_url);
+//    return $smarty->fetch("$local_templates_dir/migration.tpl");
+    $backup_dir = $arrConf['dir'];
+    $smarty->assign("BACKUP_FILE", $filename);
+    $smarty->assign("PASSPHRASE", _tr("Passphrase"));
+    $smarty->assign("DECRYPT_HELP", _tr("Decrypt Desc"));
+    $smarty->assign("PROCESS", _tr("Process"));
+    $smarty->assign("BACK", _tr("Cancel"));
+    //$smarty->assign("ERROR_MSG", _tr("Un error por aqui"));
+    //$smarty->assign("mb_message", _tr("Un error por aqui"));
+    if(isset($_POST["dodecrypt"])) {
+        if (isset($_REQUEST['passphrase']) && isset($_REQUEST['filename'])){
+            $filename = escapeshellarg($_REQUEST['filename']);
+            $filename = substr($filename,1,-1);
+            $filename = $backup_dir."/".$filename;
+            $fileout  = basename ($filename , ".tar.aes256" );
+            $fileout  = $backup_dir."/cloudbackup-".$fileout."-de.tar";
+            $passphrase = escapeshellarg($_REQUEST['passphrase']);
+
+            if(is_file($filename)) {
+                $cmd  = "/usr/bin/openssl aes-256-cbc -in $filename -out $fileout -d -pass pass:$passphrase";
+                $cmd .= " && rm -f $filename";
+                $cmd .= " 2>&1 || echo \"err_flag\"";
+
+                $file = popen($cmd,"r");
+                while(!feof($file)) {
+                    $line = fgets($file);
+                    if($line == "err_flag\n") {
+                        $error = true;
+                        break;
+                    }
+                    ob_flush();
+                    flush();
+                }
+                pclose($file);
+                if ($error) {               
+                    exec("rm -f $fileout");
+                    $smarty->assign("mb_message", _tr("Error!"));
+                } else {
+                    return report_backup_restore($smarty, $module_name, $local_templates_dir, $backup_dir, $pDB);
+                }
+            } else {
+                $smarty->assign("mb_message", $filename._tr("is not a file"));
+                //echo "$filename is not a file;
+            }
+        }
+    }
+
+    return $smarty->fetch("$local_templates_dir/decrypt.tpl");
+}
+
+
 function restore_form($smarty, $local_templates_dir, $path_backup, $module_name)
 {
     $arrBackupOptions = Array_Options("disabled='disabled'");
@@ -397,7 +474,7 @@ function restore_form($smarty, $local_templates_dir, $path_backup, $module_name)
     }
     $archivo_post = basename($archivo_post);
 
-    if (!preg_match('/(^issabel)backup-\d{14}-\w{2}\.tar$/', $archivo_post)) {
+    if (!preg_match('/(^issabel|^cloud)backup-\d{14}-\w{2}\.tar$/', $archivo_post)) {
         Header("Location: ?menu=$module_name");
         return NULL;
     }
@@ -580,7 +657,7 @@ function runPackageVersionCompare($path_backup, $smarty, $backup_file)
         $smarty->assign('ERROR_MSG', _tr("Backup file path can't be empty"));
         return NULL;
     }
-    if (!preg_match('/(^issabel)backup-\d{14}-\w{2}\.tar$/', $backup_file)) {
+    if (!preg_match('/(^issabel|cloud)backup-\d{14}-\w{2}\.tar$/', $backup_file)) {
         $smarty->assign('ERROR_MSG', _tr('Invalid backup filename'));
         return NULL;
     }
@@ -977,6 +1054,8 @@ function getAction()
     else if (isset($_POST["uploadbk"])) return "uploadbk";
     else if (isset($_POST["submit_restore"])) return "submit_restore";
     else if (isset($_POST["submit_migrate"])) return "submit_migrate";
+    else if (isset($_POST["submit_decrypt"])) return "submit_decrypt";
+    else if (isset($_POST["dodecrypt"])) return "submit_decrypt";
     else if (isset($_POST["process"]) && $_POST["option_url"]=="backup")  return  "process_backup";
     else if (isset($_POST["process"]) && $_POST["option_url"]=="restore") return  "process_restore";
 
