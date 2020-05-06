@@ -29,26 +29,32 @@ $listaReporteDir = array(
     'logs'  =>  array(
         'dir'   =>  '/var/log',
         'use'   =>  'N/A',
+        'avail' =>  'N/A',
     ),
     'backups'  =>  array(
         'dir'   =>  '/var/www/backup',
         'use'   =>  'N/A',
+        'avail' =>  'N/A',
     ),
     'emails'  =>  array(
         'dir'   =>  '/var/spool/imap',
         'use'   =>  'N/A',
+        'avail' =>  'N/A',
     ),
     'config'  =>  array(
         'dir'   =>  '/etc',
         'use'   =>  'N/A',
+        'avail' =>  'N/A',
     ),
     'voicemails'  =>  array(
         'dir'   =>  '/var/spool/asterisk/voicemail',
         'use'   =>  'N/A',
+        'avail' =>  'N/A',
     ),
     'recordings'  =>  array(
         'dir'   =>  '/var/spool/asterisk/monitor',
         'use'   =>  'N/A',
+        'avail' =>  'N/A',
     ),
 );
 foreach (array_keys($listaReporteDir) as $k) {
@@ -58,8 +64,12 @@ foreach (array_keys($listaReporteDir) as $k) {
         if (count($output) > 0 && preg_match('/^\s*(\S+)/', $output[count($output) - 1], $regs)) {
             $listaReporteDir[$k]['use'] = $regs[1];
         }
+        exec("df -h {$listaReporteDir[$k]['dir']} | grep -v Filesystem | awk '{ print $4 }' 2>/dev/null", $output);
+        if (count($output) > 0 && preg_match('/^\s*(\S+)/', $output[count($output) - 1], $regs)) {
+            $listaReporteDir[$k]['avail'] = $regs[1];
+        }
     }
     
-    print "$k ".$listaReporteDir[$k]['use']."\n";
+    print "$k ".$listaReporteDir[$k]['use']." ".$listaReporteDir[$k]['avail']."\n";
 }
 ?>

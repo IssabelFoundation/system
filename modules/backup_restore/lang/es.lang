@@ -22,6 +22,9 @@
   $Id: es.lang,v 1.7 2007/09/05 00:36:42 gcarrillo Exp $ */
 global $arrLangModule;
 $arrLangModule=array(
+"Decrypt" => "Desencriptar",
+"Decrypt Desc" => "Está a punto de desencriptar un archivo de respaldo que a menudo se obtiene del portal my.issabel.com. Una vez hecho, verá una nueva entrada cloudbackup-* en su lista de copias de seguridad.<br>
+La <i>Passphrase</i> debería ser la contraseña de administrador web del sistema Issabel donde se realizó la copia de seguridad.",
 "Are you sure you wish to delete backup (s)?" => "Esta seguro de eliminar el(los) backup(s)?",
 "Database" => "Base de Datos",
 "PDF" => "PDF",
