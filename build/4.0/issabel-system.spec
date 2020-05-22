@@ -2,8 +2,8 @@
 
 Summary: Issabel System Module
 Name:    issabel-%{modname}
-Version: 4.0.0
-Release: 9
+Version: 4.0.1
+Release: 0
 License: GPL
 Group:   Applications/System
 Source0: %{modname}_%{version}-%{release}.tgz
