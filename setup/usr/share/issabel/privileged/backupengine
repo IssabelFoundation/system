@@ -112,6 +112,13 @@ $BACKUP_PLAN = array(
                     'dirname'       =>  'admin',
                     'backupfile'    =>  'var.www.html.admin.tgz'
                 ),
+                array(
+                    'type'          =>  'dirkeep',
+                    'parentdir'     =>  '/var/lib/asterisk',
+                    'dirname'       =>  'agi-bin',
+                    'backupfile'    =>  'var.lib.asterisk.agi-bin.tgz'
+                ),
+ 
             ),
             'prerestore'    =>  'prerestore_as_db',
             'postrestore'   =>  'postrestore_as_db',
