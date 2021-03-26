@@ -24,6 +24,11 @@
             <font color='red'>({$sip_Ext_nok} {$LABEL_STATUS_NO_OK})</font>
         </div>
         <div class='typeActivity'></div>
+        <div class='detailText'>{$LABEL_PJSIP_EXTENSIONS} <b>({$total_pjsip_Ext}) </b>:
+            <font color='green'>({$pjsip_Ext_ok} {$LABEL_STATUS_OK})</font>
+            <font color='red'>({$pjsip_Ext_nok} {$LABEL_STATUS_NO_OK})</font>
+        </div>
+        <div class='typeActivity'></div>
         <div class='detailText'>{$LABEL_IAX_EXTENSIONS} <b>({$total_iax_Ext}) </b>:
             <font color='green'>({$iax_Ext_ok} {$LABEL_STATUS_OK})</font>
             <font color='red'>({$iax_Ext_nok} {$LABEL_STATUS_NO_OK})</font>

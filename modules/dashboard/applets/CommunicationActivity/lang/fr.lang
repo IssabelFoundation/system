@@ -32,6 +32,7 @@ $arrLangModule = array(
     "Waiting" => "En attente",
     "Network_traffic" => "Trafic réseau",
     "sip_extensions" => "Extensions SIP",
+    "pjsip_extensions" => "Extensions PJSIP",
     "iax_extensions" => "Extensions IAX",
     "Error when connecting to Asterisk Manager" => "Erreur lors de la connexion au manager Asterisk",
     "channels" => "canaux",

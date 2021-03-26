@@ -36,6 +36,7 @@ $arrLangModule = array(
     "Bytes" => "Bytes",
     "Extensions" => "Ramais",
     "sip_extensions" => "SIP",
+    "pjsip_extensions" => "PJSIP",
     "iax_extensions" => "IAX",
     "Unknown" => "Desconhecido",
     "Error when connecting to Asterisk Manager" => "Erro ao conectar ao Asterisk Manager",

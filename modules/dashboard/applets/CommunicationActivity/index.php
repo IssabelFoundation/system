@@ -54,6 +54,7 @@ class Applet_CommunicationActivity
             'LABEL_BYTES'           =>  _tr('Bytes'),
             'LABEL_EXTENSIONS'      =>  _tr('Extensions'),
             'LABEL_SIP_EXTENSIONS'  =>  _tr('sip_extensions'),
+            'LABEL_PJSIP_EXTENSIONS'=>  _tr('pjsip_extensions'),
             'LABEL_IAX_EXTENSIONS'  =>  _tr('iax_extensions'),
             'LABEL_UNKNOWN'         =>  _tr('Unknown'),
         ));
@@ -96,8 +97,11 @@ class Applet_CommunicationActivity
                         (($channels['total_channels'] == 1) ? _tr('channel') : _tr('channels')),
                     'totalQueues'       => array_sum($queues),
                     'total_sip_Ext'     => array_sum($connections['sip']['ext']),
+                    'total_pjsip_Ext'   => array_sum($connections['pjsip']['ext']),
                     'sip_Ext_ok'        => $connections['sip']['ext']['ok'],
                     'sip_Ext_nok'       => $connections['sip']['ext']['no_ok'],
+                    'pjsip_Ext_ok'      => $connections['pjsip']['ext']['ok'],
+                    'pjsip_Ext_nok'     => $connections['pjsip']['ext']['no_ok'],
                     'total_iax_Ext'     => array_sum($connections['iax']['ext']),
                     'iax_Ext_ok'        => $connections['iax']['ext']['ok'],
                     'iax_Ext_nok'       => $connections['iax']['ext']['no_ok'],
@@ -173,6 +177,9 @@ class Applet_CommunicationActivity
         $arrActivity["iax"]["trunk"]["unknown"]=0;
         $arrActivity["iax"]["trunk_registry"]["ok"]=0;
         $arrActivity["iax"]["trunk_registry"]["no_ok"]=0;
+        // PJSIPs
+        $arrActivity["pjsip"]["ext"]["ok"]=0;
+        $arrActivity["pjsip"]["ext"]["no_ok"]=0;
 
         //1.- get all trunk in asterisk
         $arrTrunks = $this->_getAll_Trunk();
@@ -237,6 +244,30 @@ class Applet_CommunicationActivity
                 }
             }
         }
+        // 4.- get pjsip
+        $r = $astman->Command('pjsip show endpoints');
+        if (!isset($r['Response']) || $r['Response'] == 'Error') {
+            $this->errMsg = _tr('(internal) failed to run ami:pjsip show endpoints').print_r($r, TRUE);
+            return NULL;
+        }
+        $start=0;
+        foreach (explode("\n", $r['data']) as $line) {
+            if($start==1) {
+                if(preg_match("/^Endpoint/",$line)) {
+                    if(preg_match("/dummy_endpoint/",$line)) { continue; }
+                    $partes = preg_split("/\s+/",$line);
+                    if($partes[2]=='Unavailable') {
+                        $arrActivity["pjsip"]["ext"]["no_ok"]++;
+                    } else {
+                        $arrActivity["pjsip"]["ext"]["ok"]++;
+                    }
+                }
+            }
+            if(preg_match("/^==========/",$line)) {
+                $start=1;
+            }
+        }
+ 
         return $arrActivity;
     }
 

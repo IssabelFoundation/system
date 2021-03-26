@@ -34,6 +34,7 @@ $arrLangModule = array(
     "Network_traffic" => "ترافيک شبکه",
     "Bytes" => "بايت ها",
     "Extensions" => "داخلي ها",
+    "pjsip_extensions" => "PJSIP داخلي هاي",
     "sip_extensions" => "SIP داخلي هاي",
     "iax_extensions" => "IAX داخلي هاي",
     "Error when connecting to Asterisk Manager" => "خطا در هنگام ارتباط با مدير استريسک",

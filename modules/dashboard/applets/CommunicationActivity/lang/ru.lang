@@ -34,6 +34,7 @@ $arrLangModule = array(
     "Network_traffic" => "Network Traffic",
     "Extensions" => "Extensions",
     "sip_extensions" => "SIP Extensions",
+    "pjsip_extensions" => "PJSIP Extensions",
     "iax_extensions" => "IAX Extensions",
     "Unknown" => "Неизвестно",
     "Error when connecting to Asterisk Manager" => "Ошибка соединения с Asterisk Manager",
