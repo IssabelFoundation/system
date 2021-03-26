@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php,v 1.1 2007/01/09 23:49:36 alex Exp $
+  $Id: index.php, Fri 26 Mar 2021 08:39:15 AM EDT, nicolas@issabel.com
 */
 global $arrConf;
 require_once "{$arrConf['basePath']}/libs/paloSantoTrunk.class.php";
@@ -109,9 +109,9 @@ class Applet_CommunicationActivity
                     'tx_bytes'          => $trafico['tx_bytes'],
                 ));
                 $totalTrunks = array(
-                    'total_trunks_ok'   => $connections['sip']['trunk']['ok'] + $connections['iax']['trunk']['ok'],
-                    'total_trunks_nok'  => $connections['sip']['trunk']['no_ok'] + $connections['iax']['trunk']['no_ok'],
-                    'total_trunks_unk'  => $connections['sip']['trunk']['unknown'] + $connections['iax']['trunk']['unknown'],
+                    'total_trunks_ok'   => $connections['sip']['trunk']['ok'] + $connections['iax']['trunk']['ok'] + $connections['pjsip']['trunk']['ok'],
+                    'total_trunks_nok'  => $connections['sip']['trunk']['no_ok'] + $connections['iax']['trunk']['no_ok'] + $connections['pjsip']['trunk']['no_ok'],
+                    'total_trunks_unk'  => $connections['sip']['trunk']['unknown'] + $connections['iax']['trunk']['unknown'] + $connections['pjsip']['trunk']['unknown'],
                 );
                 $totalTrunks['total_trunks'] = array_sum($totalTrunks);
                 $smarty->assign($totalTrunks);
@@ -180,9 +180,15 @@ class Applet_CommunicationActivity
         // PJSIPs
         $arrActivity["pjsip"]["ext"]["ok"]=0;
         $arrActivity["pjsip"]["ext"]["no_ok"]=0;
-
+        $arrActivity["pjsip"]["trunk"]["ok"]=0;
+        $arrActivity["pjsip"]["trunk"]["no_ok"]=0;
+        $arrActivity["pjsip"]["trunk"]["unknown"]=0;
+        $arrActivity["pjsip"]["trunk_registry"]["ok"]=0;
+        $arrActivity["pjsip"]["trunk_registry"]["no_ok"]=0;
+ 
         //1.- get all trunk in asterisk
         $arrTrunks = $this->_getAll_Trunk();
+        file_put_contents("/tmp/trunks.log",print_r($arrTrunks,1),FILE_APPEND);
 
         //2.- get sip peers.
         $r = $astman->Command('sip show peers');
@@ -244,7 +250,27 @@ class Applet_CommunicationActivity
                 }
             }
         }
+
         // 4.- get pjsip
+        $pjsip_trunk_registration_status = array();
+        $r = $astman->Command('pjsip show registrations');
+        if (!isset($r['Response']) || $r['Response'] == 'Error') {
+            $this->errMsg = _tr('(internal) failed to run ami:pjsip show endpoints').print_r($r, TRUE);
+            return NULL;
+        }
+        $start=0;
+        foreach (explode("\n", $r['data']) as $line) {
+            if($start==1) {
+                if(trim($line)=="") continue;
+                $partes = preg_split("/\s+/",$line);
+                if($partes[0]=='Objects') continue;
+                $pjsip_trunk_registration_status[$partes[1]] = $partes[2];
+            }
+            if(preg_match("/^==========/",$line)) {
+                $start=1;
+            }
+        }
+ 
         $r = $astman->Command('pjsip show endpoints');
         if (!isset($r['Response']) || $r['Response'] == 'Error') {
             $this->errMsg = _tr('(internal) failed to run ami:pjsip show endpoints').print_r($r, TRUE);
@@ -256,10 +282,22 @@ class Applet_CommunicationActivity
                 if(preg_match("/^Endpoint/",$line)) {
                     if(preg_match("/dummy_endpoint/",$line)) { continue; }
                     $partes = preg_split("/\s+/",$line);
-                    if($partes[2]=='Unavailable') {
-                        $arrActivity["pjsip"]["ext"]["no_ok"]++;
+                    if(in_array($partes[1],$arrTrunks)) {
+                        if(isset($pjsip_trunk_registration_status[$partes[1]])) {
+                            if($pjsip_trunk_registration_status[$partes[1]]=='Registered') {
+                                $arrActivity["pjsip"]["trunk"]["ok"]++;
+                            } else {
+                                $arrActivity["pjsip"]["trunk"]["no_ok"]++;
+                            }
+                        } else {
+                            $arrActivity["pjsip"]["trunk"]["unknown"]++;
+                        }
                     } else {
-                        $arrActivity["pjsip"]["ext"]["ok"]++;
+                        if($partes[2]=='Unavailable') {
+                            $arrActivity["pjsip"]["ext"]["no_ok"]++;
+                        } else {
+                            $arrActivity["pjsip"]["ext"]["ok"]++;
+                        }
                     }
                 }
             }
