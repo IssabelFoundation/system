@@ -1,12 +1,11 @@
 %define modname system
-
+Name: issabel-system
 Summary: Issabel System Module
-Name:    issabel-%{modname}
 Version: 4.0.1
 Release: 0
 License: GPL
 Group:   Applications/System
-Source0: %{modname}_%{version}-%{release}.tgz
+Source0: issabel-%{modname}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
 Requires(pre): issabel-framework >= 4.0.0-1
