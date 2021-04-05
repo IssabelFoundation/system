@@ -66,7 +66,7 @@ Requires: /sbin/shutdown
 Issabel System Module
 
 %prep
-%setup -n %{name}_%{version}-%{release}
+%setup -n %{name}_%{version}
 
 %install
 rm -rf $RPM_BUILD_ROOT
