@@ -22,7 +22,7 @@ jobs:
       id: rpm
       uses: asternic/rpmbuild@master
       with:
-        spec_file: "issabel-geoip.spec"
+        spec_file: "issabel-system.spec"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
