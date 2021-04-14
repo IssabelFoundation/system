@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Mon 20 Apr 2020 08:13:43 PM EDT, nicolas@issabel.com
+  $Id: index.php, Wed 14 Apr 2021 10:45:01 AM EDT, nicolas@issabel.com
 */
 require_once "libs/paloSantoGraphImage.lib.php";
 
@@ -58,6 +58,13 @@ class Applet_SystemResources
             }
             setlocale(LC_TIME, $lllocale);
             $fecha = strftime("%c",strtotime($partes[0]));
+            $current_encoding = mb_detect_encoding($fecha,'UTF-8, ISO-8859-1, ISO-8859-2');
+            if($current_encoding<>'UTF-8') {
+                $fecha = mb_convert_encoding($fecha,'UTF-8',$current_encoding);
+            }
+            $lastlogin   = sprintf(_tr('Last login: %s from %s'),$fecha,$partes[1]);
+
+
             $lastlogin   = sprintf(_tr('Last login: %s from %s'),$fecha,$partes[1]);
         }
 
