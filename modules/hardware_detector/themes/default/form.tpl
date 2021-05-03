@@ -1,5 +1,5 @@
 
-<table width="100%" border="0" cellspacing="0" cellpadding="4" align="center">
+<table width="99%" border="0" cellspacing="0" cellpadding="4" align="center">
     <tr class="letra12">
         {if $mode eq 'input'}
         <td align="left">
@@ -19,7 +19,7 @@
         <td align="right" nowrap><span class="letra12"><span  class="required">*</span> {$REQUIRED_FIELD}</span></td>
     </tr>
 </table>
-<table class="tabForm" style="font-size: 16px;" width="100%" >
+<table class="tabForm" style="font-size: 16px;" width="99%" >
     <input type="hidden" name="idCard" value="{$DESC_ID}" />
 
     <label id="port_desc">{$CARD} # {$ID}: {$TIPO} {$ADICIONAL}</label>

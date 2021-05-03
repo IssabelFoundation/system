@@ -3,7 +3,7 @@
         <td align="left"><input class="button" type="submit" name="save" value="{$SAVE}"></td>
     </tr>
 </table>
-<table class="tabForm" style="font-size: 16px;" width="100%" >
+<table class="tabForm" style="font-size: 16px;" width="99%" >
     <tr class="letra12">
         <td align="left"><b>{$currency.LABEL}: </b></td>
         <td align="left">{$currency.INPUT}</td>

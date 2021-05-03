@@ -1,4 +1,4 @@
-<table width="100%" border="0" cellspacing="0" cellpadding="4" align="center">
+<table width="99%" border="0" cellspacing="0" cellpadding="4" align="center">
     <tr class="letra12">
         {if $mode eq 'input'}
         <td align="left">
@@ -19,7 +19,7 @@
         {if $mode ne 'view'}<td align="right" nowrap><span class="letra12"><span  class="required">*</span> {$REQUIRED_FIELD}</span></td>{/if}
     </tr>
 </table>
-<table class="tabForm" style="font-size: 16px;" width="100%" >
+<table class="tabForm" style="font-size: 16px;" width="99%" >
     <tr class="letra12">
         <td align="left"><b>{$hostname.LABEL}: {if $mode ne 'view'}<span class="required">*</span>{/if}</b></td>
         <td align="left">{$hostname.INPUT}&nbsp;&nbsp;{$HOST_NAME}</td>
