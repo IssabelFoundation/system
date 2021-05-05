@@ -33,7 +33,7 @@ Comentario:  He agregado variables para que se muestre la misma vista de la 160
 </form>
 {if $frame_url neq ""}
 <br><br>
-<table class="tabForm" style="font-size: 16px;" cellspacing="0" cellpadding="0" width="100%">
+<table class="tabForm" style="font-size: 16px;" cellspacing="0" cellpadding="0" width="99%">
         <tr><td align="left" colspan="2"><b>{php}echo _tr('Results');{/php}</b></td></tr>
         <tr><td align="left" colspan="2"><div class='hr-line'></div></td></tr>
     </table>
