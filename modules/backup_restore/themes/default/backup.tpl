@@ -80,7 +80,7 @@ function popup_dif(content_popup)
                             <table id="table_endpoint" width="99%" height="100px" border="0" cellspacing="0" cellpadding="0" class="tabForm" style='display:table;'>
                                 <tbody>
                                     <tr>
-                                        <td><b>{$ENDPOINT}</b></td>
+                                        <td><legend>{$ENDPOINT}</legend></td>
                                     </tr>
                                     <tr>
                                         <td><INPUT type="checkbox" name="backup_endpoint" id="backup_endpoint" onClick="ChequearTabla(this, 'table_endpoint');"> <strong>{$TODO_ENDPOINT}</strong></td>
@@ -98,7 +98,7 @@ function popup_dif(content_popup)
                             <table id="table_fax" width="99%" height="100px" border="0" cellspacing="0" cellpadding="0" class="tabForm" style='display:table;'>
                                 <tbody>
                                     <tr>
-                                        <td><b>{$FAX}</b></td>
+                                        <td><legend>{$FAX}</legend></td>
                                     </tr>
                                     <tr>
                                         <td><INPUT type="checkbox" name="backup_fax" id="backup_fax" onClick="ChequearTabla(this, 'table_fax');"> <strong>{$TODO_FAX}</strong></td>
@@ -116,7 +116,7 @@ function popup_dif(content_popup)
                             <table id="table_email" width="99%" height="100px" border="0" cellspacing="0" cellpadding="0" class="tabForm" style='display:table;'>
                                 <tbody>
                                     <tr>
-                                        <td><b>{$EMAIL}</b></td>
+                                        <td><legend>{$EMAIL}</legend></td>
                                     </tr>
                                     <tr>
                                         <td><INPUT type="checkbox" name="backup_email" id="backup_email" onClick="ChequearTabla(this, 'table_email');"> <strong>{$TODO_EMAIL}</strong></td>
@@ -136,7 +136,7 @@ function popup_dif(content_popup)
                             <table id="table_asterisk" width="99%" height="270px" border="0" cellspacing="0" cellpadding="0" class="tabForm" style='display:table;'>
                                 <tbody>
                                     <tr>
-                                        <td><b>{$ASTERISK}</b></td>
+                                        <td><legend>{$ASTERISK}</legend></td>
                                     </tr>
                                     <tr>
                                         <td><INPUT type="checkbox" name="backup_asterisk" id="backup_asterisk" onClick="ChequearTabla(this, 'table_asterisk');"><strong> {$TODO_ASTERISK}</strong></td>
@@ -154,7 +154,7 @@ function popup_dif(content_popup)
                             <table id="table_others" width="99%" height="270px" border="0" cellspacing="0" cellpadding="0" class="tabForm" style='display:table;'>
                                 <tbody>
                                     <tr>
-                                        <td><b>{$OTROS}</b></td>
+                                        <td><legend>{$OTROS}</legend></td>
                                     </tr>
                                     <tr>
                                         <td><INPUT type="checkbox" name="backup_others" id="backup_others" onClick="ChequearTabla(this, 'table_others');"> <strong>{$TODO_OTROS}</strong></td>
@@ -173,7 +173,7 @@ function popup_dif(content_popup)
                             <table id="table_others_new" width="99%" height="270px" border="0" cellspacing="0" cellpadding="0" class="tabForm" style='display:table;'>
                                 <tbody>
                                     <tr>
-                                        <td><b>{$OTROS_NEW}</b></td>
+                                        <td><legend>{$OTROS_NEW}</legend></td>
                                     </tr>
                                     <tr>
                                         <td><INPUT type="checkbox" name="backup_others_new" id="backup_others_new" onClick="ChequearTabla(this, 'table_others_new');"> <strong>{$TODO_OTROS_NEW}</strong></td>
