@@ -164,7 +164,6 @@ function popup_dif(content_popup)
                                         <td><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_others');" {$item.check}> <span {if !empty($item.disable)}style="text-decoration: line-through"{/if}>{$item.desc}&nbsp;{$item.msg}</span></td>
                                     </tr>
                                     {/foreach}
-                                    <tr><td>&nbsp;</td></tr>
                                 </tbody>
                             </table>
                         </td>
@@ -183,6 +182,8 @@ function popup_dif(content_popup)
                                         <td><INPUT type="checkbox" {$item.disable} name="{$key}" id="{$key}" value="{$key}" onClick="VerificarCheck(this, 'backup_others_new');" {$item.check}> <span {if !empty($item.disable)}style="text-decoration: line-through"{/if}>{$item.desc}&nbsp;{$item.msg}</span></td>
                                     </tr>
                                     {/foreach}
+                                    <tr><td>&nbsp;</td></tr>
+                                    <tr><td>&nbsp;</td></tr>
                                     <tr><td>&nbsp;</td></tr>
                                 </tbody>
                             </table>
