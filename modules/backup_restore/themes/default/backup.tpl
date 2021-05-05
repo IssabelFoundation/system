@@ -184,8 +184,6 @@ function popup_dif(content_popup)
                                     </tr>
                                     {/foreach}
                                     <tr><td>&nbsp;</td></tr>
-                                    <tr><td>&nbsp;</td></tr>
-                                    <tr><td>&nbsp;</td></tr>
                                 </tbody>
                             </table>
                         </td>

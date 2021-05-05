@@ -19,8 +19,8 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php,v 1.1 2008/01/30 15:55:57 afigueroa Exp $ */
-
+  $Id: index.php, Wed 05 May 2021 12:45:51 PM EDT, nicolas@issabel.com
+*/
 include_once "libs/paloSantoConfig.class.php";
 include_once "libs/paloSantoGrid.class.php";
 
@@ -616,13 +616,13 @@ function Array_Options($disabled="")
             "callcenter_db"     =>  array("desc"=>_tr('Call Center CE Database')),
             "asternic_db"       =>  array("desc"=>_tr('Asternic Call Center Stats Database')),
             "FOP2_settings_db"  =>  array("desc"=>_tr('FOP2 User Settings')),
-            "sugar_db"          =>  array("desc"=>_tr('SugarCRM Database')),
-            "vtiger_db"         =>  array("desc"=>_tr('VtigerCRM Database')),
             "a2billing_db"      =>  array("desc"=>_tr('A2billing Database')),
             "mysql_db"          =>  array("desc"=>_tr('Mysql Database')),
             "menus_permissions" =>  array("desc"=>_tr('Menus and Permissions'))
         ),
        "otros_new"      =>  array(
+            "sugar_db"          =>  array("desc"=>_tr('SugarCRM Database')),
+            "vtiger_db"         =>  array("desc"=>_tr('VtigerCRM Database')),
             "calendar_db"       =>  array("desc"=>_tr('Calendar  Database')),
             "address_db"        =>  array("desc"=>_tr('Address Book Database')),
             "conference_db"     =>  array("desc"=>_tr('Conference  Database')),
