@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class='appletwindow_content' id='{$applet.code}'>
-                <div class='appletwindow_wait'><i style="color:#aaa;" class="fa fa-spinner fa-3x fa-pulse"></i>&nbsp;{$LABEL_LOADING}</div>
+                <div class='appletwindow_wait'><img src='/themes/tenant/images/issabel_logo_pattern.png' class="imageSpin"></div>
                 <div class='appletwindow_fullcontent'></div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class='appletwindow_content' id='{$applet.code}'>
-                <div class='appletwindow_wait'><i style="color:#aaa;" class="fa fa-spinner fa-3x fa-pulse"></i>&nbsp;{$LABEL_LOADING}</div>
+                <div class='appletwindow_wait'><img src='/themes/tenant/images/issabel_logo_pattern.png' class="imageSpin"></div>
                 <div class='appletwindow_fullcontent'></div>
             </div>
         </div>

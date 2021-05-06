@@ -18,6 +18,7 @@
     border-bottom: 1px solid #999;
     font-size: 12px;
     background-color:#fcfcfc;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .appletwindow > .appletwindow_topbar
@@ -146,4 +147,39 @@ div.neo-divisor {
 }
 img.fullwidth {
     width:100%;
+}
+
+.appletwindow_wait {
+   text-align: center;
+   height: 250px;
+   width:470px;
+   display: table-cell;
+   vertical-align: middle;
+}
+
+@keyframes spin {
+ from{
+ transform: rotateY(0deg);
+ moz-transform: rotateY(0deg); //Firefox
+ ms-transform: rotateY(0deg); //Microsoft Browsers
+ }
+ to{
+ transform: rotateY(360deg);
+ moz-transform: rotateY(360deg); //Firefox
+ ms-transform: rotateY(360deg); //Microsoft Browsers
+ }
+}
+@-webkit-keyframes spin{
+ from{-webkit-transform: rotateY(0deg);}
+ to{-webkit-transform: rotateY(360deg);}
+}
+.imageSpin{
+ animation-name: spin;
+ animation-timing-function: linear;
+ animation-iteration-count: infinite;
+ animation-duration: 5s;
+ -webkit-animation-name: spin;
+ -webkit-animation-timing-function: linear;
+ -webkit-animation-iteration-count: infinite;
+ -webkit-animation-duration: 5s;
 }
