@@ -22,6 +22,7 @@
   $Id: es.lang,v 1.7 2007/09/05 00:36:42 alex Exp $ */
 global $arrLangModule;
 $arrLangModule = array(
+    "You don't have a webmail account" => "No hay cuenta de email asociada con este usuario.",
     "does not exist locally or password is incorrect" => "no existe localmente o la clave es incorrecta",
     "Quota asigned" => "Cuota de correo asignada:",
     "Quota Used" => "Cuota de correo usada:",
