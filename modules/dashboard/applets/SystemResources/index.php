@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Wed 14 Apr 2021 10:45:01 AM EDT, nicolas@issabel.com
+  $Id: index.php, Thu 13 May 2021 06:13:41 PM EDT, nicolas@issabel.com
 */
 require_once "libs/paloSantoGraphImage.lib.php";
 
@@ -144,7 +144,11 @@ class Applet_SystemResources
 
         $meminfo = $this->getMemInfo();
         $fraction_mem_used = ($meminfo['MemTotal'] - $meminfo['MemFree'] - $meminfo['Cached'] - $meminfo['SReclaimable'] - $meminfo['Buffers']) / $meminfo['MemTotal'];
-        $fraction_swap_used = ($meminfo['SwapTotal'] - $meminfo['SwapFree']) / $meminfo['SwapTotal'];
+        if($meminfo['SwapTotal']==0) {
+            $fraction_swap_used = 0;
+        } else {
+            $fraction_swap_used = ($meminfo['SwapTotal'] - $meminfo['SwapFree']) / $meminfo['SwapTotal'];
+        }
 
         return array(
             'cpugauge'  =>  $fraction_cpu_used,
