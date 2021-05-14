@@ -1226,18 +1226,22 @@ function restoreComponent_file($sLevelTag, &$backupComponent, $sWorkingDir)
     }
 
     $sSource = $sWorkingDir.'/'.basename($backuppath);
-    if (!copy($sSource, $backuppath)) {
-        fwrite(STDERR, "ERR: $sLevelTag: failed to copy ".$backuppath." from source $sWorkingDir\n");
-        $bResult = FALSE;
+    if(file_exists($sSource)) {
+        if (!copy($sSource, $backuppath)) {
+            fwrite(STDERR, "ERR: $sLevelTag: failed to copy ".$backuppath." from source $sWorkingDir\n");
+            $bResult = FALSE;
+        } else {
+            // Restore owner and permissions
+            if (isset($backupComponent['restoreperm'])) {
+                chmod($backuppath, $backupComponent['restoreperm']);
+            }
+            if (isset($backupComponent['restoreown'])) {
+                chown($backuppath, $backupComponent['restoreown'][0]);
+                chgrp($backuppath, $backupComponent['restoreown'][1]);
+            }
+        }
     } else {
-        // Restore owner and permissions
-        if (isset($backupComponent['restoreperm'])) {
-            chmod($backuppath, $backupComponent['restoreperm']);
-        }
-        if (isset($backupComponent['restoreown'])) {
-            chown($backuppath, $backupComponent['restoreown'][0]);
-            chgrp($backuppath, $backupComponent['restoreown'][1]);
-        }
+        fprintf(STDERR, "WARN: $sLevelTag: file ".$sSource." not found\n");
     }
     return $bResult;
 }
