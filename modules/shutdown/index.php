@@ -38,13 +38,17 @@ function _moduleContent(&$smarty, $module_name) {
     $smarty->assign("icon","modules/$module_name/images/system_shutdown.png");
     $smarty->assign("title",_tr("Shutdown"));
     if(isset($_POST['submit_accept'])) {
+        $ipaddr = $_SERVER['REMOTE_ADDR'];
+        $user = isset($_SESSION['issabel_user']) ? $_SESSION['issabel_user'] : 'unknown';
         $smarty->assign("SHUTDOWN_PROGRESS", _tr("Shutdown in progress"));
         $smarty->assign("MSG_LINK", _tr("Continue"));
         if($_POST['shutdown_mode']=='1') {
+            writeLOG("audit.log", "SHUTDOWN $user: User $user requested SHUTDOWN from $ipaddr.");
             $smarty->assign("SHUTDOWN_MSG", _tr("Your system in shutting down now. Please, try again later."));
             exec("sudo -u root /sbin/shutdown -h now", $salida, $retorno);
             $salida = $smarty->fetch("file:$local_templates_dir/shutdown_in_progress.tpl");
         } else if ($_POST['shutdown_mode']=='2') {
+            writeLOG("audit.log", "SHUTDOWN $user: User $user requested RESTART from $ipaddr.");
             $smarty->assign("SHUTDOWN_MSG", _tr("The reboot signal has been sent correctly."));
             exec("sudo -u root /sbin/shutdown -r now", $salida, $retorno);
             $salida = $smarty->fetch("file:$local_templates_dir/shutdown_in_progress.tpl");
