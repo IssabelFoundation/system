@@ -281,7 +281,7 @@ function viewFormConfEchoCard($smarty, $module_name, $local_templates_dir, &$pDB
    
     $jsonObject   = new PaloSantoJSON();
 
-    $response['html']  = $oForm->fetchForm("$local_templates_dir/_hdetector.tpl","", "");
+    $response['html']  = $oForm->fetchForm("$local_templates_dir/_hdetector.tpl","",array());
     $response['title'] = _tr('Configuration of Span');
 
     $jsonObject->set_message($response);
@@ -316,7 +316,7 @@ function viewFormConfSpanParam($smarty, $module_name, $local_templates_dir, &$pD
                               'E1' => _tr('E1: 31 channels, Europe')));
     $jsonObject   = new PaloSantoJSON();
 
-    $response['html']  = $oForm->fetchForm("$local_templates_dir/_parameters.tpl","", "");
+    $response['html']  = $oForm->fetchForm("$local_templates_dir/_parameters.tpl","",array());
     $response['title'] = _tr('Span Parameters');
 
     $jsonObject->set_message($response);
