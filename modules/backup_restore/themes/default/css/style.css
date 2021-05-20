@@ -92,7 +92,7 @@
     background-repeat: repeat-x;
     background-position: top;
 }
-li{
+li.ui-state-default{
     line-height:5px;
     cursor:move;
 }
