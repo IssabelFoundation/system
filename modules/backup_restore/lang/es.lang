@@ -146,5 +146,6 @@ La <i>Passphrase</i> debería ser la contraseña de administrador web del sistem
 "Version" => "Version",
 "Progress" => "Progreso",
 "Please verify if the mysql password is the correct in /etc/issabel.conf (mysqlrootpwd)" => "Por favor verifique la clave de mysql si esta correcta en /etc/issabel.conf (mysqlrootpwd)",
+"FTP server credentials not set" => "No están configuradas las credenciales del servidor FTP",
 );
 ?>
