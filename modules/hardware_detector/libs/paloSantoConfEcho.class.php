@@ -2,9 +2,10 @@
   /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 4.0.0-1                                               |
+  | Issabel version 4.0.0-1                                              |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,12 +20,13 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoConfEcho.class.php,v 1.1 2009-09-14 10:12:09 ecueva onavarrete@palosanto.com Exp $ */
+  $Id: paloSantoConfEcho.class.php, Thu 20 May 2021 09:04:03 AM EDT, nicolas@issabel.com
+ */
 class paloSantoConfEcho {
     var $_DB;
     var $errMsg;
 
-    function paloSantoConfEcho(&$pDB)
+    function __construct(&$pDB)
     {
         // Se recibe como parámetro una referencia a una conexión paloDB
         if (is_object($pDB)) {

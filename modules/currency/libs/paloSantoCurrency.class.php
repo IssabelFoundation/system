@@ -2,9 +2,10 @@
   /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 1.4-1                                               |
+  | Issabel version 1.4-1                                                |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,12 +20,13 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoCurrency.class.php,v 1.1 2008-08-25 05:08:01 jvega jvega@palosanto.com Exp $ */
+  $Id: paloSantoCurrency.class.php, Thu 20 May 2021 09:04:25 AM EDT, nicolas@issabel.com
+*/
 class paloSantoCurrency {
     var $_DB;
     var $errMsg;
 
-    function paloSantoCurrency(&$pDB)
+    function __construct(&$pDB)
     {
         // Se recibe como parámetro una referencia a una conexión paloDB
         if (is_object($pDB)) {

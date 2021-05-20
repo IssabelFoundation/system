@@ -5,7 +5,7 @@
   | Issabel version 0.5                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
-  | Copyright (c) 2018 Issabel Foundation                                |
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoNetwork.class.php, Thu 15 Nov 2018 09:13:41 AM EST, nicolas@issabel.com
+  $Id: paloSantoNetwork.class.php, Thu 20 May 2021 09:05:10 AM EDT, nicolas@issabel.com
 */
 
 class paloNetwork
@@ -28,7 +28,7 @@ class paloNetwork
     var $errMsg;
 
     // Constructor
-    function paloNetwork()
+    function __construct()
     {
         $this->errMsg = "";
     }

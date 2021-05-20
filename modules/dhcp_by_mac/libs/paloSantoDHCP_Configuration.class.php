@@ -5,6 +5,7 @@
   | Issabel version 1.6-12                                               |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,13 +20,14 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoDHCP_Configuration.class.php,v 1.1 2009-11-12 04:11:04 Oscar Navarrete onavarrete.palosanto.com Exp $ */
+  $Id: paloSantoDHCP_Configuration.class.php, Thu 20 May 2021 09:03:15 AM EDT, nicolas@issabel.com
+*/
 class paloSantoDHCP_Configuration
 {
 	private $_DB;
     var $errMsg;
 
-    function paloSantoDHCP_Configuration(&$pDB)
+    function __construct(&$pDB)
     {
         // Se recibe como parámetro una referencia a una conexión paloDB
         if (is_object($pDB)) {

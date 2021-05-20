@@ -6,6 +6,7 @@
   | Issabel version 1.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -20,7 +21,7 @@
   +----------------------------------------------------------------------+
   | Autores: Alex Villacís Lasso <a_villacis@palosanto.com>              |
   +----------------------------------------------------------------------+
-  $Id: index.php,v 1.1 2007/01/09 23:49:36 alex Exp $
+  $Id: paloSantoApplets.class.php, Thu 20 May 2021 09:03:40 AM EDT, nicolas@issabel.com
 */
 
 /** 
@@ -33,7 +34,7 @@ class paloSantoApplets
     private $_db = NULL;
     var $errMsg = NULL;
 
-    function paloSantoApplets()
+    function __construct()
     {
         global $arrConf;
         

@@ -2,9 +2,10 @@
   /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 1.5-9                                               |
+  | Issabel version 1.5-9                                                |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,12 +20,13 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoDhcpClienList.class.php,v 1.1 2009-05-13 10:05:04 Oscar Navarrete onavarrete@palosanto.com Exp $ */
+  $Id: paloSantoDhcpClient.class.php, Thu 20 May 2021 09:04:46 AM EDT, nicolas@issabel.com
+*/
 class paloSantoDhcpClienList {
     var $_DB;
     var $errMsg;
 
-    function paloSantoDhcpClienList(&$pDB)
+    function __construct(&$pDB)
     {
         // Se recibe como parámetro una referencia a una conexión paloDB
         if (is_object($pDB)) {

@@ -2,9 +2,10 @@
   /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 4.0.0-7                                               |
+  | Issabel version 4.0.0-7                                              |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2021 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,12 +20,13 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoprueba_applets.class.php,v 1.1 2009-12-28 06:12:49 Bruno bomv.27 Exp $ */
+  $Id: paloSantoAppletAdmin.class.php, Thu 20 May 2021 09:02:32 AM EDT, nicolas@issabel.com
+*/
 
 class paloSantoAppletAdmin {
     var $errMsg;
 
-    function paloSantoAppletAdmin()
+    function __construct()
     {
     }
 
