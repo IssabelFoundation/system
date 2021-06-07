@@ -98,7 +98,7 @@ La <i>Passphrase</i> debería ser la contraseña de administrador web del sistem
 "Password" => "Contraseña",
 "Local" => "Local",
 "Upload" => "Subir",
-"Upload successfully" = > "Subida exitosa",
+"Upload successfully" => "Subida exitosa",
 "Download" => "Descargar",
 "Path Server FTP" => "Ruta en servidor FTP",
 "Error to connect" => "Por favor llene todos los campos para contactar al servidor",
