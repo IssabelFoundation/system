@@ -51,7 +51,7 @@ Requires: chkconfig
 Requires: tar
 
 # commands: mysqldump mysql
-Requires: mysql
+Requires: mariadb
 
 # commands: /usr/lib/cyrus-imapd/reconstruct
 Requires: cyrus-imapd
