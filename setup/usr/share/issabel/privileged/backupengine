@@ -1457,7 +1457,7 @@ function postrestore_as_db($sLevelTag, &$backupComponent, $sWorkingDir)
             $sth = NULL;
 
             $manager_file = '/etc/asterisk/manager.conf';
-            $content = file_get_contents($manager_file);
+            $content = file($manager_file);
             $bAdmin = FALSE;
             for ($i = 0; $i < count($content); $i++) {
                 $regs = NULL;
