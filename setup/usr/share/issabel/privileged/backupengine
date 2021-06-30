@@ -1158,6 +1158,9 @@ function action_runRestore($opt)
     $output = $retval = NULL;
     exec('rm -rf '.escapeshellarg($sWorkingDir), $output, $retval);
 
+    // Reload amportal, manager.conf needs to be reloaded most of the time a restore occurs
+    exec('/usr/sbin/amportal reload', $output, $retval);
+
     return $bGlobalSuccess;
 }
 
