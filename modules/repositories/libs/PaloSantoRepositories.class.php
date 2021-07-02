@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: PaloSantoRepositories.class.php, Tue 04 May 2021 09:51:40 PM EDT, nicolas@issabel.com
+  $Id: PaloSantoRepositories.class.php, Fri 02 Jul 2021 04:59:25 PM EDT, nicolas@issabel.com
 */
 include_once("libs/paloSantoDB.class.php");
 
@@ -159,11 +159,18 @@ class PaloSantoRepositories
 
     function obtenerVersionDistro()
     {
-        exec("rpm -q --queryformat '%{VERSION}' centos-release",$arrSalida,$flag);
-        if($flag==0)
-            return $arrSalida[0];
-        else
+        $output='';
+        if(is_file("/etc/centos-release")) {
+            $output=file("/etc/centos-release");
+        } else if(is_file("/etc/redhat-release")) {
+            $output=file("/etc/redhat-release");
+        }
+        $ver = explode(" ",$output[0]);
+        if($output<>'') {
+            return intval($ver[3]);
+        } else {
             return '?';
+        }
     }
 
     function obtenerArquitectura()
