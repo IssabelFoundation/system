@@ -19,8 +19,8 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Thu 20 May 2021 03:43:46 PM EDT, nicolas@issabel.com
-
+  $Id: index.php, Thu 08 Jul 2021 05:40:56 PM EDT, nicolas@issabel.com
+*/
 require_once "libs/misc.lib.php";
 
 function _moduleContent(&$smarty, $module_name)
