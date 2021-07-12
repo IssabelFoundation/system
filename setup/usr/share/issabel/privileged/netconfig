@@ -162,13 +162,21 @@ function action_generalConfiguration($opt)
     // Restart affected services
     if ($bExito) {
         $output = $ret = NULL;
-        exec("/sbin/service network restart 2>&1", $output, $ret);
+        $srv='network.service';
+        if(is_readable('/etc/redhat-release')) {
+            $ver = explode(" ",trim(file_get_contents('/etc/redhat-release')));
+            $partes = preg_split("/\./",$ver[3]);
+            if(intval($partes[0]>=8)) {
+                $srv="NetworkManager.service";
+            }
+        }
+        exec("/usr/bin/systemctl restart $srv 2>&1", $output, $ret);
         if ($ret != 0) {
             fputs(STDERR, "ERR: failed to restart network service. Output follows:\n");
             fputs(STDERR, implode('', $output));
             $bExito = FALSE;
         }
-        exec("/sbin/service postfix restart 2>&1", $output, $ret);
+        exec("/usr/bin/systemctl restart postfix 2>&1", $output, $ret);
         if ($ret != 0) {
             fputs(STDERR, "ERR: failed to restart postfix service. Output follows:\n");
             fputs(STDERR, implode('', $output));
@@ -432,8 +440,16 @@ function action_interfaceConfiguration($opt)
         }
         file_put_contents($sPath, $contenidoNuevo);
 
+        $srv='network.service';
+        if(is_readable('/etc/redhat-release')) {
+            $ver = explode(" ",trim(file_get_contents('/etc/redhat-release')));
+            $partes = preg_split("/\./",$ver[3]);
+            if(intval($partes[0]>=8)) {
+                $srv="NetworkManager.service";
+            }
+        }
         $output = $ret = NULL;
-        exec("/sbin/service network restart 2>&1", $output, $ret);
+        exec("/usr/bin/systemctl restart $srv 2>&1", $output, $ret);
         if ($ret != 0) {
             fputs(STDERR, "ERR: failed to restart network service. Output follows:\n");
             fputs(STDERR, implode('', $output));
