@@ -232,7 +232,7 @@ class paloSantoFTPBackup {
 
         if($result==FALSE){
             $this->errMsg = $this->_DB->errMsg;
-            return null;
+            return array();
         }
         return $result;
     }

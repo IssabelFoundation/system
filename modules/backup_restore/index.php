@@ -137,11 +137,11 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
     // obtencion de parametros desde la base
     $pFTPBackup = new paloSantoFTPBackup($pDB);
     $_DATA = $pFTPBackup->getStatusAutomaticBackupById(1);
-    if(!(is_array($_DATA) & count($_DATA)>0)){
+    if(count($_DATA)==0){
         $_DATA['status'] = "DISABLED";
     }
     $_DATADEL = $pFTPBackup->getStatusAutomaticBackupById(2);
-    if(!(is_array($_DATADEL) & count($_DATADEL)>0)){
+    if(count($_DATADEL)==0){
         $_DATADEL['status'] = "DISABLED";
     }
 
