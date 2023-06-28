@@ -470,7 +470,7 @@ function action_refresh($opt)
     $sIpStart = $sIpEnd = $iLeaseTime = $sGateway = $sDNS1 = $sDNS2 = $sWINS = $sNEXTSERVER = $sFILENAME = NULL;
     $bSeenSubnet = FALSE;
     $bPhonesOnly = FALSE;
-    foreach (file('/etc/dhcpd.conf') as $s) {
+    foreach (file('/etc/dhcp/dhcpd.conf') as $s) {
         $regs = NULL;
         if (preg_match('/^\s*subnet\s+(\S+)\s+netmask\s+(\S+)/', $s, $regs)) {
             if ($bSeenSubnet) {
