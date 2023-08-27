@@ -1,0 +1,49 @@
+<?php
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 1.6-6                                               |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  +----------------------------------------------------------------------+
+  $Id: en.lang,v 1.1 2009-11-09 09:08:29 Oscar Navarrete onavarrete@palosanto.com Exp $ 
+  $Id: br.lang,v 1.2 2021-10-26 5:55:00 Leandro Saltori - Prisma Telecom leandro@prismatelecom.com Exp $
+  */
+global $arrLangModule;
+$arrLangModule=array(
+
+"New Email list" => "Nova lista de e-mail",
+"Are you sure you wish to delete the email list." => "Tem certeza de que deseja excluir a lista de e-mail.",
+"Email List Name" => "Nome da lista de e-mail",
+
+"Email Member" => "Membro de email",
+"Email List Members" => "Membros da lista de e-mail",
+
+"Number of Accounts" => "Número de contas",
+//nuevos
+"DHCP Client List" => "Lista de clientes DHCP",
+"New Dhcp client" => "Novo cliente Dhcp",
+"Are you sure you wish to delete the Ip." => "Tem certeza que deseja deletar o IP.",
+"Action" => "Açao",
+"See All DHCP Info" => "Ver todas as informações de DHCP",
+
+"IP Address" => "Endereço de IP",
+"Start Date" => "Data de início",
+"End Date" => "Data final",
+"MAC Address" => "Endereço MAC",
+"View Details" => "Ver detalhes",
+);
+?>
