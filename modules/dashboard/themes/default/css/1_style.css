@@ -12,13 +12,16 @@
     padding: 0px 0px 10px 0px;
     width: 474px;
     height: 300px;
-    border-top: 1px solid #aaa;
-    border-left: 1px solid #aaa;
-    border-right: 1px solid #999;
-    border-bottom: 1px solid #999;
+    _border-top: 1px solid #aaa;
+    _border-left: 1px solid #aaa;
+    _border-right: 1px solid #999;
+    _border-bottom: 1px solid #999;
     font-size: 12px;
     background-color:#fcfcfc;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    _box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,.03), 0 0.9375rem 1.40625rem rgba(4,9,20,.03), 0 0.25rem 0.53125rem rgba(4,9,20,.05), 0 0.125rem 0.1875rem rgba(4,9,20,.03);
+    border-width: 0;
+    transition: all .2s;
 }
 
 .appletwindow > .appletwindow_topbar
