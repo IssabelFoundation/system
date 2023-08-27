@@ -1,14 +1,14 @@
 %define modname system
 Name: issabel-system
 Summary: Issabel System Module
-Version: 4.0.1
+Version: 5.0.0
 Release: 1 
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
-Requires(pre): issabel-framework >= 4.0.0-1
+Requires(pre): issabel-framework >= 5.0.0-1
 Requires(pre): issabel-fax >= 2.2.0-4
 Requires(pre): php-soap
 Requires(pre): dahdi
