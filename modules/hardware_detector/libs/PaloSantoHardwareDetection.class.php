@@ -199,11 +199,14 @@ class PaloSantoHardwareDetection
 
     function getMisdnPortInfo()
     {
-
-        exec('/usr/bin/misdnportinfo',$arrConsole,$flagStatus);
-        if($flagStatus == 0)
-            return $arrConsole;
-        else return array();
+        if(file_exists('/usr/bin/misdnportinfo')) {
+            exec('/usr/bin/misdn_info',$arrConsole,$flagStatus);
+            if($flagStatus == 0)
+                return $arrConsole;
+            else return array();
+        } else {
+            return array();
+        }
     }
 
     function hardwareDetection($chk_dahdi_replace,$path_file_dahdi,$there_is_sangoma_card,$there_is_misdn_card)
