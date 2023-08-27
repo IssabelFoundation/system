@@ -22,7 +22,8 @@ Codificación: UTF-8
 | Translate by: Ibinetwork Informática                                 |
 | Email: rafael@ibinetwork.com.br                                      |
 +----------------------------------------------------------------------+
-$Id: pt-br.lang,v 1.8 2017-06-15 09:08:29 Ibinetwork Informática rafael@ibinetwork.com.br Exp $ */
+$Id: pt-br.lang,v 1.8 2017-06-15 09:08:29 Ibinetwork Informática rafael@ibinetwork.com.br Exp $ 
+*/
 global $arrLangModule;
 $arrLangModule=array(
 "Hardware Detector" => "Detector de Placa de Telefonia",
