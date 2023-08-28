@@ -336,7 +336,9 @@ class paloNetwork
                 $sComando .= ' --gateway-dev '.escapeshellarg($config_red['gateway_dev']);
             }
         }
-
+        if(!isset($config_red['dns_ip_2'])) {
+            $config_red['dns_ip_2']='';
+        }
         $sComando .= ' --host '.escapeshellarg($config_red['host']).
             ' --gateway '.escapeshellarg($config_red['gateway_ip']).
             ' --dns1 '.escapeshellarg($config_red['dns_ip_1']).
