@@ -9,7 +9,7 @@ Source0: issabel-%{modname}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
 Requires(pre): issabel-framework >= 5.0.0-1
-Requires(pre): issabel-fax >= 2.2.0-4
+#Requires(pre): issabel-fax >= 2.2.0-4
 Requires(pre): php-soap
 Requires(pre): dahdi
 Conflicts: elastix-agenda < 2.2.0-1
