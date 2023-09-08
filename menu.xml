@@ -82,11 +82,13 @@
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
+<!--
     <menuitem menuid="packages"             desc="Packages"           parent="updates"     module="yes" link="" order="82">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
+-->
     <menuitem menuid="repositories"         desc="Repositories"       parent="updates"     module="yes" link="" order="81">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
