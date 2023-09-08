@@ -30,7 +30,7 @@ class PaloSantoPackages
     private $_repodb = array();
 
     function __construct() {
-        $this->_ruta = '/var/cache/yum';
+        $this->_ruta = '/var/cache/dnf';
 
         // El siguiente comando ejecuta python para averiguar los valores de
         // $basearch y $releasever que se referencian en /etc/yum.conf en Fedora 17
