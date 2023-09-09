@@ -77,23 +77,28 @@
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
-    <menuitem menuid="updates"              desc="Updates"            parent="system"      module="no"  link="" order="8">
+    <menuitem menuid="betachannel"          desc="Beta Channel"          parent="preferences"    module="yes"    link=""      order="9">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
 <!--
+    <menuitem menuid="updates"              desc="Updates"            parent="system"      module="no"  link="" order="8">
+        <permissions>
+            <group id="1" name="administrator" desc="total access"></group>
+        </permissions>
+    </menuitem>
     <menuitem menuid="packages"             desc="Packages"           parent="updates"     module="yes" link="" order="82">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
--->
     <menuitem menuid="repositories"         desc="Repositories"       parent="updates"     module="yes" link="" order="81">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
+-->
     <menuitem menuid="backup_restore"       desc="Backup/Restore"     parent="system"      module="yes" link="" order="9">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
