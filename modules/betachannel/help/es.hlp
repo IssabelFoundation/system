@@ -1,0 +1,14 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+        <p align="Justify"></p>
+	<p>El módulo "Canal Beta" permite activar o desactivar el repositorio Beta de Issabel, para probar versinones nightly de paquetes</p>
+        <br />
+	<p>Para habilitar o no el canal cámbiela a estado ON y para deshabilitarlo a estado OFF. </p>
+	<br />
+    </body>
+</html>
