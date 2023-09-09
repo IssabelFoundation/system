@@ -24,28 +24,31 @@ require_once 'Console/Getopt.php';
 
 // Parse command-line options
 $opt = Console_Getopt::getopt($argv, '', array(
-    'enable',       // set allowguest=yes explicitly
-    'disable',      // set allowguest=no explicitly
-    'conddisable',  // add allowguest=no if allowguest is not set, else noop
+    'enable',
+    'disable',
+    'status'
 ));
+
 if (PEAR::isError($opt)) error_exit($opt->getMessage()."\n");
+
 //validateOptions($opt);
 foreach ($opt[0] as $option) switch ($option[0]) {
 case '--enable':
     exit(action_enableBeta($opt, TRUE) ? 0 : 1);
 case '--disable':
     exit(action_enableBeta($opt, FALSE) ? 0 : 1);
+case '--status':
+    exit(action_status($opt, FALSE) ? 0 : 1);
 }
-error_exit("No action specified (--enable or --disable)\n");
 
-function error_exit($sMsg, $errorcode = 1)
-{
+error_exit("No action specified (--enablem, --disable or --status)\n");
+
+function error_exit($sMsg, $errorcode = 1) {
     fwrite(STDERR, $sMsg);
     exit($errorcode);
 }
 
-function action_enableBeta($opt, $bEnable)
-{
+function action_enableBeta($opt, $bEnable) {
     if($bEnable) {
         exec("dnf config-manager --enable issabel-cinco-beta", $output, $ret);
     } else {
@@ -54,6 +57,17 @@ function action_enableBeta($opt, $bEnable)
     if($ret) {
         error_exit("Could not perform action");
     }
+    return 0;
+}
+
+function action_status() {
+    exec("dnf repolist enabled | grep -i issabel-cinco-beta", $output, $ret);
+    if($ret) {
+        echo "disabled";
+    } else {
+        echo "enabled";
+    }
+    return 0;
 }
 
 ?>
