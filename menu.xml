@@ -77,7 +77,7 @@
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
     </menuitem>
-    <menuitem menuid="betachannel"          desc="Beta Channel"          parent="preferences"    module="yes"    link=""      order="9">
+    <menuitem menuid="betachannel"          desc="Beta Channel"          parent="system"    module="yes"    link=""      order="9">
         <permissions>
             <group id="1" name="administrator" desc="total access"></group>
         </permissions>
