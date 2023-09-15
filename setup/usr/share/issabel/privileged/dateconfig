@@ -47,7 +47,7 @@ function validateOptions($opt)
 {
     foreach ($opt[0] as $option) switch ($option[0]) {
     case '--timezone':
-        if (!preg_match('|^[[:alnum:]-_/]+$|', $option[1]))
+        if (!preg_match('|^[[:alnum:]\-_/]+$|', $option[1]))
             error_exit('Option '.$option[0].": Invalid timezone\n");
         
         // Check on /usr/share/zoneinfo/zone.tab whether the zone exists
