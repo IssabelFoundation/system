@@ -176,6 +176,7 @@ $BACKUP_PLAN = array(
                     'parentdir'     =>  '/var/lib/asterisk',
                     'dirname'       =>  'mohmp3',
                     'backupfile'    =>  'var.lib.asterisk.mohmp3.tgz',
+                    'mustExist'      =>  'no',
                 ),
                 array(
                     'type'          =>  'dir',
