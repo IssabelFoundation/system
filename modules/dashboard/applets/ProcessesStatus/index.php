@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Tue 13 Nov 2018 12:23:20 PM EST, nicolas@issabel.com
+  $Id: index.php, Tue 19 Sep 2023 02:42:39 PM EDT, nicolas@issabel.com
 */
 
 class Applet_ProcessesStatus
@@ -134,7 +134,6 @@ class Applet_ProcessesStatus
             'Postfix'   =>  'postfix',
             'MySQL'     =>  'mysqld',
             'Apache'    =>  'httpd',
-            'Dialer'    =>  'issabeldialer',
         );
         if (!isset($_REQUEST['process'])) {
             $respuesta['status'] = 'error';
@@ -193,7 +192,6 @@ class Applet_ProcessesStatus
         // file pid service postfix     is /var/spool/postfix/pid/master.pid (can't to access to file by own permit,is better to use by CMD the serviceName is master)
         // file pid service mysql       is /var/run/mysqld/mysqld.pid (can't to access to file by own permit,is better to use by CMD the serviceName is mysqld)
         // file pid service apache      is /var/run/httpd.pid
-        // file pid service call_center is /opt/issabel/dialer/dialerd.pid
 
         $arrSERVICES["Asterisk"]["status_service"] = $this->_existPID_ByFile("/var/run/asterisk/asterisk.pid","asterisk");
         $arrSERVICES["Asterisk"]["activate"] = $this->_isActivate("asterisk");
@@ -230,10 +228,6 @@ class Applet_ProcessesStatus
         $arrSERVICES["Apache"]["status_service"]   = $this->_existPID_ByCMD('httpd',"httpd");
         $arrSERVICES["Apache"]["activate"]     = $this->_isActivate("httpd");
         $arrSERVICES["Apache"]["name_service"]     = "Web Server";
-
-        $arrSERVICES["Dialer"]["status_service"]   = $this->_existPID_ByFile("/opt/issabel/dialer/dialerd.pid","issabeldialer");
-        $arrSERVICES["Dialer"]["activate"]     = $this->_isActivate("issabeldialer");
-        $arrSERVICES["Dialer"]["name_service"]     = "Issabel Call Center Service";
 
         return $arrSERVICES;
     }
