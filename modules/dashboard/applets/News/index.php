@@ -35,14 +35,23 @@ class Applet_News
 	    $infoRSS = new SimplePie();
         session_commit();
 
+        global $arrConf;
+        $pDB = new paloDB($arrConf['issabel_dsn']['settings']);
+        $channel=get_key_settings($pDB,'issabel_news_channel');
+        if($channel=='') {
+            set_key_settings($pDB,'issabel_news_channel','https://cloud.issabel.org/news.php');
+            $channel='https://cloud.issabel.org/news.php';
+        }
+
         $respuesta = array(
             'status'    =>  'success',
             'message'   =>  '(no message)',
         );
+
         $lang=get_language();
         $cachedir = '/tmp/rss-cache';
-        if($lang=="es")$infoRSS->set_feed_url("http://cloud.issabel.org/news.php?lang=es");
-        else $infoRSS->set_feed_url("http://cloud.issabel.org/news.php?lang=en");
+        if($lang=="es")$infoRSS->set_feed_url("$channel?lang=es");
+        else $infoRSS->set_feed_url("$channel?lang=en");
         $infoRSS->enable_order_by_date(TRUE);
         $infoRSS->set_output_encoding('UTF-8');
         $infoRSS->enable_cache(TRUE);
