@@ -84,7 +84,6 @@ mv modules/ $RPM_BUILD_ROOT/var/www/html/
 mv setup/paloSantoNetwork.class.php      $RPM_BUILD_ROOT/var/www/html/libs/
 mv setup/automatic_backup.php            $RPM_BUILD_ROOT/var/www/backup/
 mv setup/usr/share/issabel/privileged/*  $RPM_BUILD_ROOT/usr/share/issabel/privileged
-mv setup/rpms_availables		 $RPM_BUILD_ROOT/var/www/db/
 
 rmdir setup/usr/share/issabel/privileged setup/usr/share/issabel setup/usr/share
 
@@ -177,7 +176,6 @@ fi
 %{_localstatedir}/www/html/*
 /usr/share/issabel/module_installer/*
 /var/www/backup/automatic_backup.php
-/var/www/db/rpms_availables
 %defattr(755, root, root)
 /usr/sbin/switch_wanpipe_media
 /usr/sbin/issabel_migration.sh
