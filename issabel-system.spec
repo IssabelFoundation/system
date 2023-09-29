@@ -101,12 +101,6 @@ mv setup/usr/sbin/issabel_migration.sh        $RPM_BUILD_ROOT/usr/sbin/
 mv setup/usr/sbin/issabel_migration_fpbx.sh   $RPM_BUILD_ROOT/usr/sbin/
 rmdir setup/usr/sbin
 
-# ** The following selects oslec as default echo canceller ** #
-echo "echo_can oslec" > $RPM_BUILD_ROOT/etc/dahdi/genconf_parameters
-echo "bri_sig_style bri" >> $RPM_BUILD_ROOT/etc/dahdi/genconf_parameters
-echo "context_lines from-pstn" >> $RPM_BUILD_ROOT/etc/dahdi/genconf_parameters
-echo "context_phones default" >> $RPM_BUILD_ROOT/etc/dahdi/genconf_parameters
-
 rmdir setup/usr
 
 # The following folder should contain all the data that is required by the installer,
@@ -135,6 +129,15 @@ rm $pathModule/preversion_%{modname}.info
 if [ $1 -eq 1 ]; then #install
   # The installer database
     issabel-dbprocess "install" "$pathModule/setup/db"
+
+    if [ -f /etc/dahdi/genconf_parameters ]; then
+        # ** The following selects oslec as default echo canceller ** #
+        echo "echo_can oslec" > /etc/dahdi/genconf_parameters
+        echo "bri_sig_style bri" >> /etc/dahdi/genconf_parameters
+        echo "context_lines from-pstn" >> /etc/dahdi/genconf_parameters
+        echo "context_phones default" >> /etc/dahdi/genconf_parameters
+    fi
+
 elif [ $1 -eq 2 ]; then #update
     issabel-dbprocess "update"  "$pathModule/setup/db" "$preversion"
 fi
@@ -181,6 +184,5 @@ fi
 /usr/sbin/issabel_migration.sh
 /usr/sbin/issabel_migration_fpbx.sh
 /usr/share/issabel/privileged/*
-%config(noreplace) /etc/dahdi/genconf_parameters
 
 %changelog
