@@ -147,6 +147,13 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
 
 
     $arrData = null;
+
+    $core_dir=dirname(__FILE__)."/../../admin/modules/core/module.xml";
+    $xml = simplexml_load_string(file_get_contents($core_dir));
+    $issabelPBX_current_version = $xml->version;
+    $partes = explode(".",$issabelPBX_current_version);
+    $issabelPBX_current_version = implode(".",array_slice($partes,0,2));
+
     if(is_array($nombre_archivos) && $total>0){
         foreach($nombre_archivos as $key => $nombre_archivo) {
 
@@ -155,12 +162,15 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
             $manifest    = '';
             $migrate     = 0;
             $migratefpbx = 0;
+            $migrateold  = 0;
             $decrypt=0;
 
             $dirarchi = $dir_backup."/".$nombre_archivo;
             if(is_file($dirarchi)) {
+
                 $versions = `tar Oxvf $dirarchi backup/versions.xml`;
                 $manifest = `tar Oxvf $dirarchi ./manifest`;
+
                 if(preg_match("/freepbx/",$versions)) {
                     $migrate=1;
                 } elseif (preg_match("/pbx_framework_version/",$manifest)) {
@@ -171,6 +181,25 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
                 if(preg_match("/\d{4}\d{2}\d{2}\d{2}\d{2}\d{2}.*.aes256/",$nombre_archivo)){
                     $decrypt=1;
                 }
+
+                // Get the backup issabelPBX version
+                $xml = simplexml_load_string($versions);
+                $i=0;
+                foreach($xml->program as $idx) { 
+                    foreach($xml->program[$i]->attributes() as $a => $b) {
+                        if($a=='id' && $b=='issabelpbx') {
+                            $checkidx = $i;
+                        }
+                    }
+                    $i++;
+                }
+                $issabelPBX_backup_version = $xml->program[$checkidx]->attributes()->ver;
+                $partes = explode(".",$issabelPBX_backup_version);
+                $issabelPBX_backup_version = implode(".",array_slice($partes,0,2));
+                if(version_compare($issabelPBX_backup_version,$issabelPBX_current_version,'!=')) {
+                    $migrateold = 1;
+                }
+
             }
             
             $arrTmp[0] = "<input type='checkbox' name='chk[".$nombre_archivo."]' id='chk[".$nombre_archivo."]'/>";
@@ -203,6 +232,8 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
                 $arrTmp[3] = "<input type='submit' name='submit_migrate[".$nombre_archivo."]' value='"._tr('Migrate from Elastix')."' class='button' />";
             } elseif($migratefpbx==1) {
                 $arrTmp[3] = "<input type='submit' name='submit_migrate[".$nombre_archivo."]' value='"._tr('Migrate from FreePBX')."' class='button' />";
+            } elseif($migrateold==1) {
+                $arrTmp[3] = "<input type='submit' name='submit_migrate[".$nombre_archivo."]' value='"._tr('Migrate from Issabel 4')."' class='button' />";
             } elseif($decrypt==1) {
                 $arrTmp[3] = "<input type='submit' name='submit_decrypt[".$nombre_archivo."]' value='"._tr('Decrypt')."' class='button' />";
             } else {
