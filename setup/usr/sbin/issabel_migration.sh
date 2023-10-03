@@ -132,10 +132,9 @@ function restore_sounds {
 }
 
 function restore_astdb {
-    if ! [ -f $DATADIR/backup/astdb.sqlite3 ]
-    then
-                return 1
-        fi
+    if ! [ -f $DATADIR/backup/astdb.sqlite3 ]; then
+        return 1
+    fi
     cp -fp $DATADIR/backup/astdb.sqlite3 /var/lib/asterisk/
 }
 
