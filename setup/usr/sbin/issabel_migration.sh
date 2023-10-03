@@ -214,7 +214,7 @@ function restore_voicemail {
 }
 
 function check_versions {
-	if grep -qE 'id="elastix" ver="4|id="elastix" ver="2.5' $DATADIR/backup/versions.xml
+	if grep -qE 'id="elastix" ver="4|id="elastix" ver="2.5|id="issabelpbx" ver="2.11' $DATADIR/backup/versions.xml
 	then
         	echo Elastix Version OK
 	else
@@ -222,7 +222,7 @@ function check_versions {
         	exit 1
 	fi
 
-	if grep -q 'id="freepbx" ver="2.11' $DATADIR/backup/versions.xml
+	if grep -qE 'id="freepbx" ver="2.11|id="issabelpbx" ver="2.11' $DATADIR/backup/versions.xml
 	then
         	echo FreePBX Version OK
 	else
