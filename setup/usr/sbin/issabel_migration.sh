@@ -314,7 +314,10 @@ function restore_sqlfromtemp {
     then
         return 1
     fi
-    TABLES="announcement callback callrecording callrecording_module cidlookup cidlookup_incoming custom_extensions dahdi dahdichandids daynight devices disa extensions fax_details fax_incoming fax_users featurecodes iax iaxsettings incoming findmefollow indications_zonelist ivr_details ivr_entries language_incoming languages manager meetme miscapps miscdests outbound_route_patterns outbound_route_sequence outbound_route_trunks outbound_routes outroutemsg paging_autoanswer paging_config paging_groups parkplus pinset_usage pinsets queueprio queues_config queues_details recordings ringgroups sip sipsettings timeconditions timegroups_details timegroups_groups trunk_dialpatterns trunks users vmblast vmblast_groups voicemail_admin customcontexts_contexts customcontexts_contexts_list customcontexts_includes customcontexts_includes_list"
+
+    MYSQLFILE=$DATADIR/backup/mysqldb_asterisk/asterisk.sql
+    TABLES=$(grep "^LOCK TABLES" $MYSQLFILE  | grep -v modules | grep -v module_xml | cut -d' ' -f 3 | sed 's/`//g' | xargs)
+
     IFS=' ' read -r -a TABLE_ARRAY <<< "$TABLES"
     for TABLE in "${TABLE_ARRAY[@]}"; do
         TABLE_COUNT=$(mysql -NB -uroot -p$MYSQLPWD -e "SELECT COUNT(TABLE_NAME) FROM information_schema.TABLES WHERE TABLE_SCHEMA LIKE 'asterisk' AND TABLE_TYPE LIKE 'BASE TABLE' AND TABLE_NAME = '$TABLE'")
