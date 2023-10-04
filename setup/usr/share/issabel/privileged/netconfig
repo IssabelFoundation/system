@@ -292,7 +292,8 @@ function setHostname($sHostname)
     if ($bClavePresente) file_put_contents('/etc/hosts', $contenidoNuevo);
 
     // Figure out a domain for the hostname
-    $sDomain = array_pop(explode('.', $sHostname, 2));
+    $partes = explode('.', $sHostname, 2);
+    $sDomain = array_pop($partes);
 
     // Set the hostname for the current session
     exec("/bin/hostname $sHostname");
