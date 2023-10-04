@@ -316,7 +316,7 @@ function restore_sqlfromtemp {
     fi
 
     MYSQLFILE=$DATADIR/backup/mysqldb_asterisk/asterisk.sql
-    TABLES=$(grep "^LOCK TABLES" $MYSQLFILE  | grep -v modules | grep -v module_xml | grep -v issabelpbx_settings | cut -d' ' -f 3 | sed 's/`//g' | xargs)
+    TABLES=$(grep "^LOCK TABLES" $MYSQLFILE  | grep -v 'TABLES `modules' | grep -v 'TABLES `module_xml' | grep -v 'TABLES `issabelpbx_settings' | grep -v 'TABLES `admin' | cut -d' ' -f 3 | sed 's/`//g' | xargs)
 
     IFS=' ' read -r -a TABLE_ARRAY <<< "$TABLES"
     for TABLE in "${TABLE_ARRAY[@]}"; do
