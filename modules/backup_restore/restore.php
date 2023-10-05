@@ -19,7 +19,8 @@
   +----------------------------------------------------------------------+
   | The Initial Developer is Issabel Foundation                          |
   +----------------------------------------------------------------------+
-*/
+ */
+
 $module_name=basename(getcwd());
 $documentRoot = $_SERVER["DOCUMENT_ROOT"];
 include_once "$documentRoot/libs/paloSantoDB.class.php";
@@ -37,6 +38,7 @@ if(!$isUserAuth) { die('Unauthorized'); }
 
 $backup_dir = $arrConfModule['dir'];
 
+echo "<html><head></head><body>";
 
 if (isset($_REQUEST['filename'])){
     $filename = escapeshellarg($_REQUEST['filename']);
@@ -44,7 +46,7 @@ if (isset($_REQUEST['filename'])){
     $filename = $backup_dir."/".$filename;
     if(is_file($filename)) { 
         echo "<div style='font-family: \"Lucida Console\", Monaco, monospace'>";
-    
+	$padSize = ini_get('output_buffering');
         $dahdi = "";
         $cmd   = "/usr/bin/issabel-helper migration $dahdi $filename";
         $cmd .= " 2>&1 || echo \"err_flag\"";
@@ -57,15 +59,18 @@ if (isset($_REQUEST['filename'])){
                 $error = true;
                 break;
             }
-            echo $line."<br>";
+	    echo str_pad("$line<br>", $padSize);
             ob_flush();
-            flush();
+            @ flush();
         }
-        pclose($file);
+	pclose($file);
+ 
         echo "</div>";
-        echo "<script>alert('Migration Complete');</script>";
+	echo "<script>window.parent.document.getElementById('loader').style.display='none';window.parent.document.getElementById('check').style.display='block';parent.clearInterval(parent.pepe);</script>";
+
+
     } else {
         echo "$filename is not a file";
     }
 }
-
+echo "</body></html>";
