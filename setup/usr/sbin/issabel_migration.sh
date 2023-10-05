@@ -336,7 +336,7 @@ function restore_sqlfromtemp {
 parse_args
 echo "--PLEASE WAIT UNTIL PAGE RELOADS--"
 echo " "
-echo -e "Openning backup file... \c"
+echo -e "Opening backup file... \c"
 if open_backup_file
 then 
     echo OK
