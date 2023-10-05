@@ -26,6 +26,13 @@ PARSED_OPTIONS=$(getopt -n "$0"  -o dhb: --long "dadhi,help,backup-file:"  -- "$
 alias cp=cp
 alias mv=mv
 
+MYLANG=$(sqlite3 /var/www/db/settings.db "select value from settings where key='language'")
+CURDIR=$(pwd)
+
+print () {
+    php -r "require_once '$CURDIR/lang/$MYLANG.lang'; function tr(\$string) { global \$arrLangModule; echo isset(\$arrLangModule[\$string])?\$arrLangModule[\$string]:\$string; }; tr('$1');"
+}
+
 function print_usage {
     echo "Usage:"
     echo "$0 [OPTIONS]"
@@ -39,12 +46,14 @@ function print_usage {
 function open_backup_file {
     if ! [ -s $BACKUPFILE ]
     then
-        echo No file to restore
+        print 'No file to restore'
+	echo
         exit 1
     fi
     if [ "$BACKUPFILE" == "" ]
     then
-        echo No backup file in arguments
+        print 'No backup file in arguments'
+	echo
         exit 1
     fi
     mkdir -p $DATADIR
@@ -217,17 +226,21 @@ function restore_voicemail {
 function check_versions {
     if grep -qE 'id="elastix" ver="4|id="elastix" ver="2.5|id="issabelpbx" ver="2.11' $DATADIR/backup/versions.xml
     then
-            echo Elastix Version OK
+            print 'Elastix Version OK'
+	    echo
     else
-            echo Wrong Elastix Version or Backup File
+            print 'Wrong Elastix Version or Backup File'
+	    echo
             exit 1
     fi
 
     if grep -qE 'id="freepbx" ver="2.11|id="issabelpbx" ver="2.11' $DATADIR/backup/versions.xml
     then
-            echo FreePBX Version OK
+            print 'FreePBX Version OK'
+	    echo
     else
-            echo Wrong FreePBX Version or Backup File
+            print 'Wrong FreePBX Version or Backup File'
+	    echo
             exit 1
     fi
 }
@@ -237,8 +250,8 @@ function parse_args {
     #Bad arguments, something has gone wrong with the getopt command.
     if [ $? -ne 0 ];
     then
-        echo ERROR getting args
-          exit 1
+        print 'ERROR getting args'
+        exit 1
     fi
     eval set -- "$PARSED_OPTIONS"
 
@@ -334,88 +347,119 @@ function restore_sqlfromtemp {
 }
 
 parse_args
-echo "--PLEASE WAIT UNTIL PAGE RELOADS--"
-echo " "
-echo -e "Opening backup file... \c"
+print "--PLEASE WAIT UNTIL FINISHED--"
+echo 
+print "Opening backup file..."
 if open_backup_file
 then 
-    echo OK
+    print 'OK'
 else
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
+echo
 check_versions
-echo -e "Backing up actual configuaration to $DATADIR... \c"
+print "Backing up actual configuaration to"
+echo -e " $DATADIR... \c"
 keep_files
 cp -p /var/www/html/index.php $DATADIR
 echo OK
-echo -e "Creating temp DB $TEMPDB (this may take a long time)... \c"
+print "Creating temp DB"
+echo -e " $TEMPDB \c"
+print "(this may take a long time)..."
 restore_asterisktempsql
-echo "OK"
-echo -e "Restoring Asterisk DB... \c"
-#if restore_asterisksql
+print "OK"
+echo
+
+print "Restoring Asterisk DB..."
 if restore_sqlfromtemp
 then
-    echo OK
+    print 'OK'
+    echo
 else 
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
-echo -e "Restoring Asterisk files... \c"
+
+print "Restoring Asterisk files..."
 if restore_asteriskfiles
 then
-    echo OK
+    print 'OK'
+    echo
 else 
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
-echo -e "Restoring Web DBs... \c"
+
+print "Restoring Web DBs..."
 if restore_sqlite_dbs
 then
-    echo OK
+    print 'OK'
+    echo
 else
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
+
 #insert new modules from menu.db
 update_acl
-echo -e "Restoring Asterisk Sound files... \c"
+
+print "Restoring Asterisk sound files..."
 if restore_sounds
 then
-    echo OK
+    print 'OK'
+    echo
 else
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
-echo -e "Restoring astdb... \c"
+
+print "Restoring AstDB..."
 if restore_astdb
 then
-    echo OK
+    print 'OK'
+    echo
 else
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
-echo -e "Restoring MOH files... \c"
+
+print "Restoring music on hold..."
 if restore_moh
 then
-    echo OK
+    print 'OK'
+    echo
 else
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
-echo -e "Restoring Enpoint configs... \c"
+
+print "Restoring Endpoint configs..."
 if restore_endpoint
 then
-    echo OK
+    print 'OK'
+    echo
 else
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
-echo -e "Restoring Faxes... \c"
+
+print "Restoring Faxes..."
 if restore_faxes
 then
-    echo OK
+    print 'OK'
+    echo
 else
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
 echo -e "Restoring Emails... \c"
 if restore_mail
 then
     echo OK
 else
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
 if [ "$RESTORE_DAHDI" == "1" ]
 then
@@ -426,14 +470,16 @@ if restore_monitor
 then
     echo OK
 else
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
 echo -e "Restoring Voicemail files... \c"
 if restore_voicemail
 then
     echo OK
 else
-    echo SKIP
+    print 'SKIP'
+    echo
 fi
 #update issabel.conf
 AMIPWD=$(echo "select value from issabelpbx_settings where keyword = 'AMPMGRPASS' limit 1" | mysql -s -N -uroot -p$MYSQLPWD asterisk)
