@@ -453,7 +453,7 @@ else
     print 'SKIP'
     echo
 fi
-echo -e "Restoring Emails... \c"
+print "Restoring Emails..."
 if restore_mail
 then
     echo OK
@@ -465,7 +465,7 @@ if [ "$RESTORE_DAHDI" == "1" ]
 then
     restore_dahdi
 fi
-echo -e "Restoring Monitor files... \c"
+print "Restoring Monitor files..."
 if restore_monitor
 then
     echo OK
@@ -473,7 +473,7 @@ else
     print 'SKIP'
     echo
 fi
-echo -e "Restoring Voicemail files... \c"
+print "Restoring Voicemail files..."
 if restore_voicemail
 then
     echo OK
