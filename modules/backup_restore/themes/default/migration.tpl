@@ -8,7 +8,6 @@
 <iframe name="ifm" id="myframe" frameborder=0 width="100%" height="500px" marginheight=0 marginwidth=0 scrolling=yes src={$frame_url}></iframe>
 </div>
 </div>
-</div>
 <script>
 pepe = setInterval('frames[0].scrollTo(0,9999999)',1000);
 </script>
