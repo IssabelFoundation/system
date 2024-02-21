@@ -1,0 +1,66 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p>Опція "Бекап/Відновлення" меню "Система" дозволяє створити резервну копію та відновити конфігурацію Issabel. Якщо ви робили резервну копію будь-коли раніше, це з’явиться в списку <i>(Зображення 1)</i>. Щоб завантажити резервну копію зі списку, просто натисніть назву файлу tar. </p>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_backup_restore.png" border="0" />
+<p>Зображення 1</p></div>
+<br />
+
+<h2>Виконання Резервного Копіювання</h2>
+
+<p>Щоб створити резервну копію, просто натисніть кнопку "Створити Резервну Копію...". Виберіть всі конфігурації, які ви хочете створити резервну копію з Issabel, і натисніть кнопку "Розпочати Процес".</p>
+<br />
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_backup.png" border="0" />
+<p>Зображення 2</p></div>
+<br />
+
+<h2>Відновити Резервну Копію</h2>
+
+<p>У списку резервних копій <i>(Зображення 1)</i> натисніть кнопку "Відновити", розташовану праворуч від резервної копії, яку потрібно відновити. Потім виберіть конфігурацію для відновлення та натисніть кнопку "Розпочати Процес" <i>(Зображення 3)</i>.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_restore.png" border="0" />
+<p>Зображення 3</p></div>
+<br />
+
+<h2>FTP Бекап</h2>
+
+<p>Щоб використовувати FTP-сервер для завантаження і вивантаження резервних копій, просто натисніть кнопку "FTP Бекап" <i>(Зображення 1)</i>. Спочатку заповніть необхідну інформацію для з'єднання з FTP-сервером, а потім натисніть кнопку "Зберегти", щоб зберегти зміни.</p>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_FTP1.png" border="0" />
+<p>Зображення 4</p></div>
+<br />
+<h3>Завантаження файлів на FTP-сервер</h3>
+<p>Щоб завантажити резервну копію на FTP-сервер, перетягніть файл резервної копії з розділу Локальний Сервер до розділу FTP-Сервер.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_FTP2.png" border="0" />
+<p>Зображення 5</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_FTP3.png" border="0" />
+<p>Зображення 6</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_FTP4.png" border="0" />
+<p>Зображення 7</p></div>
+<br />
+<h3>Завантаження файлів з FTP-сервера</h3>
+<p>Щоб завантажити файли резервних копій на сервер Issabel, просто перетягніть файл з розділу FTP-Сервер в розділ Локальний Сервер.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_FTP5.png" border="0" />
+<p>Зображення 8</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_FTP6.png" border="0" />
+<p>Зображення 9</p></div>
+<br />
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_FTP7.png" border="0" />
+<p>Зображення 10</p></div>
+<br />
+</body>
+</html>

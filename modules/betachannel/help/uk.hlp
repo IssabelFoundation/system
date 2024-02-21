@@ -1,0 +1,18 @@
+﻿<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+        <p align="Justify"></p>
+        <p>Модуль "Бета Канал" дозволяє активувати або деактивувати бета-репозиторій Issabel для тестування нічних версій пакунків.</p>
+        <br />
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_betachannel.png" border="0" />
+        <p>Зображення 1</p></div>
+
+        <br />
+        <p>Щоб увімкнути або вимкнути канал, переведіть його в стан ON, а щоб вимкнути - в стан OFF.</p>
+        <br />
+    </body>
+</html>

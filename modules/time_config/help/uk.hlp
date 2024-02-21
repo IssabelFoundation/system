@@ -1,0 +1,18 @@
+<html>
+<header>
+  <link rel="stylesheet" href="../themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="../themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p>Опція "Дата & Час" меню "Налаштування" в Issabel дозволяє нам налаштувати дату, годину і часовий пояс для веб-інтерфейсу Issabel.</p>
+<p>Виберіть нову дату, годину та часовий пояс і натисніть кнопку "Застосувати Зміни".</p>
+<br />
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_preferences_date_time.png" border="0" />
+<p>Зображення 1</p></div>
+<br />
+
+</body>
+</html>

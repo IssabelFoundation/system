@@ -1,0 +1,153 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel Version 4.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: Ltd LeNET                                             |
+  | Email: support@lenet.com.ua                                          |
+  +----------------------------------------------------------------------+
+  $Id: uk.lang,v 1.7 2023-09-30 22:20:39 Ltd LeNET Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"Are you sure you wish to delete backup (s)?" => "Ви впевнені, що хочете видалити резервну копію (ї)?",
+	"Database" => "База Даних",
+	"PDF" => "PDF",
+	"Endpoint" => "Телефони",
+	"Asterisk" => "Астеріск",
+	"All options (Fax)" => "Усі опції (Факс)",
+	"All options (Email)" => "Усі опції (Електронна Пошта)",
+	"All options (Endpoint)" => "Усі опції (Телефони)",
+	"All options (Asterisk)" => "Усі опції (Астеріск)",
+	"DAHDI Configuration" => "Налаштування DAHDI",
+	"Others" => "Інші",
+	"All options (Others)" => "Усі опції (Інші)",
+	"SugarCRM Database" => "База Даних SugarCRM",
+	"VtigerCRM Database" => "База Даних VtigerCRM",
+	"A2billing Database" => "База Даних A2billing",
+	"Mysql Database" => "База Даних Mysql",
+	"Menus and Permissions" => "Меню та Права",
+	"This process could take several minutes" => "Цей процес може зайняти деякий час",
+	"Mailbox" => "Поштові Скриньки",
+	"(Heavy Content)" => "(Великий Об'єм)",
+	"UPLOAD" => "Завантажити",
+	"File Upload" => "Файл Завантажений",
+	"The backup file would have a tar extension" => "Файл резервної копії буде мати розширення tar",
+	"Error copying the file" => "Помилка копіювання файлу",
+	"The file was copied correctly" => "Файл скопійовано коректно",
+	"Backup" => "Створити Резервну Копію...",
+	"Process" => "Розпочати Процес",
+	"Restore" => "Відновити",
+	"Issabel Database" => "База Даних Issabel",
+	"Sounds" => "Звуки",
+	"Configuration Files" => "Конфігураційні Файли",
+	"Monitors" => "Записи Розмов",
+	"tFTP" => "tFTP",
+	"Email Acccounts" => "Облікові Записи Електронної Пошти",
+	"Choose an option to backup" => "Виберіть опції для резервного копіювання",
+	"Could not generate backup file" => "Неможливо згенерувати файл резервної копії",
+	"Backup Complete!" => "Резервне Копіювання Завершено!",
+	"Choose an option to restore" => "Виберіть опції для відновлення",
+	"Backup file path can't be empty" => "Файл резервної копії не повинен бути порожнім",
+	"File doesn't exist" => "Файл не існує",
+	"Restore Complete!" => "Відновлення  Завершено!",
+	"Backup File Location" => "Шлях до файлу резервної копії",
+	"Select All options" => "Вибрати Усі Опції",
+	"Backup/Restore" => "Резервне Копіювання",
+	"Backup List" => "Список Резервних Копій",
+	"Name Backup" => "Ім'я Резервної Копії",
+	"Error when deleting backup file" => "Помилка видалення резервної копії",
+	"There are not backup file selected" => "Не вибрано жодної резервної копії",
+	"Action" => "Дія",
+	"Folder backup doesn't exist" => "Папка резервного копіювання не існує",
+	"Flash Operator Panel Config Files" => "Файли Налаштування Flash Панелі Оператора (FOP)",
+	"Date" => "Дата",
+	"Voicemails" => "Голосова Пошта",
+	"Fax" => "Факс",
+	"Email" => "Електронна Пошта",
+	"Dahdi Configuration" => "Налаштування Dahdi",
+	"Cancel" => "Скасувати",
+	"Select all in this section" => "Вибрати все у цьому розділі",
+	"MOH" => "Музика На Утриманні",
+	"Others new" => "Інші",
+	"Calendar  Database" => "База Даних Календаря",
+	"Address Book Database" => "База Даних Адресної Книги",
+	"Conference  Database" => "База Даних Конференцій",
+	"FTP Backup" => "FTP Бекап",
+	"Server FTP" => "FTP-Сервер",
+	"Port" => "Порт",
+	"User" => "Ім'я Користувач",
+	"Password" => "Пароль Користувача",
+	"Local" => "Локальний Сервер",
+	"Download" => "Скачати",
+	"Path Server FTP" => "Шлях на Сервері FTP",
+	"Error to connect" => "Будь ласка, заповніть всі поля для підключення до сервера",
+	"Error Connection" => "Неможливо Підключитися до Сервера",
+	"Error user_password" => "Не можу з'єднатися із вказаним ім'ям користувача та паролем",
+	"Error to save" => "Будь ласка, заповніть всі поля, щоб зберегти",
+	"Error Drag Drop" => "Будь Ласка Перетягніть Файл Між Списками",
+	"Error to request" => "Виникла проблема з підключеннямм",
+	"Successfully uploaded" => "Вдало завантажений",
+	"Problem uploading" => "Виникла проблема із завантаженням",
+	"Successfully written" => "Вдало записано",
+	"Problem downloading" => "Виникла проблема під час завантаження",
+	"TITLE" => "Будь ласка, перетягніть файл між списками для завантаження або скачування по FTP",
+	"AUTOMATIC" => "Автоматичний Бекап",
+	"DAILY" => "Щодня",
+	"MONTHLY" => "Щомісяця",
+	"WEEKLY" => "Щотижня",
+	"DISABLED" => "Вимкнено",
+	"SUCCESSFUL" => "Успішний Процес",
+	"Unabled write file" => "Неможливо записати файл",
+	"Unabled open file" => "Неможливо відкрити файл",
+	"EOP" => "EOP",
+	"programs" => "Програми",
+	"Warning" => "<b><font size='2' color='red'>УВАГА:</font></b> Версія відновлення відрізняється від поточної. Можуть виникнути серйозні проблеми із роботою програм після відновлення. Натисніть 'Обробити', якщо хочете продовжити або 'Скасувати', якщо ні.",
+	"local_version" => "Поточна",
+	"external_version" => "Резервної Копії",
+	"details" => "переглянути деталі",
+	"warning_details" => "Деталі Попередження",
+	"no_file_xml" => "<b><font size='2' color='red'>УВАГА:</font></b> Немає даних про версію у файлі Резервної копії. Можуть виникнути серйозні проблеми із роботою програм після відновлення. Натисніть 'Обробити', якщо хочете продовжити або 'Скасувати', якщо ні.",
+	"asterisk" => "Астеріск",
+	"dahdi" => "DAHDI",
+	"wanpipe-util" => "Wanpipe-Util",
+	"issabelpbx" => "Issabelpbx",
+	"issabel" => "Issabel",
+	"Package" => "Пакет",
+	"issabel-pbx" => "Issabel PBX",
+	"issabel-email_admin" => "Issabel Пошта",
+	"issabel-agenda" => "Issabel Agenda",
+	"issabel-fax" => "Issabel Факс",
+	"issabel-vtigercrm" => "Issabel VtigerCRM",
+	"issabel-a2billing" => "Issabel A2billing",
+	"issabel-sugarcrm-addon" => "Issabel SugarCRM",
+	"Package not installed" => "Не встановлений",
+	"Version" => "Версія",
+	"Please verify if the mysql password is the correct in /etc/issabel.conf (mysqlrootpwd)" => "Будь ласка, переконайтеся, що пароль mysql є правильним в /etc/issabel.conf (mysqlrootpwd)",
+	"Page" => "Сторінка",
+	"Options Backup" => "Опції Резервної Копії",
+	"Progress" => "Прогрес",
+	"FTP server credentials not set" => "Не вказано облікові дані FTP-Сервера",
+	"records" => "записів",
+	"Backup file path can" => "Файл резервної копії не може бути порожнім",
+	"File doesn" => "Файл не існує",
+	"Folder backup doesn" => "Папка резервного копіювання не існує",
+	"No records match the filter criteria" => "Немає записів які відповідають критеріям фільтра",
+);
+?>

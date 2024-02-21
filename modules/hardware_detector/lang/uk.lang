@@ -1,0 +1,83 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel Version 4.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: LLC LeNET                                             |
+  | Email: support@lenet.com.ua                                          |
+  +----------------------------------------------------------------------+
+  $Id: uk.lang,v 1.7 2023-10-29 18:22:22 LLC LENET support@lenet.ua Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"Hardware Detector" => "Виявлення Обладнання",
+	"Ports not Founds" => "Порти не знайдено",
+	"Card" => "Карта",
+	"Type port" => "Тип",
+	"No. Port" => "Порт #",
+	"Detected by Asterisk" => "Виявлено Asterisk",
+	"Hardware Detecting" => "Виявлення Обладнання",
+	"Hardware Detect" => "Виявлення Нового Обладнання",
+	"Cards undetected on your system, press for detecting hardware detection." => "У вашій системі не виявлено жодної картки. Будь ласка, натисніть кнопку \"Виявити Нове Обладнання\", щоб виявити нове обладнання.",
+	"Information" => "Інформація",
+	"Satisfactory Hardware Detection" => "Готово",
+	"Unknown" => "Невідомо",
+	"Replace file chan_dahdi.conf" => "Змінити файл chan_dahdi.conf",
+	"Unable to backup file chan_dahdi.conf by chan_dahdi.conf.replace_for_issabel" => "Не вдається створити резервну копію файлу chan_dahdi.conf за допомогою chan_dahdi.conf.replace_for_issabel",
+	"Unable to replace file chan_dahdi.conf" => "Не вдалося замінити файл chan_dahdi.conf",
+	"Detect Sangoma hardware" => "Виявити обладнання Sangoma",
+	"Detect ISDN hardware" => "Виявлення обладнання ISDN",
+	"Misdn Card" => "Misdn Карта",
+	"Not detected by Asterisk" => "Не виявлено Asterisk",
+	"Port" => "Порт",
+	"Configure Echo Cancellers" => "Налаштування Ехоподавлення",
+	"mISDN Driver Installed" => "Встановлено Драйвер mISDNuser",
+	"mISDN Driver not Installed" => "mISDNuser Драйвер не Встановлено",
+	"Channel detected and not used" => "Канал виявлено але він не обслуговується",
+	"Channel detected and in use" => "Канал виявлено та запущено в роботу",
+	"Undetected Channel" => "Невиявлений Канал",
+	"You can set the parameters for these ports here" => "Налаштувати параметри для цих портів можна тут",
+	"Port Status" => "Стан Портів",
+	"Configuration of Span" => "Конфігурація Span",
+	"Span Settings" => "Налаштування Span",
+	"Advanced" => "Розширений",
+	"Preferences" => "Налаштування",
+	"Timing source" => "Джерело синхронізації",
+	"Line build out" => "Розгортання лінії",
+	"Framing" => "Оформлення",
+	"Coding" => "Кодування",
+	"No Ports availables" => "Немає Доступних Портів",
+	"Card Configured" => "Картку Налаштовано",
+	"Loading SPAN" => "Завантаження SPAN",
+	"Saving configuration" => "Збереження конфігурації",
+	"Hardware Control" => "Апаратний Контроль",
+	"Channel Empty" => "Порожній Канал",
+	"ISDN PRI Media Type" => "Тип Носія ISDN PRI",
+	"T1: 24 channels, USA" => "T1: 24 канали, США",
+	"E1: 31 channels, Europe" => "E1: 31 канал, Європа",
+	"0 db (CSU) / 0-133 feet (DSX-1)" => "0 дБ (CSU) / 0-133 фути (DSX-1)",
+	"133-266 feet (DSX-1)" => "133-266 фути (DSX-1)",
+	"266-399 feet (DSX-1)" => "266-399 фути (DSX-1)",
+	"399-533 feet (DSX-1)" => "399-533 фути (DSX-1)",
+	"533-655 feet (DSX-1)" => "533-655 fфути (DSX-1)",
+	"-7.5db (CSU)" => "-7.5дБ (CSU)",
+	"-15db (CSU)" => "-15дБ (CSU)",
+	"-22.5db (CSU)" => "-22.5дБ (CSU)",
+);
+?>

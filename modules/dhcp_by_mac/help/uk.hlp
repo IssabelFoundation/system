@@ -1,0 +1,34 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>За допомогою цієї опції ви можете призначити IP-адресу певному пристрою через MAC-адресу. Коли пристрій запитує IP-адресу, DHCP-сервер надає її відповідно до MAC-адреси. Усі асоціації, створені користувачем, відображаються у списку.</p>
+	<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_dhcp_by_mac_1.png" border="0" />
+	<p>Зображення 1</p></div>
+	<br />
+	<h2>Призначення IP Адреси</h2>
+	<p>Щоб створити нову асоціацію, натисніть кнопку "Зарезервувати IP Адресу". Заповніть необхідну інформацію та натисніть кнопку "Зберегти".</p>
+	<div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_dhcp_by_mac_2.png" border="0" />
+	<p>Зображення 2</p></div>
+	<br />
+	<p>У наступній таблиці наведено опис кожного поля:</p>
+        <table class="inline">
+            <tr>
+                <th>Назва</th><th>Опис</th>
+            </tr>
+            <tr>
+                <td>Ім'я Хоста</td><td>Ім'я, яке потрібно призначити пристрою</td>
+            </tr>
+	    <tr>
+                <td>IP Адреса</td><td>IP Адреса яку потрібно використовувати для пристрою</td>
+            </tr>
+	    <tr>
+                <td>MAC Адреса</td><td>MAC Адреса пристрою</td>
+            </tr>
+        </table>
+	<br />
+    </body>
+</html>

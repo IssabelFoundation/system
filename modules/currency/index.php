@@ -169,6 +169,7 @@ function getCurrencys()
             "৳"     => "৳ - "._tr("Rupia bengalí"),
             "S$"    => "S$ - "._tr("Dólar de Singapur"),
 	    "CHF"   => "CHF - "._tr("Swiss Franc"),
+            "UAH"    => "UAH - "._tr("Ukrainian Hryvnia"),
     );
 }
 ?>

@@ -1,0 +1,45 @@
+<?php
+  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 4.0.0-7                                               |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  +----------------------------------------------------------------------+
+  $Id: uk.lang,v 1.0 2023/09/23 17:13:30 Ltd LeNET support@lenet.com.ua Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+"Dashboard Applet Admin" => "Налаштування Панелі Стану",
+"Applet" => "Апплет",
+"Activated" => "Активовано",
+"You must have at least one applet activated" => "Ви повинні мати хоча б один активований аплет",
+"Check All" => "Вибрати/Скасувати Всі",
+"System Resources" => "Системні Ресурси",
+"Processes Status" => "Стан Процесів",
+"Hard Drives" => "Жорсткі Диски",
+"Performance Graphic" => "Графік Продуктивності",
+"News" => "Новини",
+"Communication Activity" => "Комунікаційна Активність",
+"Calendar" => "Календар",
+"Calls" => "Виклики",
+"Emails" => "Електронна Пошта",
+"Faxes" => "Факси",
+"Voicemails" => "Голосова Пошта",
+"System" => "Система",
+"Telephony Hardware" => "Телефонне Обладнання",
+"Issabel Network" => "Мережа Issabel",
+);
+?>

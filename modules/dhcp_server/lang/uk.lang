@@ -1,0 +1,63 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel Version 4.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: LLC LeNET                                             |
+  | Email: support@lenet.com.ua                                          |
+  +----------------------------------------------------------------------+
+  $Id: uk.lang,v 1.7 2023-10-28 02:13:25 LLC LENET support@lenet.ua Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"DHCP Server" => "Сервер DHCP",
+	"Update" => "Зберегти/Оновити",
+	"Service Start" => "Увімкніть DHCP",
+	"Service Stop" => "Вимкніть DHCP",
+	"Start range of IPs" => "Початкова IP Адреса",
+	"End range of IPs" => "Кінцева IP Адреса",
+	"DNS 1" => "ДНС 1",
+	"DNS 2" => "ДНС 2",
+	"WINS" => "WINS",
+	"Gateway" => "Шлюз",
+	"Optional" => "Необов'язковий",
+	"Of 1 to 50000 Seconds" => "Від 1 до 50000 секунд",
+	"Time of client refreshment" => "Час Оренди",
+	"DHCP Configuration" => "Конфігурація Сервера DHCP",
+	"Could not find IP range" => "Не вдалося знайти діапазон IP",
+	"DHCP configuration reading error: Verify that the DHCP service is installed and try again." => "Помилка читання конфігурації DHCP. Переконайтеся що служба DHCP встановлено а потім знову повторіть спробу.",
+	"Information DHCP" => "Інформація",
+	"The Service dhcpd can't stop" => "Служба dhcpd не може зупинитися",
+	"The Service dhcpd can't start" => "Не вдається запустити Службу dhcpd",
+	"The start IP is outside the LAN network" => "Початковий IP знаходиться поза мережею LAN",
+	"The final IP is outside the LAN network" => "Кінцевий IP знаходиться за межами мережі LAN",
+	"IP Range is invalid for available devices" => "Діапазон IP недійсний для доступних пристроїв",
+	"Gateway is outside the LAN network" => "Шлюз знаходиться поза мережею LAN",
+	"You can only choose between Enabled and Disabled" => "Ви можете вибирати лише між Увімкнено та Вимкнено",
+	"Value outside the range (1-50000)" => "Значення за межами діапазону (1-50000)",
+	"Failed to update the file configuration" => "Не вдалося оновити конфігурацію файлу",
+	"The update was successful, but was unable to reestablish the permissions of the file dhcp.conf" => "Оновлення пройшло успішно але не вдалося відновити дозволи для файлу dhcp.conf",
+	"Update Error" => "Помилка Оновлення",
+	"Status" => "Статус",
+	"Inactive" => "Неактивний",
+	"Information" => "Інформація",
+	"Active" => "Активний",
+	"PXE Boot Server" => "Сервер Завантаження PXE",
+);
+?>

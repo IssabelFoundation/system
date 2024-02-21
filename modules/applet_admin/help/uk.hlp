@@ -1,0 +1,12 @@
+<html>
+    <header>
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+        <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+    </header>
+    <body>
+        <h1>{$node_name}</h1>
+	<p>Опція "Налаштування Панелі Стану" з меню "Система" в Issabel дозволяє ввімкнути або вимкнути видимість аплетів на інформаційній панелі.</p>
+        <div class="hlp_figures"><img src="../modules/{$node_id}/images/uk_hlp_applet_admin.png" border="0">
+	<p>Зображення 1</p></div>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel Version 4.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: LLC LeNET                                             |
+  | Email: support@lenet.com.ua                                          |
+  +----------------------------------------------------------------------+
+  $Id: uk.lang,v 1.7 2023-10-30 02:45:03 LLC LENET support@lenet.ua Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"Date/Time" => "Дата/Час",
+	"Date and Time Configuration" => "Дата/Час",
+	"Current Datetime" => "Поточна Дата та Час",
+	"New Date" => "Нова Дата",
+	"New Time" => "Новий Час",
+	"New Timezone" => "Новий Часовий Пояс",
+	"Date not valid" => "Дата не дійсна",
+	"Unable to locate file" => "Не вдається знайти файл",
+	"Internal has failed" => "Не вдалося виконати (внутрішній) chown/etc/localtime",
+	"Internal reading" => "(внутрішнє) читання",
+	"Internal aperture" => "(внутрішня) апертура (w) /etc/localtime зазнала невдачі",
+	"Internal chown" => "(внутрішній) chown /var/spool/postfix/etc/localtime завершився невдало",
+	"Internal aperture localtime" => "(внутрішня) апертура (w) /var/spool/postfix/etc/localtime зазнала невдачі",
+	"Internal chown clock" => "(внутрішній) chown /etc/sysconfig/clock не вдалося",
+	"Internal aperture clock" => "(внутрішня) апертура (w) /etc/sysconfig/clock не вдалося.",
+	"has failed" => "не вдалося",
+	"System time changed successfully" => "Системну Дату/Час успішно змінено",
+	"The change of date and time can concern important  system processes." => "Зміна дати і часу в системі може призвести до неочікуваних або суперечливих значень у процесах, обчислення яких залежать від них, наприклад, при створенні звітів, часових умов тощо.",
+	"Can not find file" => "Не вдалося знайти файл",
+);
+?>

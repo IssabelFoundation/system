@@ -1,0 +1,12 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+<h1>{$node_name}</h1>
+
+<p>Опція "Пiнг & Трасування" у меню "Мережа" дозволяє виконувати ці команди мережевої діагностики з графічного інтерфейсу Issabel.</p>
+
+</body>
+</html>
