@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Wed 05 May 2021 02:39:07 PM EDT, nicolas@issabel.com
+  $Id: index.php, Thu 22 Feb 2024 03:17:28 PM EST, nicolas@issabel.com
 */
 include_once "libs/paloSantoConfig.class.php";
 include_once "libs/paloSantoGrid.class.php";
@@ -185,6 +185,7 @@ function report_backup_restore($smarty, $module_name, $local_templates_dir, $dir
                 // Get the backup issabelPBX version
                 $xml = simplexml_load_string($versions);
                 $i=0;
+                $checkidx=0;
                 foreach($xml->program as $idx) { 
                     foreach($xml->program[$i]->attributes() as $a => $b) {
                         if($a=='id' && $b=='issabelpbx') {
