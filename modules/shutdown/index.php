@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Wed 19 May 2021 10:33:00 AM EDT, nicolas@issabel.com
+  $Id: index.php, Mon 06 May 2024 02:01:22 PM EDT, nicolas@issabel.com
 */
 
 function _moduleContent(&$smarty, $module_name) {
@@ -46,18 +46,27 @@ function _moduleContent(&$smarty, $module_name) {
         $smarty->assign("MSG_LINK", _tr("Continue"));
         if($_POST['shutdown_mode']=='1') {
             writeLOG("audit.log", "SHUTDOWN $user: User $user requested SHUTDOWN from $ipaddr.");
-            $smarty->assign("SHUTDOWN_MSG", _tr("Your system in shutting down now. Please, try again later."));
-            exec("sudo -u root /sbin/shutdown -h now", $salida, $retorno);
+            $cmd = "echo 'sudo -u root /sbin/shutdown -h now' | at now +1 minute";
+            $output = system($cmd,$return);
+            if($return!==0) {
+                $smarty->assign("SHUTDOWN_MSG", _tr("There was a problem sending the shutdown signal."));
+            } else {
+                $smarty->assign("SHUTDOWN_MSG", _tr("Your system in shutting down now. Please, try again later."));
+            }
             $salida = $smarty->fetch("file:$local_templates_dir/shutdown_in_progress.tpl");
         } else if ($_POST['shutdown_mode']=='2') {
             writeLOG("audit.log", "SHUTDOWN $user: User $user requested RESTART from $ipaddr.");
-            $smarty->assign("SHUTDOWN_MSG", _tr("The reboot signal has been sent correctly."));
-            exec("sudo -u root /sbin/shutdown -r now", $salida, $retorno);
+            $cmd = "echo 'sudo -u root /sbin/shutdown -r now' | at now +1 minute";
+            $output = system($cmd,$return);
+            if($return!==0) {
+                $smarty->assign("SHUTDOWN_MSG", _tr("There was a problem sending the reboot signal."));
+            } else {
+                $smarty->assign("SHUTDOWN_MSG", _tr("The reboot signal has been sent correctly."));
+            }
             $salida = $smarty->fetch("file:$local_templates_dir/shutdown_in_progress.tpl");
         } else {
             echo "Modo invalido";
         }
-
     } else {
         $smarty->assign("ACCEPT", _tr("Accept"));
         $smarty->assign("CONFIRM_CONTINUE", _tr("Are you sure you wish to continue?"));
