@@ -41,8 +41,7 @@ $backup_dir = $arrConfModule['dir'];
 echo "<html><head></head><body>";
 
 if (isset($_REQUEST['filename'])){
-    $filename = escapeshellarg($_REQUEST['filename']);
-    $filename = substr($filename,1,-1);
+    $filename = escapeshellcmd($_REQUEST['filename']);
     $filename = $backup_dir."/".$filename;
     if(is_file($filename)) { 
         echo "<div style='font-family: \"Lucida Console\", Monaco, monospace'>";
