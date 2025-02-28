@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoFTPBackup.class.php, Thu 20 May 2021 09:02:52 AM EDT, nicolas@issabel.com
+  $Id: paloSantoFTPBackup.class.php, Fri 28 Feb 2025 02:13:08 PM EST, nicolas@issabel.com
 */
 
 define ('ISSABEL_BACKUP_DIR', '/var/www/backup');
@@ -214,11 +214,9 @@ class paloSantoFTPBackup {
     //obtiene lo asrchivos locales
     function obtainFiles($dir){
         $files =  glob($dir."/{*.tar}",GLOB_BRACE);
-        $array = array();
-        $names ="";
+        $names = array();
         foreach ($files as $ima)
             $names[]=array_pop(explode("/",$ima));
-        if(!$names) return $array;
         return $names;
     }
 
