@@ -38,7 +38,7 @@ if ($_REQUEST){
 
     if($_REQUEST['send'] == "ping" && isset($_REQUEST["hostname"])) {
 
-        $ping_host = escapeshellcmd($_REQUEST['hostname']);
+        $ping_host = escapeshellcmd(htmlspecialchars($_REQUEST['hostname']));
         $cmd = "/usr/bin/ping -c 4 $ping_host";            
 
     } else if($_REQUEST['send'] == 'tracepath' && isset($_REQUEST['hostname'])) {
