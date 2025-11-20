@@ -1003,16 +1003,11 @@ function file_download_FTPServer($module_name, &$pDB)
 
 function obtainList($fileString)
 {
-    $token = strtok($fileString, "_");
-    $out = "";
-    $i = 0;
-    while ($token != false)
-    {
-        $out[$i] = $token;
-        $token = strtok(";");
-        $i++;
-    }
-    return $out;
+    $partes = explode("_", $fileString);
+    return array(
+        $partes[0], // tipo de acción: 'inn'
+        $partes[1]  // nombre real del archivo
+    );
 }
 /******************************************************************************************/
 
