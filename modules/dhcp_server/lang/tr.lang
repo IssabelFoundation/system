@@ -1,0 +1,61 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 1.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Mahir Gül                                              |
+  | Email: mahirgul@gmail.com                                            |
+  +----------------------------------------------------------------------+
+  $Id: tr.lang,v 1.0 18/02/2025 16:30:00 bmacias Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+    "DHCP Server" => "DHCP Sunucusu",
+    "Update" => "Kaydet/Güncelle",
+    "Service Start" => "DHCP'yi Etkinleştir",
+    "Service Stop" => "DHCP'yi Devre Dışı Bırak",
+    "Start range of IPs" => "Başlangıç IP Adresi",
+    "End range of IPs" => "Bitiş IP Adresi",
+    "DNS 1" => "DNS 1",
+    "DNS 2" => "DNS 2",
+    "WINS" => "WINS",
+    "Gateway" => "Ağ Geçidi",
+    "Optional" => "İsteğe Bağlı",
+    "Of 1 to 50000 Seconds" => "1 ile 50000 Saniye Arası",
+    "Time of client refreshment" => "Kiralama Süresi",
+    "DHCP Configuration" => "DHCP Sunucu Yapılandırması",
+    "Could not find IP range" => "IP aralığı bulunamadı",
+    "DHCP configuration reading error: Verify that the DHCP service is installed and try again." => "DHCP yapılandırma okuma hatası: DHCP hizmetinin yüklü olduğunu doğrulayın ve tekrar deneyin.",
+    "Information DHCP" => "Bilgi",
+    "The Service dhcpd can't stop" => "dhcpd Hizmeti durdurulamıyor",
+    "The Service dhcpd can't start" => "dhcpd Hizmeti başlatılamıyor",
+    "The start IP is outside the LAN network" => "Başlangıç IP'si LAN ağının dışında",
+    "The final IP is outside the LAN network" => "Bitiş IP'si LAN ağının dışında",
+    "IP Range is invalid for available devices" => "IP Aralığı mevcut cihazlar için geçersiz",
+    "Gateway is outside the LAN network" => "Ağ Geçidi LAN ağının dışında",
+    "You can only choose between Enabled and Disabled" => "Sadece Etkin ve Devre Dışı arasında seçim yapabilirsiniz",
+    "Value outside the range (1-50000)" => "Aralık dışı değer (1-50000)",
+    "Failed to update the file configuration" => "Dosya yapılandırması güncellenemedi",
+    "The update was successful, but was unable to reestablish the permissions of the file dhcp.conf" => "Güncelleme başarılı oldu, ancak dhcp.conf dosyasının izinleri yeniden oluşturulamadı",
+    "Update Error" => "Güncelleme Hatası",
+    "Status"=>"Durum",
+    "Inactive"=>"Etkin Değil",
+    "Information" => "Bilgi",
+    "Active"=>"Etkin"
+);
+?>

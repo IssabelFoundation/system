@@ -1,0 +1,55 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 1.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Mahir Gül                                              |
+  | Email: mahirgul@gmail.com                                            |
+  +----------------------------------------------------------------------+
+  $Id: tr.lang,v 1.0 18/02/2025 16:30:00 bmacias Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+    "Network Parameters"=>"Ağ Parametreleri",
+    "Device"=>"Aygıt",
+    "Type"=>"Tür",
+    "IP"=>"IP",
+    "Mask"=>"Maske",
+    "MAC Address"=>"MAC Adresi",
+    "HW Info"=>"Donanım Bilgisi",
+    "Status"=>"Durum",
+    "Ethernet Interfaces List"=>"Ethernet Arayüzleri Listesi",
+    "Connected"=>"Bağlı",
+    "Not Connected"=>"Bağlı Değil",
+    "Edit Interface"=>"Arayüzü Düzenle",
+    "Validation Error"=>"Doğrulama Hatası",
+    "The following fields contain errors"=>"Aşağıdaki alanlar hata içeriyor",
+    "Host"=>"Ana Bilgisayar",
+    "Primary DNS"=>"Birincil DNS",
+    "Secondary DNS"=>"İkincil DNS",
+    "Default Gateway"=>"Varsayılan Ağ Geçidi",
+    "IP Address"=>"IP Adresi",
+    "Network Mask"=>"Ağ Maskesi",
+    "Interface Type"=>"Arayüz Türü",
+    "Save"=>"Kaydet",
+    "Edit Network Parameters"=>"Ağ Parametrelerini Düzenle",
+    "Required field"=>"Gerekli alan",
+    "Apply changes"=>"Değişiklikleri uygula",
+    "Are you sure you want to edit network parameters?"=>"Ağ parametrelerini düzenlemek istediğinizden emin misiniz?"
+);
+?>

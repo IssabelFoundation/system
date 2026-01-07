@@ -1,0 +1,82 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 1.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Mahir Gül                                              |
+  | Email: mahirgul@gmail.com                                            |
+  +----------------------------------------------------------------------+
+  $Id: tr.lang,v 1.0 18/02/2025 16:30:00 bmacias Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+ "Hardware Detector" => "Donanım Algılayıcı",
+    "Ports not Founds" => "Port bulunamadı",
+    "Card" => "Span",
+    "Type port" => "Port türü",
+    "No. Port" => "Port #",
+    "Detected by Asterisk" => "Asterisk tarafından algılandı",
+    "Hardware Detecting" => "Donanım Algılanıyor",
+    "Hardware Detect" => "Yeni Donanımı Algıla",
+    "Cards undetected on your system, press for detecting hardware detection." => "Sisteminizde kart algılanmadı. Yeni donanım algılamak için lütfen \"Yeni Donanımı Algıla\" düğmesine basın.",
+    "Information" => "Bilgi",
+    "Satisfactory Hardware Detection" => "Tamamlandı",
+    "Unknown" => "Bilinmeyen",
+    "Replace file chan_dahdi.conf" => "chan_dahdi.conf dosyasını değiştir",
+    "Unable to backup file chan_dahdi.conf by chan_dahdi.conf.replace_for_issabel" => "chan_dahdi.conf dosyasını chan_dahdi.conf.replace_for_issabel ile yedekleme yapılamadı",
+    "Unable to replace file chan_dahdi.conf" => "chan_dahdi.conf dosyası değiştirilemedi",
+    "Detect Sangoma hardware" => "Sangoma donanımını algıla",
+    "Detect ISDN hardware" => "ISDN donanımını algıla",
+    "Misdn Card" => "Misdn Kartı",
+    "Not detected by Asterisk" => "Asterisk tarafından algılanmadı",
+    "Port" => "Port",
+    "Configure Echo Cancellers" => "Yankı Gidericileri Yapılandır",
+    "mISDN Driver Installed" => "mISDNuser Sürücüsü Yüklü",
+    "mISDN Driver not Installed" => "mISDNuser Sürücüsü Yüklü Değil",
+    "Channel detected and not used" => "Kanal algılandı ancak kullanılmıyor",
+    "Channel detected and in use" => "Kanal algılandı ve kullanılıyor",
+    "Undetected Channel" => "Algılanmayan Kanal",
+    "You can set the parameters for these ports here" => "Bu portlar için parametreleri buradan ayarlayabilirsiniz",
+    "Port Status" => "Port Durumu",
+    "Configuration of Span" => "Span Yapılandırması",
+    "Span Settings" => "Span Ayarları",
+    "Advanced" => "Gelişmiş",
+    "Preferences" => "Tercihler",
+    "Timing source" => "Zamanlama kaynağı",
+    "Line build out" => "Hat çıkışı",
+    "Framing" => "Çerçeveleme",
+    "Coding" => "Kodlama",
+    "No Ports availables" => "Kullanılabilir Port Yok",
+    "Card Configured" => "Kart Yapılandırıldı",
+    "Loading SPAN" => "SPAN Yükleniyor",
+    "Saving configuration" => "Yapılandırma kaydediliyor",
+    "Hardware Control" => "Donanım Kontrolü",
+    "Channel Empty" => "Boş Kanal",
+    "ISDN PRI Media Type" => "ISDN PRI Medya Türü",
+    'T1: 24 channels, USA' => 'T1: 24 kanal, ABD',
+    'E1: 31 channels, Europe' => 'E1: 31 kanal, Avrupa',
+    '0 db (CSU) / 0-133 feet (DSX-1)' => '0 db (CSU) / 0-133 feet (DSX-1)',
+    '133-266 feet (DSX-1)' => '133-266 feet (DSX-1)',
+    '266-399 feet (DSX-1)' => '266-399 feet (DSX-1)',
+    '399-533 feet (DSX-1)' => '399-533 feet (DSX-1)',
+    '533-655 feet (DSX-1)' => '533-655 feet (DSX-1)',
+    '-7.5db (CSU)' => '-7.5db (CSU)',
+    '-15db (CSU)' => '-15db (CSU)',
+    '-22.5db (CSU)' => '-22.5db (CSU)'
+);
+?>

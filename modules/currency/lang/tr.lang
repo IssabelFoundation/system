@@ -1,8 +1,8 @@
 <?php
-  /* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
   Codificación: UTF-8
   +----------------------------------------------------------------------+
-  | Issabel version 1.4-1                                               |
+  | Issabel version 1.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
@@ -18,12 +18,15 @@
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Mahir Gül                                              |
+  | Email: mahirgul@gmail.com                                            |
   +----------------------------------------------------------------------+
-  $Id: en.lang,v 1.1 2008-08-25 05:08:01 jvega jvega@palosanto.com Exp $ */
+  $Id: tr.lang,v 1.0 18/02/2025 16:30:00 bmacias Exp $ */
 global $arrLangModule;
 $arrLangModule=array(
 "Currency" => "Para Birimi",
-"Lira" => "Türk Lirası",
+"Lira" => "Lira",
 "Argentinian peso" => "Argentinian peso",
 "Baht tailandés / balboa panameño" => "Thai Baht / balboa panameño",
 "Bolívar venezolano" => "Bolívar venezolano",
@@ -47,8 +50,8 @@ $arrLangModule=array(
 "Yuan chino" => "Chinese Yuan",
 "Rupia bengalí" => "Bangladeshi Rupee",
 "Dólar de Singapur" => "Singapore Dollar",
-"Error" => "Error",
-"Successfully saved" => "Successfully saved",
+"Error" => "Hata",
+"Successfully saved" => "Kaydedildi",
 "Colón costarricense" => "Costa Rican Colón",
 "GB Sterling" => "Great British Pound",
 "Rublo ruso" => "Russian Ruble",
