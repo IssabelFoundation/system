@@ -134,6 +134,7 @@ class Applet_ProcessesStatus
             'Postfix'   =>  'postfix',
             'MySQL'     =>  'mysqld',
             'Apache'    =>  'httpd',
+            'Dialer'    =>  'issabeldialer',
         );
         if (!isset($_REQUEST['process'])) {
             $respuesta['status'] = 'error';
@@ -229,6 +230,13 @@ class Applet_ProcessesStatus
         $arrSERVICES["Apache"]["activate"]     = $this->_isActivate("httpd");
         $arrSERVICES["Apache"]["name_service"]     = "Web Server";
 
+        // Call center dialer, listed only when the call center is installed
+        if ($this->_existService("issabeldialer")) {
+            $arrSERVICES["Dialer"]["status_service"]   = $this->_existPID_ByFile("/opt/issabel/dialer/dialerd.pid","issabeldialer");
+            $arrSERVICES["Dialer"]["activate"]     = $this->_isActivate("issabeldialer");
+            $arrSERVICES["Dialer"]["name_service"]     = "Issabel Call Center Service";
+        }
+
         return $arrSERVICES;
     }
 
@@ -256,6 +264,8 @@ class Applet_ProcessesStatus
     {
         if (!is_array($nameService)) $nameService = array($nameService);
         foreach ($nameService as $ns) {
+            if (file_exists("/etc/systemd/system/{$ns}.service"))
+                return TRUE;
             if (file_exists("/usr/lib/systemd/system/{$ns}.service"))
                 return TRUE;
             if (file_exists("/etc/rc.d/init.d/{$ns}"))
