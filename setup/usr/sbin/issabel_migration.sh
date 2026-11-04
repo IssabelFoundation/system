@@ -83,6 +83,10 @@ function open_backup_file {
         then
     tar -xzf meetme_mysql.tgz 2>&1 >/dev/null
     fi
+    if [ -f $DATADIR/backup/callcenter_mysql.tgz ]
+        then
+    tar -xzf callcenter_mysql.tgz 2>&1 >/dev/null
+    fi
 }
 
 function restore_asterisksql {
@@ -307,6 +311,38 @@ function update_acl {
     sqlite3 $DATADIR/backup/acl.db.bkp "select name,description from acl_group where id>3" | awk -F\| '{ print "INSERT INTO acl_group (name,description) VALUES (\""$1"\",\""$2"\");"}' | sqlite3 /var/www/db/acl.db
 }
 
+function restore_callcenter {
+    if ! [ -f $DATADIR/backup/call_center.sql ]
+    then
+        return 1
+    fi
+    # A call center dump has nowhere to go when the module is not installed:
+    # skip it with a message rather than installing a module from inside a
+    # migration.
+    if [ -z "$(mysql -uroot -p$MYSQLPWD -N -e "SHOW DATABASES LIKE 'call_center';" 2>/dev/null)" ] || ! [ -d /opt/issabel/dialer ]
+    then
+        print 'Call Center module not installed - its data was not migrated'
+        echo
+        return 1
+    fi
+    # The dialer writes to call_center while it runs, and the tables it is
+    # writing to are being replaced: stop it for the copy, start it again
+    # only if this step stopped it.
+    DIALERWASACTIVE=0
+    if systemctl is-active --quiet issabeldialer 2>/dev/null
+    then
+        DIALERWASACTIVE=1
+        systemctl stop issabeldialer
+    fi
+    /usr/sbin/issabel_migration_callcenter.sh --dump $DATADIR/backup/call_center.sql --db call_center
+    RETVAL=$?
+    if [ "$DIALERWASACTIVE" == "1" ]
+    then
+        systemctl start issabeldialer
+    fi
+    return $RETVAL
+}
+
 function restore_asterisktempsql {
         if ! [ -f $DATADIR/backup/mysqldb_asterisk/asterisk.sql ]
         then
@@ -403,6 +439,16 @@ fi
 
 #insert new modules from menu.db
 update_acl
+
+print "Restoring Call Center database..."
+if restore_callcenter
+then
+    print 'OK'
+    echo
+else
+    print 'SKIP'
+    echo
+fi
 
 print "Restoring Asterisk sound files..."
 if restore_sounds

@@ -150,5 +150,7 @@ $arrLangModule=array(
 "Version" => "Version",
 "Progress" => "Progress",
 "Please verify if the mysql password is the correct in /etc/issabel.conf (mysqlrootpwd)" => "Please verify if the mysql password is the correct in /etc/issabel.conf (mysqlrootpwd)",
+"Restoring Call Center database..." => "Restoring Call Center database...",
+"Call Center module not installed - its data was not migrated" => "Call Center module not installed - its data was not migrated",
 );
 ?>
