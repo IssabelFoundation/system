@@ -173,6 +173,8 @@ La <i>Passphrase</i> debería ser la contraseña de administrador web del sistem
 'Restoring Faxes...'=>'Restaurando faxes...',
 'Restoring Emails...'=>'Restaurando emails...',
 'Restoring Monitor files...'=>'Restaurando archivos de monitoreo...',
-'Restoring Voicemail files...'=>'Rrestaurando correo de voz...'
+'Restoring Voicemail files...'=>'Rrestaurando correo de voz...',
+'Restoring Call Center database...'=>'Restaurando base de datos del Call Center...',
+'Call Center module not installed - its data was not migrated'=>'El módulo Call Center no está instalado - sus datos no se migraron'
 );
 ?>
