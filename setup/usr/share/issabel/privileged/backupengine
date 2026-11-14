@@ -320,11 +320,13 @@ $BACKUP_PLAN = array(
             'desc'          =>  'Call Center CE Database',
             'components'    =>  array(
                 array(
-                    'type'      =>  'mysqldb',
+                    'type'      =>  'mysqldbsync',
                     'database'  =>  'call_center',
                     'backupfile'=>  'callcenter_mysql.tgz',
                 ),
             ),
+            'prerestore'    =>  'prerestore_callcenter_db',
+            'postrestore'   =>  'postrestore_callcenter_db',
         ),
         'asternic_db'          =>  array(
             'desc'          =>  'Asternic Call Center Stats Database',
@@ -1038,6 +1040,13 @@ function backupComponent_mysqldb($sLevelTag, &$backupComponent, $sWorkingDir)
     return TRUE;
 }
 
+/* The call center database is backed up exactly as any mysqldb component;
+ * only its restore differs (restoreComponent_mysqldbsync). */
+function backupComponent_mysqldbsync($sLevelTag, &$backupComponent, $sWorkingDir)
+{
+    return backupComponent_mysqldb($sLevelTag, $backupComponent, $sWorkingDir);
+}
+
 function backupComponent_bundle($sLevelTag, &$backupComponent, $sWorkingDir)
 {
     $sWorkingSubdir = $sWorkingDir.'/'.$backupComponent['backupdir'];
@@ -1359,6 +1368,92 @@ function restoreComponent_mysqldb($sLevelTag, &$backupComponent, $sWorkingDir)
     exec($sCommand, $output, $retval);
     if ($retval != 0) {
         fwrite(STDERR, "ERR: $sLevelTag: failed to restore database from schema $sSchemaPath\n ");
+        return FALSE;
+    }
+    return TRUE;
+}
+
+/* Restore a mysql database dump through the schema-aware copy script: the
+ * dump - which may come from an older version of the module, with columns
+ * the live schema no longer has or lacks - is loaded into a staging database
+ * and copied table by table through the columns both schemas share. This is
+ * the same method issabel_migration.sh uses for an old asterisk/CDR dump.
+ * Boxes without the target database (the Call Center CE module is not
+ * installed) are warned and skipped, not failed. */
+function restoreComponent_mysqldbsync($sLevelTag, &$backupComponent, $sWorkingDir)
+{
+    global $sMysqlRootPass;
+    global $mysqlSchemata;
+
+    // Load mysql password if required
+    prepareMysqlData($sLevelTag);
+
+    // Nothing to restore into if the module's database is absent
+    if (!in_array($backupComponent['database'], $mysqlSchemata)) {
+        fprintf(STDERR, "WARN: $sLevelTag: database ".$backupComponent['database']." not found, install the Call Center module first\n");
+        return TRUE;
+    }
+
+    $sSchemaPath = $sWorkingDir.'/'.$backupComponent['database'].'.sql';
+    if (!is_null($backupComponent['backupfile'])) {
+        $sDbTarball = $sWorkingDir.'/'.$backupComponent['backupfile'];
+        if (!file_exists($sDbTarball)) {
+            fprintf(STDERR, "WARN: $sLevelTag: $sDbTarball not found, not restoring database...\n");
+            return TRUE;
+        }
+        $sCommand = 'tar -C '.escapeshellarg($sWorkingDir).' -xzf '.escapeshellarg($sDbTarball);
+        $output = $retval = NULL;
+        exec($sCommand, $output, $retval);
+        if ($retval != 0) {
+            fwrite(STDERR, "ERR: $sLevelTag: failed to unpack database tarball $sDbTarball\n ");
+            return FALSE;
+        } elseif (!file_exists($sSchemaPath)) {
+            fwrite(STDERR, "ERR: $sLevelTag: unpacking of database tarball $sDbTarball failed to produce schema\n ");
+            return FALSE;
+        }
+    }
+
+    if (!file_exists($sSchemaPath)) {
+        fprintf(STDERR, "WARN: $sLevelTag: $sSchemaPath not found, not restoring database...\n");
+        return TRUE;
+    }
+
+    /* The root password must not reach a command line, so it is handed to
+     * the copy script through a temporary option file instead. The file is
+     * created 0600 (umask) before any byte of the password is written, and
+     * the value is double-quoted with the mysql option-file escapes, so a
+     * password holding '#', a quote, a backslash or spaces is read exactly. */
+    $sDefaultsFile = $sWorkingDir.'/.cc_restore.cnf';
+    $iOldMask = umask(0077);
+    $h = fopen($sDefaultsFile, 'w');
+    if ($h !== FALSE) {
+        fwrite($h, "[client]\nuser = root\npassword = \"".
+            str_replace(array('\\', '"'), array('\\\\', '\\"'), $sMysqlRootPass).
+            "\"\nhost = localhost\n");
+        fclose($h);
+        chmod($sDefaultsFile, 0600);
+    }
+    umask($iOldMask);
+    if (!$h) {
+        fwrite(STDERR, "ERR: $sLevelTag: failed to open $sDefaultsFile for writing\n ");
+        return FALSE;
+    }
+
+    $sCommand = '/usr/sbin/issabel_migration_callcenter.sh --dump '.
+        escapeshellarg($sSchemaPath).' --db '.
+        escapeshellarg($backupComponent['database']).
+        ' --defaults-file '.escapeshellarg($sDefaultsFile).' 2>&1';
+    $output = $retval = NULL;
+    exec($sCommand, $output, $retval);
+
+    // The copy script's progress lines are this restore's own output
+    foreach ($output as $sLine) {
+        print "$sLine\n";
+    }
+    unlink($sDefaultsFile);
+
+    if ($retval != 0) {
+        fwrite(STDERR, "ERR: $sLevelTag: schema-aware restore of database ".$backupComponent['database']." failed\n ");
         return FALSE;
     }
     return TRUE;
@@ -1977,6 +2072,58 @@ function postrestore_a2billing_db($sLevelTag, &$backupComponent, $sWorkingDir)
         exec("/sbin/service a2b-callback-daemon start", $output, $retval);
         if ($retval != 0) {
             fwrite(STDERR, "ERR: $sLevelTag: failed to restart a2b-callback-daemon after restore!\n");
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+/* The Call Center CE dialer (issabeldialer) writes to the call_center
+ * database while it runs, so it is stopped for the duration of a
+ * callcenter_db restore - the tables it is writing to are being replaced -
+ * and started again afterwards, only if this code stopped it. Boxes without
+ * the module have no unit file in any of the usual places and nothing to
+ * do. The three unit paths are the dashboard's own _existService
+ * convention. */
+$callcenter_dialer_running = FALSE;
+function prerestore_callcenter_db($sLevelTag, &$backupComponent, $sWorkingDir)
+{
+    global $callcenter_dialer_running;
+
+    $bUnitFound = FALSE;
+    foreach (array(
+        '/etc/systemd/system/issabeldialer.service',
+        '/usr/lib/systemd/system/issabeldialer.service',
+        '/etc/rc.d/init.d/issabeldialer') as $sUnitPath) {
+        if (file_exists($sUnitPath)) {
+            $bUnitFound = TRUE;
+            break;
+        }
+    }
+    if (!$bUnitFound) return TRUE;
+
+    $output = $retval = NULL;
+    exec('systemctl is-active --quiet issabeldialer', $output, $retval);
+    if ($retval == 0) {
+        $callcenter_dialer_running = TRUE;
+        exec('systemctl stop issabeldialer', $output, $retval);
+        if ($retval != 0) {
+            fwrite(STDERR, "ERR: $sLevelTag: failed to stop issabeldialer prior to restore, database restore might hang!\n");
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+function postrestore_callcenter_db($sLevelTag, &$backupComponent, $sWorkingDir)
+{
+    global $callcenter_dialer_running;
+
+    if ($callcenter_dialer_running) {
+        $output = $retval = NULL;
+        exec('systemctl start issabeldialer', $output, $retval);
+        if ($retval != 0) {
+            fwrite(STDERR, "ERR: $sLevelTag: failed to restart issabeldialer after restore!\n");
             return FALSE;
         }
     }
